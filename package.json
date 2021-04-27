@@ -6,6 +6,14 @@
     "build": "vite build",
     "serve": "vite preview"
   },
+  "contributors": [
+    "Alejandro Yarce",
+    "Andres Guerra",
+    "Daniela Vasquez",
+    "Gerardo Castillo",
+    "Jose Ortiz",
+    "Juan Zea"
+  ],
   "dependencies": {
     "vue": "^3.0.5"
   },
