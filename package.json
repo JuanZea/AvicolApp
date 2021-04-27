@@ -1,0 +1,25 @@
+{
+  "name": "avicolapp-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "contributors": [
+    "Alejandro Yarce",
+    "Andres Guerra",
+    "Daniela Vasquez",
+    "Gerardo Castillo",
+    "Jose Ortiz",
+    "Juan Zea"
+  ],
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/compiler-sfc": "^3.0.5",
+    "vite": "^2.2.3"
+  }
+}
