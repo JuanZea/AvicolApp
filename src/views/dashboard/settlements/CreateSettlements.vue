@@ -1,5 +1,5 @@
 <template>
-
+CREATE SETTLEMENTS
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-
+INDEX BARN
 </template>
 
 <script>

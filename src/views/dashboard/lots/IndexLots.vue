@@ -1,5 +1,5 @@
 <template>
-
+INDEX LOTS
 </template>
 
 <script>

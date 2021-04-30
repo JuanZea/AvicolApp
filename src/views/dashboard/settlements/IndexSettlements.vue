@@ -1,5 +1,5 @@
 <template>
-
+INDEX SETTLEMENT
 </template>
 
 <script>

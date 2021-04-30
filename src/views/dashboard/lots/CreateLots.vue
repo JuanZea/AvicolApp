@@ -1,5 +1,5 @@
 <template>
-
+CREATE LOTS
 </template>
 
 <script>

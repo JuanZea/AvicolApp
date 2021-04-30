@@ -1,5 +1,5 @@
 <template>
-
+CREATE BARN
 </template>
 
 <script>
