@@ -1,6 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <p>
+    <router-link :to="{ name: 'login' }">Go to Login</router-link>
+    <router-link :to="{ name: 'register' }">Go to Register</router-link>
+    <router-link :to="{ name: 'home' }">Go to Home</router-link>
+    <router-link :to="{ name: 'createSettlements' }">Go to Create settlements</router-link>
+    <router-link :to="{ name: 'indexSettlements' }">Go to Index settlements</router-link>
+    <router-link :to="{ name: 'createBarns' }">Go to Create barns</router-link>
+    <router-link :to="{ name: 'indexBarns' }">Go to Index barns</router-link>
+    <router-link :to="{ name: 'createLots' }">Go to Create lots</router-link>
+    <router-link :to="{ name: 'indexLots' }">Go to Index lots</router-link>
+  </p>
+  <router-view/>
 </template>
 
 <script setup>
