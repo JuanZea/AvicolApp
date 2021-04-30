@@ -1,0 +1,13 @@
+<template>
+CREATE BARN
+</template>
+
+<script>
+export default {
+  name: "CreateBarns"
+}
+</script>
+
+<style scoped>
+
+</style>
