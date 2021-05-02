@@ -15,6 +15,7 @@
     "Juan Zea"
   ],
   "dependencies": {
+    "sass": "^1.32.12",
     "vue": "^3.0.5",
     "vue-router": "^4.0.6",
     "vuex": "^4.0.0"
