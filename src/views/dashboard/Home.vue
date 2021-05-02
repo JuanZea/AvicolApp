@@ -4,7 +4,9 @@ HOME
 
 <script>
 export default {
-  name: "Home"
+ setup() {
+  console.log('Hola desde la vista home');
+ },
 }
 </script>
 
