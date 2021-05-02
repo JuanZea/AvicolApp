@@ -23,9 +23,4 @@ Array.prototype.forEach.call(buttons, function(b){
   b.addEventListener('click', createRipple);
 });
 
-
-import {MDCTextField} from '@material/textfield';
-
-const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
-
 export default createRipple;
