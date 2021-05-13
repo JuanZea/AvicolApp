@@ -5,6 +5,7 @@
 
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
 /* Configuration */
 :root {
@@ -15,7 +16,8 @@
   --color-base: #FFBA08;
   --color-base-disabled: #FFE299;
 
-  --font-family: 'Lobster', cursive;
+  --font-family-lobser: 'Lobster', cursive;
+  --font-family-lato: 'Lato', sans-serif;
 
 
   --size-bezel: 0.5rem;
@@ -24,7 +26,11 @@
 
 /* Fonts */
 .font-lobster {
-  font-family: var(--font-family);
+  font-family: var(--font-family-lobser);
+}
+
+.font-lato {
+  font-family: var(--font-family-lato);
 }
 
 /* Colors */
