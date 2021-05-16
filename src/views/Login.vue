@@ -6,7 +6,6 @@
         <span class="font-lobster text-5xl">AvicolApp</span>
         <img class="h-20" src="/src/assets/logos/avicolapp-icon-dark.svg" alt="Avicolapp logo">
       </div>
-
     </div>
 
     <div class="row-span-6 grid grid-cols-10 pt-16">
@@ -25,9 +24,10 @@
             <circle cx="82" cy="82" r="42" fill="white"/>
           </svg>
 
-          <button class="btn btn-dark absolute ml-16 ripple">
+          <router-link class="btn btn-dark absolute ml-16 ripple" :to="{ name: 'register' }" >
             Registrate
-          </button>
+          </router-link>
+
         </div>
 
         <img class="pt-4 " src="/src/assets/illustrations/Illustration-login.svg" alt="Login illustration">
