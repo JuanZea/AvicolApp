@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen grid grid-rows-10">
+  <div class="h-screen grid grid-rows-10 bg-img-login">
 
     <!-- LITTLE STAMP FIXED -->
     <div class="fixed">
@@ -45,7 +45,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Nombre</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -56,7 +56,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Contraseña</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full">
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -117,7 +117,7 @@ export default {
     const router = useRouter();
 
     const goToDashboard = function () {
-      // router.push({ name: 'layoutDashboard' });
+      router.push({ name: 'layoutDashboard' });
     }
 
     return { goToDashboard }

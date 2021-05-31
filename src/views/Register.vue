@@ -1,38 +1,66 @@
 <template>
-  <div class="h-screen flex justify-center">
-    <div class="flex bg-palette-10 rounded-b-full shadow-2xl mb-32 px-20">
+  <div class="h-screen flex justify-center bg-img-register">
+    <div class="flex bg-palette-10 rounded-b-full shadow-2xl mb-32 p-20">
 
-<!--      <div class="fixed z-30">-->
-<!--        <div class="bg-palette-90 rounded-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5 mt-7">-->
-<!--          <span class="text-palette-10 font-lobster text-5xl">AvicolApp</span>-->
-<!--          <img class="h-20" src="/src/assets/logos/avicolapp-icon.svg" alt="Avicolapp logo">-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="flex flex-col items-center space-y-5">
 
-      <div class="justify-center items-center bg-white shadow-md">
+        <div>
+          <div class="bg-palette-90 rounded-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5">
+            <span class="text-palette-10 font-lobster text-5xl">AvicolApp</span>
+            <img class="h-20" src="/src/assets/logos/avicolapp-icon.svg" alt="Avicolapp logo">
+          </div>
+        </div>
 
-        <label class="input w-full">
-          <input class="input-field shadow-lg" type="text" placeholder=" "/>
-          <span class="input-label">Nombre</span>
-        </label>
+        <div class="w-full max-w-xs">
+          <div><label class="font-bold">Nombre</label></div>
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input class="mdc-text-field__input" type="text" aria-label="Label">
+          </label>
+        </div>
 
-        <label class="input w-full" style="background: white">
-          <input class="input-field shadow-lg" type="text" placeholder=" "/>
-          <span class="input-label">Email</span>
-        </label>
+        <div class="w-full max-w-xs">
+          <div><label class="font-bold">Correo electrónico</label></div>
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input class="mdc-text-field__input" type="email" aria-label="Label">
+          </label>
+        </div>
 
-        <label class="input w-full" style="background: white">
-          <input class="input-field shadow-lg" type="text" placeholder=" "/>
-          <span class="input-label">Contraseña</span>
-        </label>
+        <div class="w-full max-w-xs">
+          <div><label class="font-bold">Contraseña</label></div>
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input class="mdc-text-field__input" type="password" aria-label="Label">
+          </label>
+        </div>
 
-        <label class="input w-full" style="background: white">
-          <input class="input-field shadow-lg" type="text" placeholder=" "/>
-          <span class="input-label">Confirmar contraseña</span>
-        </label>
-        <button class="btn btn-base self-end ripple" @click="goToDashboard" style="background: #03071E; color: white">
-          Crear cuenta
-        </button>
+        <div class="w-full max-w-xs">
+          <div><label class="font-bold">Confirmar contraseña</label></div>
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input class="mdc-text-field__input" type="password" aria-label="Label">
+          </label>
+        </div>
+
+        <div class="w-full max-w-xs flex justify-center">
+          <button class="btn-secondary mdc-button mdc-button--raised h-12 mt-4">
+            <span class="mdc-button__ripple"/>
+            <span class="mdc-button__label">Crear cuenta</span>
+          </button>
+        </div>
 
       </div>
 

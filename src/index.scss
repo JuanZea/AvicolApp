@@ -33,6 +33,18 @@
   --size-bezel: 0.5rem;
 }
 
+/* Backgrounds */
+.bg-img-login {
+  background-image: url("/src/assets/img/loginBackground.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-img-register {
+  background-image: url("/src/assets/img/registerBackground.jpg");
+  background-position: center;
+  background-size: cover;
+}
 
 /* Fonts */
 .font-lobster {
