@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/guest/Login.vue'
-import LayoutGuest from "../views/guest/LayoutGuest.vue";
-import Register from "../views/guest/Register.vue";
+import Login from '../views/Login.vue'
+import Register from "../views/Register.vue";
 import LayoutDashboard from "../views/dashboard/LayoutDashboard.vue";
 import Home from "../views/dashboard/Home.vue";
 import CreateSettlements from "../views/dashboard/settlements/CreateSettlements.vue";
@@ -16,62 +15,54 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      name: 'login',
       path: '/',
-      name: 'layoutGuest',
-      component: LayoutGuest,
-      redirect: { name: 'login' },
-      children: [
-        {
-          path: 'login',
-          name: 'login',
-          component: Login,
-        },
-        {
-          path: 'register',
-          name: 'register',
-          component: Register,
-        },
-      ]
+      component: Login,
     },
     {
-      path: '/dashboard',
+      name: 'register',
+      path: '/register',
+      component: Register,
+    },
+    {
       name: 'layoutDashboard',
+      path: '/dashboard',
       component: LayoutDashboard,
       redirect: { name: 'home' },
       children: [
         {
-          path: '/home',
           name: 'home',
+          path: '/home',
           component: Home,
         },
         {
-          path: '/create-settlements',
           name: 'createSettlements',
+          path: '/create-settlements',
           component: CreateSettlements,
         },
         {
-          path: '/my-settlements',
           name: 'indexSettlements',
+          path: '/my-settlements',
           component: IndexSettlements,
         },
         {
-          path: '/create-barns',
           name: 'createBarns',
+          path: '/create-barns',
           component: CreateBarns,
         },
         {
-          path: '/my-barns',
           name: 'indexBarns',
+          path: '/my-barns',
           component: IndexBarns,
         },
         {
-          path: '/create-lots',
           name: 'createLots',
+          path: '/create-lots',
           component: CreateLots,
         },
         {
-          path: '/my-lots',
           name: 'indexLots',
+          path: '/my-lots',
           component: IndexLots,
         }
       ]
