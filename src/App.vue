@@ -5,6 +5,6 @@
 <script>
 
 export default {
-
+  // TODO: Loading curtain
 }
 </script>

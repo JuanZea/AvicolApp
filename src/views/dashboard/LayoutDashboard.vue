@@ -26,8 +26,6 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
-import { Dialog, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot } from "@headlessui/vue";
-
 import BarsSolid from "../../assets/icons/Bars-solid.vue";
 import TimesSolid from "../../assets/icons/Times-solid.vue";
 
@@ -35,12 +33,7 @@ export default {
 
   components: {
     TimesSolid,
-    Dialog,
     BarsSolid,
-    DialogTitle,
-    DialogOverlay,
-    TransitionRoot,
-    TransitionChild,
   },
 
   setup() {
