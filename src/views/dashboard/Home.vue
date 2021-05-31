@@ -1,5 +1,7 @@
 <template>
-HOME
+  <div class="h-full">
+    HOLA
+  </div>
 </template>
 
 <script>

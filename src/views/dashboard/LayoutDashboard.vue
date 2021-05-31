@@ -2,16 +2,30 @@
 
   <div class="h-screen flex">
     <!--  SIDEBAR  -->
-    <div v-if="open" class="w-72 shadow">
-      <div class="bg-palette-10 rounded-r-full shadow flex py-1 pr-5 justify-end items-center gap-3 mt-4 mr-4">
-        <span class="font-lobster text-3xl">AvicolApp</span>
-        <img class="h-12" src="/src/assets/logos/avicolapp-icon-dark.svg" alt="Avicolapp logo">
-      </div>
+    <div id="sidebar" class="sidebar shadow-lg">
+      <transition
+        appear
+        enter-active-class="transform duration-200 ease-out"
+        leave-active-class="transform duration-200 ease-out"
+
+        enter-from-class="-translate-x-full"
+        enter-to-class="translate-x-0"
+
+        leave-from-class="translate-x-0"
+        leave-to-class="-translate-x-full"
+      >
+        <div v-if="open" class="w-72">
+          <div class="bg-palette-10 rounded-r-full shadow flex py-1 pr-5 justify-end items-center gap-3 mt-4 mr-4">
+            <span class="font-lobster text-3xl">AvicolApp</span>
+            <img class="h-12" src="/src/assets/logos/avicolapp-icon-dark.svg" alt="Avicolapp logo">
+          </div>
+        </div>
+      </transition>
     </div>
 
     <div class="w-full">
       <div class="flex bg-gray-100 justify-between px-4 py-2 items-center">
-        <div class="cursor-pointer" @click="open = !open"><BarsSolid :format="'h-6 text-palette-40'"/></div>
+        <div class="cursor-pointer" @click="toggleSideBar"><BarsSolid :format="'h-6 text-palette-40'"/></div>
         <div class="font-lato">{{ title }}</div>
         <div><img class="rounded-full h-7" src="https://ui-avatars.com/api/?name=Alejandro Yarce&background=ffba08" alt="Avatar image"></div>
       </div>
@@ -25,6 +39,7 @@
 <script>
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import { openSideBar, closeSideBar } from "/src/use/sideBarBehavior";
 
 import BarsSolid from "../../assets/icons/Bars-solid.vue";
 import TimesSolid from "../../assets/icons/Times-solid.vue";
@@ -38,17 +53,23 @@ export default {
 
   setup() {
 
-    const hola = function () {
-      console.log('HOLA')
-    }
-
-    const open = ref(true)
+    const open = ref(false);
 
     const route = useRoute();
 
     const title = ref(route.meta.title);
 
-    return { open, title, hola }
+    const toggleSideBar = function () {
+      if (open.value) {
+        closeSideBar('sidebar');
+        open.value = false;
+      } else {
+        openSideBar('sidebar', 288);
+        open.value = true;
+      }
+    }
+
+    return { open, title, toggleSideBar }
 
   },
 

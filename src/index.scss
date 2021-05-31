@@ -163,3 +163,8 @@
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+.sidebar {
+  max-width: 0;
+  transition: max-width 0.2s ease-out;
+}
