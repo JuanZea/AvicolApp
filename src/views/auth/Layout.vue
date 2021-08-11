@@ -1,5 +1,4 @@
 <template>
-
   <div class="h-screen flex">
     <!--  SIDEBAR  -->
     <div id="sidebar" class="sidebar shadow-lg">
@@ -25,7 +24,9 @@
 
     <div class="w-full">
       <div class="flex bg-gray-100 justify-between px-4 py-2 items-center">
-        <div class="cursor-pointer" @click="toggleSideBar"><BarsSolid :format="'h-6 text-palette-40'"/></div>
+        <div class="cursor-pointer" @click="toggleSideBar">
+          <fas class="text-palette-40" icon="bars"/>
+        </div>
         <div class="font-lato">{{ title }}</div>
         <div><img class="rounded-full h-7" src="https://ui-avatars.com/api/?name=Alejandro Yarce&background=ffba08" alt="Avatar image"></div>
       </div>
@@ -33,33 +34,19 @@
       <router-view/>
     </div>
   </div>
-
 </template>
 
 <script>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import { openSideBar, closeSideBar } from "/src/use/sideBarBehavior";
-
-import BarsSolid from "../../assets/icons/Bars-solid.vue";
-import TimesSolid from "../../assets/icons/Times-solid.vue";
+import {ref} from "vue";
+import {useRoute} from "vue-router";
+import {openSideBar, closeSideBar} from "/src/use/sideBarBehavior";
 
 export default {
-
-  components: {
-    TimesSolid,
-    BarsSolid,
-  },
-
   setup() {
-
     const open = ref(false);
-
     const route = useRoute();
-
     const title = ref(route.meta.title);
-
-    const toggleSideBar = function () {
+    const toggleSideBar = () => {
       if (open.value) {
         closeSideBar('sidebar');
         open.value = false;
@@ -70,9 +57,6 @@ export default {
     }
 
     return { open, title, toggleSideBar }
-
-  },
-
+  }
 }
-
 </script>
