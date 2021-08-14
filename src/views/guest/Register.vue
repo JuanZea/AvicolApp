@@ -67,13 +67,9 @@
             <span class="mdc-button__label">Crear cuenta</span>
           </button>
         </div>
-
       </div>
-
-
     </div>
   </div>
-
 </template>
 
 <script>

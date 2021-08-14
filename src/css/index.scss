@@ -1,15 +1,3 @@
-/* Material - Button */
-@use "/node_modules/@material/button/styles";
-
-
-/* Material - TextField */
-@use "/node_modules/@material/floating-label/mdc-floating-label";
-@use "/node_modules/@material/line-ripple/mdc-line-ripple";
-@use "/node_modules/@material/notched-outline/mdc-notched-outline";
-@use "/node_modules/@material/textfield/index" as textfield;
-
-@include textfield.core-styles;
-
 /* tailwindcss */
 @tailwind base;
 @tailwind components;

@@ -17,7 +17,7 @@ const router = createRouter({
       name: 'register',
       component: Register,
     },
-      ...auth,
+    ...auth,
   ],
 });
 

@@ -8,27 +8,22 @@
   },
   "contributors": [
     "Alejandro Yarce",
-    "Andres Guerra",
     "Daniela Vasquez",
     "Gerardo Castillo",
     "Jose Ortiz",
-    "Juan Zea"
+    "Juan Zea",
+    "Valeria Granada"
   ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
-    "@material/button": "^11.0.0",
-    "@material/textfield": "^11.0.0",
     "sass": "^1.32.12",
     "vue": "^3.0.5",
     "vue-router": "^4.0.6",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.5",
