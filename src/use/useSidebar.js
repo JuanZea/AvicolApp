@@ -1,31 +1,25 @@
-import {ref} from "vue";
+import { ref } from "vue";
 
 let open = ref(false);
 
-const openSideBar = function (id, size) {
-    const el = document.getElementById(id);
-    el.style.maxWidth = size + "px";
+const openSideBar = function () {
+    document.getElementById('wrapper').classList.remove('extend')
+    open.value = true;
 }
 
-const closeSideBar = function (id) {
-    const el = document.getElementById(id);
-    el.style.maxWidth = null;
+const closeSideBar = function () {
+    document.getElementById('wrapper').classList.add('extend')
+    open.value = false;
 }
 
 const toggleSidebar = () => {
-    console.log('ALGO')
-    if (open.value) {
-        closeSideBar('sidebar');
-        open.value = false;
-    } else {
-        openSideBar('sidebar', 288);
-        open.value = true;
-    }
+    open.value ? closeSideBar() : openSideBar();
 }
 
-export default function useSidebar () {
-  return {
-      open,
-      toggleSidebar
-  }
+export default function useSidebar() {
+    return {
+        open,
+        closeSideBar,
+        toggleSidebar
+    }
 };

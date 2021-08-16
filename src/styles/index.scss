@@ -5,6 +5,7 @@
 
 /* Configuration */
 @import "globals";
+@import "sidebar";
 
 /* Backgrounds */
 .bg-img-login {
@@ -133,9 +134,4 @@
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-}
-
-.sidebar {
-  max-width: 0;
-  transition: max-width 0.2s ease-out;
 }
