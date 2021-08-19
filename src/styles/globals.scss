@@ -1,0 +1,17 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+[v-cloak] {
+    display: none;
+}
+
+:root {
+  --color-primary: #F48C06;
+  --color-secondary: #03071E;
+
+  --font-family-lobser: 'Lobster', cursive;
+  --font-family-lato: 'Lato', sans-serif;
+
+  --size-bezel: 0.5rem;
+}

@@ -1,6 +1,5 @@
 <template>
   <div class="h-screen grid grid-rows-10 bg-img-login">
-
     <!-- LITTLE STAMP FIXED -->
     <div class="fixed">
       <div class="bg-palette-10 rounded-r-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5 mt-7">
@@ -9,8 +8,7 @@
       </div>
     </div>
 
-    <div class="row-span-7 grid grid-cols-10 pt-16">
-
+    <div class="row-span-6 grid grid-cols-10 pt-16">
       <!-- BIG ORANGE STAMP -->
       <div class="col-span-6 hidden h-full w-full justify-around bg-palette-10 rounded-r-full shadow-lg lg:flex pr-5 w-80">
 
@@ -35,14 +33,10 @@
               <span class="mdc-button__label">Regístrate</span>
             </button>
           </router-link>
-
-
         </div>
-
       </div>
 
       <div class="col-span-4 flex flex-col gap-7 justify-center items-center">
-
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Nombre</label></div>
           <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
@@ -71,58 +65,46 @@
             <span class="mdc-button__label">Iniciar sesión</span>
           </button>
         </div>
-
-
       </div>
-
     </div>
 
     <div class="row-span-4 grid grid-cols-3">
       <div class="grid grid-cols-12 items-center">
         <div class="col-span-3 flex justify-center">
-          <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
+          <fas class="h-16 text-red-500 shadow-2xl rounded-full p-1" icon="edit"/>
         </div>
         <p class="col-span-9">Con AvicolApp queremos ofrecerte comodidad a la hora de gestionar tus actividades.</p>
       </div>
 
       <div class="grid grid-cols-12 items-center">
         <div class="col-span-3 flex justify-center">
-          <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
+          <fas class="h-16 text-palette-10 shadow-2xl rounded-full p-1" icon="hand-holding-heart"/>
         </div>
         <p class="col-span-9">Tus gallinas van a estar más seguras con la creación, actualización y eliminación de galpones, asentamientos y lotes.</p>
       </div>
 
       <div class="grid grid-cols-12 items-center">
         <div class="col-span-3 flex justify-center">
-          <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
+          <fas class="h-16 text-palette-10 shadow-2xl rounded-full p-1" icon="hand-holding-heart"/>
         </div>
         <p class="col-span-9">Garantizamos efectividad en el manejo de los datos para tener información actualizada y pertinente.</p>
       </div>
     </div>
 
-
   </div>
 </template>
 
 <script>
-import { useRouter } from "vue-router"
-import HandHoldingHeartSolid from "../assets/icons/Hand-holding-heart-solid.vue";
+import { useRouter } from "vue-router";
 
 export default {
-
-  components: { HandHoldingHeartSolid },
-
   setup() {
-
     const router = useRouter();
-
-    const goToDashboard = function () {
-      router.push({ name: 'layoutDashboard' });
+    const goToDashboard = () => {
+      router.push({ name: 'home' });
     }
 
     return { goToDashboard }
-
   }
-
 }
 </script>

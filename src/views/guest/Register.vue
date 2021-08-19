@@ -2,7 +2,7 @@
   <div class="h-screen flex justify-center bg-img-register">
     <div class="fixed top-0 left-0 m-4">
       <router-link :to="{ name: 'login' }">
-        <ArrowCircleLeftSolid class="text-palette-100 h-12 cursor-pointer hvr-grow"/>
+        <fas class="text-palette-100 h-12 cursor-pointer hvr-grow" icon="arrow-circle-left"/>
       </router-link>
     </div>
 
@@ -70,13 +70,7 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import ArrowCircleLeftSolid from "/src/assets/icons/Arrow-circle-left-solid.vue";
-
-export default {
-  components: { ArrowCircleLeftSolid }
-}
 </script>

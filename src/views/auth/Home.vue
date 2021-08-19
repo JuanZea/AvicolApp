@@ -1,9 +1,11 @@
 <template>
-  <router-view/>
+  <div>
+    HOLA
+  </div>
 </template>
 
 <script>
 export default {
-  // TODO: Loading curtain
+
 }
 </script>

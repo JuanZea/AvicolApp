@@ -1,37 +1,11 @@
-/* Material - Button */
-@use "/node_modules/@material/button/styles";
-
-
-/* Material - TextField */
-@use "/node_modules/@material/floating-label/mdc-floating-label";
-@use "/node_modules/@material/line-ripple/mdc-line-ripple";
-@use "/node_modules/@material/notched-outline/mdc-notched-outline";
-@use "/node_modules/@material/textfield/index" as textfield;
-
-@include textfield.core-styles;
-
 /* tailwindcss */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-*,*:focus,*:hover{
-    outline:none !important;
-}
-
 /* Configuration */
-:root {
-
-  --color-primary: #F48C06;
-  --color-secondary: #03071E;
-
-  --font-family: 'Lobster', cursive;
-
-  --size-bezel: 0.5rem;
-}
+@import "globals";
+@import "sidebar";
 
 /* Backgrounds */
 .bg-img-login {
@@ -48,7 +22,11 @@
 
 /* Fonts */
 .font-lobster {
-  font-family: var(--font-family);
+  font-family: var(--font-family-lobser);
+}
+
+.font-lato {
+  font-family: var(--font-family-lato);
 }
 
 /* Colors */
