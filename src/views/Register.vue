@@ -6,9 +6,9 @@
       </router-link>
     </div>
 
-    <div class="flex bg-palette-10 rounded-b-full shadow-2xl mb-32 p-20">
+    <div class="flex bg-palette-10 rounded-b-full shadow-2xl mb-3 py-7 p-11">
 
-      <div class="flex flex-col items-center space-y-5">
+      <div class="flex flex-col items-center space-y-3">
 
         <div>
           <div class="bg-palette-90 rounded-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5">
@@ -19,7 +19,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Nombre</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -30,7 +30,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Correo electrónico</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -41,7 +41,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Contraseña</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -52,7 +52,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Confirmar contraseña</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -67,10 +67,7 @@
             <span class="mdc-button__label">Crear cuenta</span>
           </button>
         </div>
-
       </div>
-
-
     </div>
   </div>
 

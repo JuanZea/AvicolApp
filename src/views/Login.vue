@@ -9,12 +9,12 @@
       </div>
     </div>
 
-    <div class="row-span-6 grid grid-cols-10 pt-16">
+    <div class="row-span-7 grid grid-cols-10 pt-16">
 
       <!-- BIG ORANGE STAMP -->
       <div class="col-span-6 hidden h-full w-full justify-around bg-palette-10 rounded-r-full shadow-lg lg:flex pr-5 w-80">
 
-        <img class="self-end ml-4 h-72 1xl:h-full 1xl:pt-16" src="/src/assets/illustrations/Illustration-login.svg" alt="Login illustration">
+        <img class="self-end ml-4 h-70 1xl:h-full 1xl:pt-16" src="/src/assets/illustrations/Illustration-login.svg" alt="Login illustration">
 
         <div class="flex items-center justify-center self-center">
           <svg height="165" width="165">
@@ -32,7 +32,7 @@
           <router-link class="absolute" :to="{ name: 'register' }" >
             <button class="btn-secondary mdc-button mdc-button--raised"  @click="goToDashboard">
               <span class="mdc-button__ripple"/>
-              <span class="mdc-button__label">Registrate</span>
+              <span class="mdc-button__label">Regístrate</span>
             </button>
           </router-link>
 
@@ -45,7 +45,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Nombre</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -56,7 +56,7 @@
 
         <div class="w-full max-w-xs">
           <div><label class="font-bold">Contraseña</label></div>
-          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
+          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
             <span class="mdc-notched-outline">
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
@@ -68,7 +68,7 @@
         <div class="w-full max-w-xs flex justify-end">
           <button class="btn-primary mdc-button mdc-button--raised"  @click="goToDashboard">
             <span class="mdc-button__ripple"/>
-            <span class="mdc-button__label">Inicia sesión</span>
+            <span class="mdc-button__label">Iniciar sesión</span>
           </button>
         </div>
 
@@ -82,21 +82,21 @@
         <div class="col-span-3 flex justify-center">
           <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
         </div>
-        <p class="col-span-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ea inventore molestiae perferendis sequi sint </p>
+        <p class="col-span-9">Con AvicolApp queremos ofrecerte comodidad a la hora de gestionar tus actividades.</p>
       </div>
 
       <div class="grid grid-cols-12 items-center">
         <div class="col-span-3 flex justify-center">
           <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
         </div>
-        <p class="col-span-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ea inventore molestiae perferendis sequi sint </p>
+        <p class="col-span-9">Tus gallinas van a estar más seguras con la creación, actualización y eliminación de galpones, asentamientos y lotes.</p>
       </div>
 
       <div class="grid grid-cols-12 items-center">
         <div class="col-span-3 flex justify-center">
           <hand-holding-heart-solid :format="'h-16 text-palette-10 shadow-2xl rounded-full p-1'"/>
         </div>
-        <p class="col-span-9">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ea inventore molestiae perferendis sequi sint </p>
+        <p class="col-span-9">Garantizamos efectividad en el manejo de los datos para tener información actualizada y pertinente.</p>
       </div>
     </div>
 
