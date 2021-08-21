@@ -24,7 +24,7 @@
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <input class="mdc-text-field__input" type="text" aria-label="Label">
+            <input v-model="name" class="mdc-text-field__input" type="text" aria-label="Label">
           </label>
         </div>
 
@@ -35,7 +35,7 @@
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <input class="mdc-text-field__input" type="email" aria-label="Label">
+            <input v-model="email" class="mdc-text-field__input" type="email" aria-label="Label">
           </label>
         </div>
 
@@ -46,7 +46,7 @@
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <input class="mdc-text-field__input" type="password" aria-label="Label">
+            <input v-model="password" class="mdc-text-field__input" type="password" aria-label="Label">
           </label>
         </div>
 
@@ -57,14 +57,13 @@
               <span class="mdc-notched-outline__leading"></span>
               <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <input class="mdc-text-field__input" type="password" aria-label="Label">
+            <input v-model="confirmPassword" class="mdc-text-field__input" type="password" aria-label="Label">
           </label>
         </div>
 
         <div class="w-full max-w-xs flex justify-center">
-          <button class="btn-secondary mdc-button mdc-button--raised h-12 mt-4">
-            <span class="mdc-button__ripple"/>
-            <span class="mdc-button__label">Crear cuenta</span>
+          <button @click="register" class="btn btn-dark text-white">
+            Crear cuenta
           </button>
         </div>
       </div>
@@ -73,4 +72,18 @@
 </template>
 
 <script>
+import {ref} from "vue";
+import {useAuthentication} from "../../use";
+
+export default {
+  setup() {
+    const name = ref();
+    const email = ref();
+    const password = ref();
+    const confirmPassword = ref();
+    const {register: globalRegister} = useAuthentication();
+    const register = () => globalRegister(name.value, email.value, password.value);
+    return {name, email, password, confirmPassword, register}
+  }
+}
 </script>

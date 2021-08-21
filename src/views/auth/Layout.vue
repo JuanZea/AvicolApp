@@ -14,7 +14,7 @@
         </div>
         <div class="font-lato">{{ title }}</div>
         <div>
-          <img
+          <img @click="logout"
             class="rounded-full h-7"
             src="https://ui-avatars.com/api/?name=Alejandro Yarce&background=ffba08"
             alt="Avatar image"
@@ -33,7 +33,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Sidebar from "../../components/Sidebar.vue";
-import { useSidebar } from "../../use";
+import {useAuthentication, useSidebar} from "../../use";
 
 export default {
   components: { Sidebar },
@@ -46,7 +46,9 @@ export default {
       toggleSidebar();
     });
 
-    return { title, toggleSidebar };
+    const {logout} = useAuthentication();
+
+    return { title, toggleSidebar, logout };
   },
 };
 </script>

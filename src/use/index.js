@@ -1,3 +1,4 @@
+import useAuthentication from "./useAuthentication";
 import useSidebar from "./useSidebar";
 
-export {useSidebar}
+export {useAuthentication, useSidebar}
