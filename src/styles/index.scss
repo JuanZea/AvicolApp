@@ -1,0 +1,20 @@
+/* tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuration */
+@import "globals";
+@import "fonts.css";
+@import "effects.css";
+@import "sidebar";
+@import "buttons.css";
+@import "backgrounds.css";
+
+.bg-palette-10 {
+  background-color: #FFBA08;
+}
+
+.text-palette-10 {
+  color: #FFBA08;
+}

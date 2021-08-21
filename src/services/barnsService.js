@@ -1,30 +1,12 @@
-import axios from "axios";
+import {all, one, create, destroy} from "./avicolappAssembler";
 
-const url = "http://localhost:3000/api/barns";
+const URL = import.meta.env.VITE_APP_URL_AV_API;
 
-const barnsServices = {
-    all: () => {
-        try{
-            return axios.get(`${url}`)
-        }catch (err){
-            console.log(err.message)
-        }
-    },
-    create: (barn) => {
-        try{
-            return axios.post(`${url}`, barn)
-        }catch (err){
-            console.log(err.message)
-        }
-    },
-    delete: (id) => {
-        try{
-            return axios.delete(`${url}/${id}`)
-        }catch (err){
-            console.log(err.message)
-        }
-    }
+const barnsService = {};
 
-};
+barnsService.all = all(URL);
+barnsService.one = one(URL);
+barnsService.create = create(URL);
+barnsService.delete = destroy(URL);
 
-export { barnsServices }
+export default barnsService;

@@ -1,6 +1,5 @@
+import settlementsService from "./settlementsService"
+import {barnsService} from "./barnsService";
+import {lotsService} from "./lotsService";
 
-import {settlementsServices} from "./settlementsServices"
-import {barnsServices} from "./barnsService";
-import {lotsServices} from "./lotsService";
-
-export {settlementsServices, lotsServices, barnsServices}
+export {settlementsService, lotsService, barnsService}

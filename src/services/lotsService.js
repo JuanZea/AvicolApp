@@ -1,30 +1,12 @@
-import axios from "axios";
+import {all, one, create, destroy} from "./avicolappAssembler";
 
-const url = "http://localhost:3000/api/lots";
+const URL = import.meta.env.VITE_APP_URL_AV_API;
 
-const lotsServices = {
-    all: () => {
-        try{
-            return axios.get(`${url}`)
-        }catch (err){
-            console.log(err.message)
-        }
-    },
-    create: (lot) => {
-        try{
-            return axios.post(`${url}`, lot)
-        }catch (err){
-            console.log(err.message)
-        }
-    },
-    delete: (id) => {
-        try{
-            return axios.delete(`${url}/${id}`)
-        }catch (err){
-            console.log(err.message)
-        }
-    }
+const lotsService = {};
 
-};
+lotsService.all = all(URL);
+lotsService.one = one(URL);
+lotsService.create = create(URL);
+lotsService.delete = destroy(URL);
 
-export { lotsServices }
+export default lotsService;
