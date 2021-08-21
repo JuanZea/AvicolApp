@@ -2,17 +2,17 @@
   <div class="h-screen flex justify-center bg-img-register">
     <div class="fixed top-0 left-0 m-4">
       <router-link :to="{ name: 'login' }">
-        <fas class="text-palette-100 h-12 cursor-pointer hvr-grow" icon="arrow-circle-left"/>
+        <fas class="text-av-100 h-12 cursor-pointer hvr-grow" icon="arrow-circle-left"/>
       </router-link>
     </div>
 
-    <div class="flex bg-palette-10 rounded-b-full shadow-2xl mb-3 py-7 p-11">
+    <div class="flex bg-av-10 rounded-b-full shadow-2xl mb-3 py-7 p-11">
 
       <div class="flex flex-col items-center space-y-3">
 
         <div>
-          <div class="bg-palette-90 rounded-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5">
-            <span class="text-palette-10 font-lobster text-5xl">AvicolApp</span>
+          <div class="bg-av-90 rounded-full shadow flex py-1 pr-5 w-80 justify-end items-center gap-5">
+            <span class="text-av-10 font-lobster text-5xl">AvicolApp</span>
             <img class="h-20" src="/src/assets/logos/avicolapp-icon.svg" alt="Avicolapp logo">
           </div>
         </div>

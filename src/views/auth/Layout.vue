@@ -9,7 +9,7 @@
             class="cursor-pointer flex items-center"
             @click="toggleSidebar"
           >
-            <fas class="text-palette-40 hvr-grow" icon="bars" />
+            <fas class="text-av-40 hvr-grow" icon="bars" />
           </button>
         </div>
         <div class="font-lato">{{ title }}</div>

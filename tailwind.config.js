@@ -1,50 +1,29 @@
-const colors = require('tailwindcss/colors')
+const {colors: defaultColors} = require('tailwindcss/defaultTheme');
+const customColors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-     screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '1xl': '1440px',
-      '2xl': '1536px',
+    purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+    darkMode: false, // or 'media' or 'class'
+    theme: {
+        colors: {
+          ...defaultColors,
+          'av-10': '#FFBA08',
+          'av-20': '#FAA307',
+          'av-30': '#F48C06',
+          'av-40': '#E85D04',
+          'av-50': '#DC2F02',
+          'av-60': '#D00000',
+          'av-70': '#9D0208',
+          'av-80': '#6A040F',
+          'av-90': '#370617',
+          'av-100': '#03071E',
+        },
+        extend: {},
     },
-    extend: {
-      gridTemplateRows: {
-        // Complete rows
-        '7': 'repeat(7, minmax(0, 1fr))',
-        '8': 'repeat(8, minmax(0, 1fr))',
-        '9': 'repeat(9, minmax(0, 1fr))',
-        '10': 'repeat(10, minmax(0, 1fr))',
-        '11': 'repeat(11, minmax(0, 1fr))',
-        '12': 'repeat(12, minmax(0, 1fr))',
-      },
-      gridRow: {
-        'span-7': 'span 7 / span 7',
-        'span-8': 'span 8 / span 8',
-        'span-9': 'span 9 / span 9',
-        'span-10': 'span 10 / span 10',
-        'span-11': 'span 11 / span 11',
-        'span-12': 'span 12 / span 12',
-      },
+    variants: {
+        extend: {},
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      orange: colors.orange,
-      gray: colors.gray,
-      red: colors.red,
-    },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-      require('@tailwindcss/forms'),
-  ],
+    plugins: [
+        require('@tailwindcss/forms'),
+    ],
 }
