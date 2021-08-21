@@ -38,25 +38,11 @@
 
       <div class="col-span-4 flex flex-col gap-7 justify-center items-center">
         <div class="w-full max-w-xs">
-          <div><label class="font-bold">Nombre</label></div>
-          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
-            <span class="mdc-notched-outline">
-              <span class="mdc-notched-outline__leading"></span>
-              <span class="mdc-notched-outline__trailing"></span>
-            </span>
-            <input class="mdc-text-field__input" type="text" aria-label="Label">
-          </label>
+          <text-field label="Email"/>
         </div>
 
         <div class="w-full max-w-xs">
-          <div><label class="font-bold">Contraseña</label></div>
-          <label class="mdc-text-field h-9 mdc-text-field--outlined mdc-text-field--no-label txf-primary shadow-md w-full bg-white rounded">
-            <span class="mdc-notched-outline">
-              <span class="mdc-notched-outline__leading"></span>
-              <span class="mdc-notched-outline__trailing"></span>
-            </span>
-            <input class="mdc-text-field__input" type="password" aria-label="Label">
-          </label>
+          <text-field label="Password"/>
         </div>
 
         <div class="w-full max-w-xs flex justify-end">
@@ -96,8 +82,10 @@
 
 <script>
 import { useRouter } from "vue-router";
+import TextField from "../../components/TextField.vue";
 
 export default {
+  components: {TextField},
   setup() {
     const router = useRouter();
     const goToDashboard = () => {
