@@ -65,7 +65,7 @@
               </router-link>
             </div>
             <div class="py-1">
-              <router-link
+              <a
                 class="
                   text-gray-700
                   flex
@@ -76,12 +76,13 @@
                   text-sm
                   leading-5
                   text-left
+                  cursor-pointer
                   hover:bg-gray-100
                 "
-                to=""
+                @click="logout"
               >
                 Cerrar Sesión
-              </router-link>
+              </a>
             </div>
           </template>
         </dropdown>
@@ -97,7 +98,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import Sidebar from "../../components/Sidebar.vue";
-import { useSidebar } from "../../use";
+import { useAuthentication, useSidebar } from "../../use";
 import Dropdown from "./components/Dropdown.vue";
 
 export default {
@@ -111,7 +112,9 @@ export default {
       toggleSidebar();
     });
 
-    return { title, toggleSidebar };
+    const { logout } = useAuthentication();
+
+    return { title, toggleSidebar, logout };
   },
 };
 </script>
