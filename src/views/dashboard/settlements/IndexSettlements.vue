@@ -4,7 +4,7 @@ INDEX SETTLEMENT
 
 <script>
 export default {
-  name: "IndexSettlements"
+  name: "IndexSettlements",
 }
 </script>
 
