@@ -49,7 +49,7 @@
         </div>
 
         <div class="w-full max-w-xs flex justify-end">
-          <button class="btn btn-persimmon text-white">Iniciar sesión</button>
+          <button @click="login" class="btn btn-persimmon text-white">Iniciar sesión</button>
         </div>
       </div>
     </div>
