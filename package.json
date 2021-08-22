@@ -1,5 +1,5 @@
 {
-  "name": "avicolapp-frontend",
+  "name": "avicolapp",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,29 +8,29 @@
   },
   "contributors": [
     "Alejandro Yarce",
-    "Andres Guerra",
     "Daniela Vasquez",
     "Gerardo Castillo",
     "Jose Ortiz",
-    "Juan Zea"
+    "Juan Zea",
+    "Valeria Granada"
   ],
   "dependencies": {
-    "@material/button": "^11.0.0",
-    "@material/textfield": "^11.0.0",
-    "sass": "^1.32.12",
-    "vue": "^3.0.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-4",
+    "firebase": "^8.10.0",
+    "sass": "^1.38.0",
+    "vue": "^3.2.4",
     "vue-router": "^4.0.6",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
+    "@tailwindcss/forms": "^0.3.3",
     "@vitejs/plugin-vue": "^1.2.2",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.2.4",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.13",
     "tailwindcss": "^2.1.2",
-    "vite": "^2.2.3"
+    "vite": "^2.5.0"
   }
 }
