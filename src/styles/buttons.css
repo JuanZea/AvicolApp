@@ -13,3 +13,7 @@
 .btn-dark {
     @apply bg-av-900 hover:bg-av-700 focus:ring-av-500;
 }
+
+.btn-persimmon {
+    @apply bg-av-300 hover:bg-av-400 focus:ring-av-200;
+}

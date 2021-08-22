@@ -49,10 +49,7 @@
         </div>
 
         <div class="w-full max-w-xs flex justify-end">
-          <button class="btn-primary mdc-button mdc-button--raised"  @click="login">
-            <span class="mdc-button__ripple"/>
-            <span class="mdc-button__label">Iniciar sesión</span>
-          </button>
+          <button class="btn btn-persimmon text-white">Iniciar sesión</button>
         </div>
       </div>
     </div>
