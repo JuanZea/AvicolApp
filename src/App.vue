@@ -7,7 +7,6 @@
 import {useStore} from "vuex";
 import {computed, ref} from "vue";
 import Curtain from "./components/Curtain.vue";
-import {settlementsService} from "./services";
 
 export default {
   components: {Curtain},
