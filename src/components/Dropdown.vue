@@ -42,7 +42,7 @@
           id="headlessui-menu-items-117"
           role="menu"
         >
-          <slot name="content"></slot>
+          <slot name="content"/>
         </div>
       </div>
     </div>

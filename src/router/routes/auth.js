@@ -6,6 +6,7 @@ import CreateBarns from "../../views/auth/barns/CreateBarns.vue";
 import IndexBarns from "../../views/auth/barns/IndexBarns.vue";
 import CreateLots from "../../views/auth/lots/CreateLots.vue";
 import IndexLots from "../../views/auth/lots/IndexLots.vue";
+import MyAccount from "../../views/auth/MyAccount.vue";
 
 const children = [
     {
@@ -49,6 +50,12 @@ const children = [
         path: '/my-lots',
         meta: { title: 'MIS LOTES' },
         component: IndexLots,
+    },
+    {
+        name: 'myAccount',
+        path: '/my-account',
+        meta: { title: 'MI CUENTA' },
+        component: MyAccount,
     }
 ];
 
