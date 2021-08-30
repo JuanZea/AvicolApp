@@ -1,12 +1,15 @@
 import "../../firebase.config"
 import firebase from "firebase/app";
 import router from "../router";
+import {usersService} from "../services";
 
 const register = (name, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => {
-            // Signed in
-            router.push({name: 'home'});
+        .then(userCredentials => {
+            usersService.create({firebaseId: userCredentials.user.uid})
+                .then(() => {
+                    router.push({name: 'home'});
+                }).catch(console.log)
         }).catch(console.log);
 }
 

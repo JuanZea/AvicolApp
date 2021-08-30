@@ -37,7 +37,7 @@
           </template>
         </dropdown>
       </div>
-      <div class="h-full">
+      <div class="flex-grow container mx-auto">
         <router-view/>
       </div>
     </div>
