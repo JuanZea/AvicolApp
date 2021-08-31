@@ -6,10 +6,13 @@ import {usersService} from "../services";
 const register = (name, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(userCredentials => {
-            usersService.create({firebaseId: userCredentials.user.uid})
-                .then(() => {
-                    router.push({name: 'home'});
-                }).catch(console.log)
+            usersService.create({
+                id: userCredentials.user.uid,
+                name: name,
+                email: email
+            }).then(() => {
+                router.push({name: 'home'});
+            }).catch(console.log)
         }).catch(console.log);
 }
 
