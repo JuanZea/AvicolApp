@@ -1,4 +1,4 @@
-import {all, one, create, destroy} from "./avicolappAssembler";
+import {all, one, create, destroy, update} from "./avicolappAssembler";
 
 const assembler = (url) => {
     const model = {};
@@ -6,6 +6,7 @@ const assembler = (url) => {
     model.one = one(url);
     model.create = create(url);
     model.delete = destroy(url);
+    model.update = update(url);
     return model;
 };
 

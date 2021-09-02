@@ -16,4 +16,8 @@ const create = (url) => (body) => service.post(url, body)
 
 const destroy = (url) => (id) => service.delete(`${url}/${id}`)
 
-export {all, one, create, destroy}
+const update = (url) => (id, body) => service.patch(`${url}/${id}`, body)
+    .then(response => response)
+    .catch(console.log);
+
+export {all, one, create, destroy, update}
