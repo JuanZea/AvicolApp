@@ -99,7 +99,7 @@
           </div>
 
           <div class="text-right mt-4">
-            <button @click="edit" type="submit" class="btn btn-dark text-white text-xl">
+            <button @click="update" type="submit" class="btn btn-dark text-white text-xl hover:from-av-800">
               Actualizar
             </button>
           </div>
@@ -120,15 +120,13 @@ import firebase from "firebase/app";
 export default {
   setup() {
     const user = firebase.auth().currentUser
-    if(user == null){
-      throw new Error("Nobody is signed in")
-    }
+    const id = user.uid;
+
     const name = ref();
     const document = ref()
     //const email = ref();
     const mobile = ref();
     const address = ref();
-    const id = user.uid;
 
     const update = () => usersService.update(id, {
       name: name.value,
