@@ -77,11 +77,12 @@
                       </div>
                     </div>
 
-                    <!--
+
                     <div>
-                      <label for="email" class="block xl:text-xl">Correo</label>
-                      <input v-model="email" type="text" name="email" id="email" autocomplete="email" class="xl:text-xl  mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full md:w-2/3  shadow-sm border-gray-300 rounded-md">
-                    </div>-->
+                      <label for="email" class="block xl:text-xl">Correo:</label>
+                      <input v-model="email" type="text" disabled=""  placeholder="Juan.YTaborda@AdeU.ued.co"  name="email" id="email" autocomplete="email" class="xl:text-xl  mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full md:w-2/3  shadow-sm border-gray-300 rounded-md">
+
+                    </div>
 
                     <div>
                       <label for="mobile" class="block xl:text-xl">Celular</label>
@@ -119,14 +120,18 @@ import firebase from "firebase/app";
 
 export default {
   setup() {
-    const user = firebase.auth().currentUser
-    const id = user.uid;
+    const userFirebase = firebase.auth().currentUser
+    const id = userFirebase.uid;
+
+    /*const user = usersService.one(id);
+    console.log(user)*/
 
     const name = ref();
     const document = ref()
     //const email = ref();
     const mobile = ref();
     const address = ref();
+
 
     const update = () => usersService.update(id, {
       name: name.value,
