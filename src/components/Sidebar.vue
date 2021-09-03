@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="modal-backdrop md:hidden flex justify-end pt-4 pr-4 show">
+    <div class="modal-backdrop lg:hidden flex justify-end pt-4 pr-4 show">
       <a class="no-underline pointer" @click="closeSideBar">
         <fas class="text-white hvr-grow" icon="times" />
       </a>
