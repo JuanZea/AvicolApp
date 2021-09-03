@@ -25,7 +25,7 @@
               <router-link class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100" :to="{name: 'myAccount'}">
                 Mi cuenta
               </router-link>
-              <router-link class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100" to="">
+              <router-link class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100" :to="{name: 'indexSettlements'}">
                 Mis fincas
               </router-link>
             </div>
