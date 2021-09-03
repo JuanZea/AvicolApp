@@ -1,5 +1,5 @@
 <template>
-  <form class="flex justify-center px-6">
+  <div class="flex justify-center px-6">
     <div class="w-full max-w-xs">
       <h1 class="text-center text-3xl font-lato">Inicia Sesión</h1>
 
@@ -15,7 +15,7 @@
         <button @click="login" class="btn btn-dark text-white">Iniciar sesión</button>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ import AvInput from "./AvInput.vue";
 import {ref} from "vue";
 import {useAuthentication} from "../../use";
 export default {
-  name: "LoginForm",
+  emits: ['register'],
   components: {AvInput},
   setup () {
     const email = ref('');

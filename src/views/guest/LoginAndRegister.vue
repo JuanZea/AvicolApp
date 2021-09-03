@@ -1,9 +1,9 @@
 <template>
   <div class="bg-img-login">
     <div class="container mx-auto flex flex-col min-h-screen">
-      <div class="bg-av-100 bg-opacity-20 flex-grow md:flex md:items-center">
-        <div class="relative md:flex">
-          <div class="md:hidden flex justify-center">
+      <div class="flex flex-col bg-av-100 bg-opacity-20 flex-grow">
+        <div class="flex justify-center">
+          <div class="flex justify-center">
             <div class="flex bg-av-50 rounded-b-full shadow-md py-2 px-12 items-center gap-5">
               <span class="font-lobster text-5xl">AvicolApp</span>
               <img class="h-20" src="/src/assets/logos/avicolapp-icon-dark.svg" alt="AvicolApp logo">
@@ -11,20 +11,17 @@
           </div>
         </div>
 
-        <div class="relative w-full grid grid-cols-1 md:grid-cols-2 py-8">
-          <div class="hidden md:flex absolute top-10 bg-av-50 rounded-r-full shadow-md py-2 pl-12 pr-4 justify-end items-center gap-5">
-            <span class="font-lobster text-3xl">AvicolApp</span>
-            <img class="h-16" src="/src/assets/logos/avicolapp-icon-dark.svg" alt="AvicolApp logo">
-          </div>
+        <div class="flex flex-grow items-center w-full">
+          <div class="w-full grid grid-cols-1 md:grid-cols-2 py-8">
+            <login-sticker class="ml-8 hidden md:block"/>
 
-          <div class="hidden md:flex justify-center bg-av-50 mt-10 rounded-r-full">
-            <div class="w-64 self-end mr-6">
-              <img src="/src/assets/illustrations/Illustration-login.svg">
+            <div class="flex justify-center items-center flex-grow md:col-start-2">
+              <div class="w-full">
+                <transition name="zlid" mode="out-in">
+                  <component :is="registerMode ? 'register-form' : 'login-form'"/>
+                </transition>
+              </div>
             </div>
-          </div>
-
-          <div class="flex-grow">
-            <login-form/>
           </div>
         </div>
       </div>
@@ -33,8 +30,11 @@
         <info-card class="h-full" color="bg-av-50 bg-opacity-70" icon="hand-holding-heart" title="SEGURIDAD" desc="Tus gallinas van a estar más seguras con la creación, actualización y eliminación de galpones, asentamientos y lotes."/>
         <info-card class="h-full" color="bg-av-50 bg-opacity-70" icon="egg" title="EFICIENCIA" desc="Garantizamos efectividad en el manejo de los datos para tener información actualizada y pertinente."/>
 
-        <div class="flex justify-center items-center md:hidden">
-          <span class="font-bold font-lobster text-2xl mx-6">Servisoft</span>
+        <div class="flex gap-4 justify-center items-center md:hidden">
+          <div class="flex flex-col gap-2">
+            <span class="font-bold font-lobster text-2xl mx-6">Servisoft</span>
+            <button class="btn btn-persimmon text-white">Nosotros</button>
+          </div>
           <img src="/src/assets/illustrations/Illustration-login.svg" class="w-1/2">
         </div>
       </div>
@@ -43,10 +43,19 @@
 </template>
 
 <script>
-import LoginForm from "../../components/forms/LoginForm.vue";
+import {computed} from "vue";
 import InfoCard from "../../components/InfoCard.vue";
+import LoginForm from "../../components/forms/LoginForm.vue";
+import RegisterForm from "../../components/forms/RegisterForm.vue";
+import LoginSticker from "../../components/dummies/LoginSticker.vue";
+import {useRoute} from "vue-router";
 
 export default {
-  components: {InfoCard, LoginForm}
+  components: {RegisterForm, InfoCard, LoginForm, LoginSticker},
+  setup() {
+    const route = useRoute();
+    const registerMode = computed(() => route.name === 'register');
+    return {registerMode}
+  }
 }
 </script>
