@@ -1,12 +1,11 @@
 import Layout from "../../views/auth/Layout.vue";
 import Home from "../../views/auth/Home.vue";
-import CreateSettlements from "../../views/auth/settlements/CreateSettlements.vue";
-import IndexSettlements from "../../views/auth/settlements/IndexSettlements.vue";
 import CreateBarns from "../../views/auth/barns/CreateBarns.vue";
 import IndexBarns from "../../views/auth/barns/IndexBarns.vue";
 import CreateLots from "../../views/auth/lots/CreateLots.vue";
 import IndexLots from "../../views/auth/lots/IndexLots.vue";
 import MyAccount from "../../views/auth/MyAccount.vue";
+import settlements from "./settlements";
 
 const children = [
     {
@@ -15,18 +14,7 @@ const children = [
         meta: { title: 'INICIO' },
         component: Home,
     },
-    {
-        name: 'createSettlements',
-        path: '/create-settlements',
-        meta: { title: 'CREAR FINCAS' },
-        component: CreateSettlements,
-    },
-    {
-        name: 'indexSettlements',
-        path: '/my-settlements',
-        meta: { title: 'MIS FINCAS' },
-        component: IndexSettlements,
-    },
+    ...settlements,
     {
         name: 'createBarns',
         path: '/create-barns',
