@@ -10,9 +10,7 @@ const one = (url) => (id) => service.get(`${url}/${id}`)
     .then(response => response)
     .catch(console.log);
 
-const create = (url) => (body) => service.post(url, body)
-    .then(response => response)
-    .catch(console.log);
+const create = (url) => (body) => service.post(url, body).then(response => response);
 
 const destroy = (url) => (id) => service.delete(`${url}/${id}`)
 

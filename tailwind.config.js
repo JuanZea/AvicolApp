@@ -7,6 +7,7 @@ module.exports = {
     theme: {
         colors: {
           ...defaultColors,
+          'av-10': '#FDF9E8',
           'av-50': '#FFBA08',
           'av-100': '#FAA307',
           'av-200': '#F48C06',
