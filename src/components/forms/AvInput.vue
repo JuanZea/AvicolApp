@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 
 export default {
   emits: ['update:modelValue'],
-  props: {id: String, label: String, type: String, name: String, placeholder: String},
+  props: {id: String, label: String, type: String, name: String, placeholder: String, modelValue: String},
   setup(props, context) {
-    const inputValue = ref();
+    const inputValue = ref(props.modelValue);
     watch(inputValue, value => {context.emit('update:modelValue', value)});
     return {inputValue}
   }

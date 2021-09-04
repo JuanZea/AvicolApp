@@ -1,0 +1,40 @@
+/* Zlid */
+.zlid-enter-active {
+  animation: zlid 0.5s;
+}
+.zlid-leave-active {
+  animation: zlid 0.5s reverse;
+}
+@keyframes zlid {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Wiggle */
+.animate-wiggle {
+  animation: wiggle 1s infinite;
+}
+.wiggle-enter-active {
+  animation: wiggle 0.5s;
+}
+.wiggle-leave-active {
+  animation: wiggle 0.5s reverse;
+}
+@keyframes wiggle {
+  0% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
+}

@@ -5,8 +5,8 @@ const assembler = (url) => {
     model.all = all(url);
     model.one = one(url);
     model.create = create(url);
-    model.delete = destroy(url);
     model.update = update(url);
+    model.delete = destroy(url);
     return model;
 };
 

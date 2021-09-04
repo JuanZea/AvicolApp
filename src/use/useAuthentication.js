@@ -1,25 +1,21 @@
 import "../../firebase.config"
 import firebase from "firebase/app";
 import router from "../router";
-import {usersService} from "../services";
 
 const register = (name, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(userCredentials => {
-            usersService.create({
-                id: userCredentials.user.uid,
-                name: name,
-                email: email
+            userCredentials.user.updateProfile({
+              displayName: name
             }).then(() => {
                 router.push({name: 'home'});
-            }).catch(console.log)
+            }).catch(console.log);
         }).catch(console.log);
 }
 
 const login = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // Signed in
             router.push({name: 'home'});
         }).catch(console.log);
 }
