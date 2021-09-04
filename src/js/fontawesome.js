@@ -4,7 +4,9 @@ import {
     faBars,
     faHome,
     faTimes,
-    faCheck
+    faCheck,
+    faUserAlt,
+    faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -19,5 +21,7 @@ library.add(
     faTimes,
     faCheck,
     faCheckCircle,
-    faTimesCircle
+    faTimesCircle,
+    faUserAlt,
+    faSignOutAlt
 );

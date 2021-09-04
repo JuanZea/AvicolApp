@@ -20,7 +20,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "@headlessui/vue": "^1.4.1",
-    "@vee-validate/i18n": "^4.4.7",
     "firebase": "^8.10.0",
     "lodash": "^4.17.21",
     "sass": "^1.38.2",

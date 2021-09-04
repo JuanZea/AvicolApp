@@ -42,6 +42,8 @@
         </button>
         <modal></modal>
       </div>
+      <h1 class="text-3xl font-lato mt-4">Configuraciones generales</h1>
+      <p>Proximamente...</p>
     </div>
   </div>
 </template>

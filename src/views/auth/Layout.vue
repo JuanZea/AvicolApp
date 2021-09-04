@@ -10,32 +10,7 @@
           </button>
         </div>
         <div class="font-lato">{{title}}</div>
-        <dropdown>
-          <template v-slot:button>
-            <avatar class="h-7" :name="user.displayName" background="ffba08" rounded="true"/>
-          </template>
-          <template v-slot:content>
-            <div class="px-4 py-3">
-              <p class="text-sm leading-5">{{user.displayName}}</p>
-              <p class="text-sm font-medium leading-5 text-gray-900 truncate">
-                {{user.email}}
-              </p>
-            </div>
-            <div class="py-1">
-              <router-link class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100" :to="{name: 'myAccount'}">
-                Mi cuenta
-              </router-link>
-              <router-link class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left hover:bg-gray-100" :to="{name: 'indexSettlements'}">
-                Mis fincas
-              </router-link>
-            </div>
-            <div class="py-1">
-              <a class="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer hover:bg-gray-100" @click="logout">
-                Cerrar Sesión
-              </a>
-            </div>
-          </template>
-        </dropdown>
+        <dropdown/>
       </div>
       <div class="flex-grow container mx-auto relative">
         <router-view/>
