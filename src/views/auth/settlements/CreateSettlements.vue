@@ -6,16 +6,16 @@
         <div class="p-4">
           <Form class="flex flex-col md:px-5" @submit="store" :validation-schema="schema" >
               <div class="mt-3">
-                <form-input name="name" id="name" label="Nombre:"/>
+                <av-input name="name" id="name" label="Nombre:"/>
               </div>
               <div class="mt-3">
-                <form-input name="location" id="location" label="Localidad:"/>
+                <av-input name="location" id="location" label="Localidad:"/>
               </div>
               <div class="mt-3">
-                <form-input name="address" id="address" label="Dirección:"/>
+                <av-input name="address" id="address" label="Dirección:"/>
               </div>
               <div class="mt-3">
-                <form-input name="sea_level" id="height-sea-level" label="Altura sobre el nivel del mar:"/>
+                <av-input name="sea_level" id="sea_level" label="Altura sobre el nivel del mar:"/>
               </div>
               <div class="my-5">
                 <button type="submit" class="btn bg-av-100 px-5 rounded-2xl">Crear finca</button>
@@ -33,16 +33,17 @@
 </template>
 
 <script>
-import FormInput from "../../../components/FormInput.vue";
+import AvInput from "../../../components/Forms/AvInput.vue";
 import {Form} from "vee-validate";
 import * as Yup from "yup";
 import useSettlements from "../../../use/useSettlements";
 
+
 export default {
   name: "CreateSettlements",
-  components: {FormInput, Form},
+  components: {AvInput, Form},
   setup() {
-    const {store} = useSettlements();
+    const {store, errors} = useSettlements();
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       location: Yup.string().required(),
@@ -50,9 +51,11 @@ export default {
       sea_level: Yup.string().required(),
     });
 
+    errors.value.pluck('param', 'value')
     return {
       schema,
-      store
+      store,
+      errors
     };
   },
 }
