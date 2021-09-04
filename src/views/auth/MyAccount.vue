@@ -33,7 +33,14 @@
           <option value="3" selected>La Perla</option>
           <option value="3" selected>La Perlalalalalalalalalalalalalalalalalala</option>
         </av-select>
-      <button class="btn btn-red text-white">Crear finca</button>
+        <button
+            type="button"
+            @click="open"
+            class="btn btn-red text-white"
+        >
+          Crear finca
+        </button>
+        <modal></modal>
       </div>
     </div>
   </div>
@@ -45,9 +52,11 @@ import firebase from "firebase/app";
 import Avatar from "../../components/dummies/Avatar.vue";
 import AvInput from "../../components/forms/AvInput.vue";
 import AvSelect from "../../components/forms/AvSelect.vue";
+import Modal from "../../components/forms/SettlementModal.vue";
+import useSettlements from "../../use/useSettlements";
 
 export default {
-  components: {AvSelect, AvInput, Avatar},
+  components: {Modal, AvSelect, AvInput, Avatar},
   setup() {
     const user = firebase.auth().currentUser
     const name = ref(user.displayName);
@@ -55,6 +64,7 @@ export default {
     const email = ref(user.email);
     const editMode = ref(false);
     const settlement = ref('1')
+    const {open} = useSettlements()
 
     const updateUser = () => {
       name.value = newName.value;
@@ -64,7 +74,7 @@ export default {
       editMode.value = false;
     }
 
-    return {name, newName, email, editMode, updateUser, settlement}
+    return {name, newName, email, editMode, updateUser, settlement, open}
   }
 }
 </script>

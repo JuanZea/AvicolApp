@@ -4,6 +4,7 @@ import router from "../router";
 import { ref } from "vue";
 
 let errors = ref([]);
+let isOpenForm = ref(false);
 
 const store = (attributes) => {
     attributes.user_id = firebase.auth().currentUser.uid
@@ -17,9 +18,20 @@ const store = (attributes) => {
     })
 }
 
+const close = () => {
+    isOpenForm.value = false
+}
+
+const open = () => {
+    isOpenForm.value = true
+}
+
 export default function useSettlements() {
     return {
         store,
-        errors
+        errors,
+        open,
+        isOpenForm,
+        close
     }
 }
