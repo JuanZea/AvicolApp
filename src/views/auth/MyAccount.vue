@@ -69,7 +69,7 @@ export default {
     const editMode = ref(false);
     const settlements = ref();
     settlementsService.all().then(response => {
-      settlements.value = response.data.data;
+      settlements.value = response;
     }).catch(console.log)
     const settlement = ref('1');
     const {open} = useSettlements();

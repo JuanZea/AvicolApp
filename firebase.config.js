@@ -17,8 +17,8 @@ const auth = getAuth(firebase);
 
 const getCurrentUser = () => {
     return new Promise((resolve, reject) => {
-        onAuthStateChanged(auth, user => {
-            store.dispatch('init', user);
+        onAuthStateChanged(auth, async user => {
+            await store.dispatch('init', user);
             resolve(firebase);
         }, reject);
     })

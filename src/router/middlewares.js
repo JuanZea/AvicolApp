@@ -21,6 +21,7 @@ export const isAuth = (to, from, next) => {
 }
 
 export const needSettlement = (to, from, next) => {
+    console.log('MOID')
     if (store.state.settlement) {
         if (to.meta.noSettlement) next({name: 'home'});
         else next();

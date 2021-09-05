@@ -1,10 +1,12 @@
 import useSettlements from "../use/useSettlements";
+import {_updateAuth} from "../services/avicolappAssembler";
 
 export default {
-    init ({state, dispatch}, user) {
+    async init ({state, dispatch}, user) {
         state.user = user;
         if (user) {
-            dispatch('initSettlement');
+            _updateAuth(user.uid);
+            await dispatch('initSettlement');
         }
     },
 
@@ -13,8 +15,8 @@ export default {
     },
 
     async initSettlement ({state}) {
-        console.log('initSettlmenets');
         const {activeSettlement} = useSettlements();
         state.settlement = await activeSettlement();
+        console.log('initSettlmenets', state);
     }
 }

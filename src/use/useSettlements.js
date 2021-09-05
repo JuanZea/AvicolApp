@@ -6,7 +6,7 @@ import router from "../router";
 const activeSettlement = async () => {
     const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${vuexStore.state.user.uid}`);
     if (ACTIVE_SETTLEMENT_ID) return settlementsService.one(ACTIVE_SETTLEMENT_ID);
-    // return settlementsService.first();
+    return settlementsService.first();
 }
 
 const storeErrors = ref({});
