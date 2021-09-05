@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="flex items-center">
     <Menu as="div" class="relative inline-block text-left">
-      <div>
+      <div class="flex items-center">
         <MenuButton>
-          <avatar class="h-7" :name="'name'" background="ffba08" rounded="true" bold="true"/>
+          <avatar class="h-9" :name="'name'" background="ffba08" rounded="true" bold="true"/>
         </MenuButton>
       </div>
 

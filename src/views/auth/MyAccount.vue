@@ -1,4 +1,6 @@
 <template>
+  <modal/>
+
   <div class="h-full flex flex-col lg:flex-row">
     <div class="relative flex p-4 items-center lg:flex-col lg:gap-4">
       <div class="mr-4 lg:mr-0">
@@ -26,7 +28,7 @@
     </div>
     <div class="flex-grow p-4">
       <h1 class="text-3xl font-lato">Configuración de fincas</h1>
-      <div class="flex items-center gap-4 mt-4">
+      <div class="relative flex items-center gap-4 mt-4">
         <span class="font-lato text-gray-500">Finca:</span>
         <av-select v-model="settlement">
           <option value="1" selected>La Trinidad</option>
@@ -40,7 +42,6 @@
         >
           Crear finca
         </button>
-        <modal></modal>
       </div>
       <h1 class="text-3xl font-lato mt-4">Configuraciones generales</h1>
       <p>Proximamente...</p>
