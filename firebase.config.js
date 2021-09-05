@@ -14,10 +14,11 @@ const firebaseConfig = {
 
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
+
 const getCurrentUser = () => {
     return new Promise((resolve, reject) => {
         onAuthStateChanged(auth, user => {
-            store.commit('set', {key: 'user', value: user});
+            store.dispatch('init', user);
             resolve(firebase);
         }, reject);
     })

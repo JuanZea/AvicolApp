@@ -1,7 +1,13 @@
+import { ref } from "vue";
 import vuexStore from "../store";
 import {settlementsService} from "../services";
 import router from "../router";
-import { ref } from "vue";
+
+const activeSettlement = async () => {
+    const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${vuexStore.state.user.uid}`);
+    if (ACTIVE_SETTLEMENT_ID) return settlementsService.one(ACTIVE_SETTLEMENT_ID);
+    // return settlementsService.first();
+}
 
 const storeErrors = ref({});
 const isOpenForm = ref(false);
@@ -30,6 +36,7 @@ const open = () => {
 
 export default function useSettlements() {
     return {
+        activeSettlement,
         store,
         storeErrors,
         open,

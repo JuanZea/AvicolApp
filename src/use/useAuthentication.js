@@ -1,4 +1,3 @@
-import "../../firebase.config";
 import store from "../store";
 import router from "../router";
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";

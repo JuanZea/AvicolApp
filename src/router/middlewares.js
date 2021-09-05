@@ -19,3 +19,13 @@ export const isAuth = (to, from, next) => {
     if (store.state.user === null) next({name: 'login'});
     else next();
 }
+
+export const needSettlement = (to, from, next) => {
+    if (store.state.settlement) {
+        if (to.meta.noSettlement) next({name: 'home'});
+        else next();
+    } else {
+        if (to.meta.noSettlement) next();
+        else next({name: 'createSettlements'});
+    }
+}

@@ -6,45 +6,45 @@ import CreateLots from "../../views/auth/lots/CreateLots.vue";
 import IndexLots from "../../views/auth/lots/IndexLots.vue";
 import MyAccount from "../../views/auth/MyAccount.vue";
 import settlements from "./settlements";
-import {init, isAuth} from "../middlewares";
+import {init, isAuth, needSettlement} from "../middlewares";
 
-const children = [
+const children =  [
     {
         name: 'home',
         path: '/home',
         meta: { title: 'INICIO' },
-        component: Home,
+        component: Home
     },
     ...settlements,
     {
         name: 'createBarns',
         path: '/create-barns',
         meta: { title: 'CREAR GALPONES' },
-        component: CreateBarns,
+        component: CreateBarns
     },
     {
         name: 'indexBarns',
         path: '/my-barns',
         meta: { title: 'MIS GALPONES' },
-        component: IndexBarns,
+        component: IndexBarns
     },
     {
         name: 'createLots',
         path: '/create-lots',
         meta: { title: 'CREAR LOTES' },
-        component: CreateLots,
+        component: CreateLots
     },
     {
         name: 'indexLots',
         path: '/my-lots',
         meta: { title: 'MIS LOTES' },
-        component: IndexLots,
+        component: IndexLots
     },
     {
         name: 'myAccount',
         path: '/my-account',
         meta: { title: 'MI CUENTA' },
-        component: MyAccount,
+        component: MyAccount
     }
 ];
 
@@ -53,7 +53,10 @@ export default [
         path: '/',
         component: Layout,
         redirect: { name: 'home' },
-        beforeEnter: [init, isAuth],
-        children: children
+        beforeEnter: [init],
+        children: children.map(route => {
+            route.beforeEnter = [isAuth, needSettlement].concat(route.beforeEnter || []);
+            return route;
+        })
     }
 ];

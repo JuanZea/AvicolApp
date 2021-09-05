@@ -5,6 +5,7 @@ import router from "./router";
 import './css/index.scss';
 import './js/fontawesome';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import "../firebase.config";
 
 const app = createApp(App);
 app.component('fai', FontAwesomeIcon);

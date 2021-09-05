@@ -14,18 +14,16 @@
 </template>
 
 <script>
-import {computed, onMounted} from "vue";
+import {computed} from "vue";
 import {useRoute} from "vue-router";
 import {useAuthentication} from "../../use";
 import Dropdown from "../../components/Dropdown.vue";
-// import {currentUser} from "firebase/auth";
 import Avatar from "../../components/dummies/Avatar.vue";
 import LogoSticker from "../../components/dummies/LogoSticker.vue";
 
 export default {
   components: {LogoSticker, Avatar, Dropdown},
   setup() {
-    // const user = currentUser;
     const route = useRoute();
     const title = computed(() => route.meta.title);
 
