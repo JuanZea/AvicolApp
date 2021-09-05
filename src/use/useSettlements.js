@@ -1,5 +1,5 @@
+import vuexStore from "../store";
 import {settlementsService} from "../services";
-// import firebase from "firebase/app";
 import router from "../router";
 import { ref } from "vue";
 
@@ -7,7 +7,7 @@ const storeErrors = ref({});
 const isOpenForm = ref(false);
 
 const store = (attributes) => {
-    // attributes.user_id = firebase.auth().currentUser.uid
+    attributes.user_id = vuexStore.state.user.uid;
     settlementsService.create(attributes).then((response) => {
         storeErrors.value = [];
         router.push({

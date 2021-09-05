@@ -56,6 +56,7 @@ import Modal from "../../components/forms/SettlementModal.vue";
 import useSettlements from "../../use/useSettlements";
 import {settlementsService} from "../../services";
 import {useStore} from "vuex";
+import {updateProfile} from "firebase/auth"
 
 export default {
   components: {Modal, AvSelect, AvInput, Avatar},
@@ -74,8 +75,9 @@ export default {
     const {open} = useSettlements();
 
     const updateUser = () => {
+
       name.value = newName.value;
-      user.updateProfile({
+      updateProfile(user, {
         displayName: name.value,
       });
       editMode.value = false;
