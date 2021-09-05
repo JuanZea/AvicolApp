@@ -2,11 +2,11 @@
   <modal/>
 
   <div class="h-full flex flex-col lg:flex-row">
-    <div class="relative flex p-4 items-center lg:flex-col lg:gap-4">
+    <div class="flex p-4 items-center lg:flex-col lg:gap-4">
       <div class="mr-4 lg:mr-0">
         <avatar class="h-32" :name="editMode ? newName : name" background="ffba08" rounded="true"/>
       </div>
-      <div class="flex-grow lg:flex-grow-0 lg:w-52">
+      <div class="w-full">
         <div v-if="!editMode">
           <h1 class="font-bold text-2xl">{{ name }}</h1>
           <div><span class="font-bold text-gray-500">{{ email }}</span></div>

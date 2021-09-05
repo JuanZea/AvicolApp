@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center z-40">
     <Menu as="div" class="relative inline-block text-left">
       <div class="flex items-center">
         <MenuButton>
