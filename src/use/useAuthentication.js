@@ -1,11 +1,10 @@
-import "../../firebase.config"
-import firebase from "firebase/app";
+import "../../firebase.config";
+import store from "../store";
 import router from "../router";
-import {settlementsService} from "../services";
-import {ref} from "vue";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
 
 const register = (name, email, password) => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(getAuth(), email, password)
         .then(userCredentials => {
             userCredentials.user.updateProfile({
               displayName: name
@@ -16,23 +15,17 @@ const register = (name, email, password) => {
 }
 
 const login = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            const settlements = ref([]);
-            settlementsService.all().then(response => {
-                settlements.value = response.data.data;
-            }).catch(console.log)
-            if(settlements.value.length) {
-                router.push({name: 'home'});
-            } else {
-                router.push({name: 'createSettlements'});
-            }
+    store.dispatch('loading', 'Iniciando Sesión');
+    signInWithEmailAndPassword(getAuth(), email, password)
+        .then(() => {
+            router.push({name: 'home'});
+            store.dispatch('loading', false);
         }).catch(console.log);
 }
 
 const logout = () => {
-    firebase.auth().signOut().then(() => {
-        router.push({name: `login`});
+    signOut(getAuth()).then(() => {
+        router.push({name: 'login'});
     }).catch(console.log);
 }
 

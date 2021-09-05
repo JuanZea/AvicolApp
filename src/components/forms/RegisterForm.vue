@@ -14,7 +14,7 @@
 
       <div class="flex justify-end">
         <router-link class="btn btn-persimmon text-white mr-4" :to="{name: 'login'}">
-          <fas icon="arrow-left" class="mr-2"/>
+          <fai icon="arrow-left" class="mr-2"/>
           Volver
         </router-link>
         <button @click="register" class="btn btn-dark text-white">Crear cuenta</button>

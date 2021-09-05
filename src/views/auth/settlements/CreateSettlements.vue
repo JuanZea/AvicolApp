@@ -16,7 +16,7 @@
             <av-input name="sea_level" :error="storeErrors.sea_level" id="sea_level" label="Altura sobre el nivel del mar:"/>
           </div>
           <div class="my-5">
-            <button type="submit" class="btn bg-av-100 px-5 rounded-2xl">Crear finca</button>
+            <button type="submit" class="btn btn-persimmon text-white">Crear finca</button>
           </div>
         </Form>
       </div>

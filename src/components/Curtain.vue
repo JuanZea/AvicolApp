@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen w-screen flex flex-col justify-center items-center bg-av-50 bg-opacity-5">
-    <span class="absolute top-0 font-bold mb-2 bg-av-50 bg-opacity-20 px-5 py-1 rounded-b-full">{{loading}}</span>
+  <div class="h-screen w-screen absolute flex flex-col justify-center items-center bg-white bg-opacity-80 z-50">
+    <span class="font-bold mb-2 bg-av-50 px-5 py-1 rounded-full">{{loading}}</span>
     <loading-spinner/>
   </div>
 </template>

@@ -6,7 +6,11 @@ import {
     faTimes,
     faCheck,
     faUserAlt,
-    faSignOutAlt
+    faSignOutAlt,
+    faArrowLeft,
+    faFileInvoice,
+    faHandHoldingHeart,
+    faEgg
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -23,5 +27,9 @@ library.add(
     faCheckCircle,
     faTimesCircle,
     faUserAlt,
-    faSignOutAlt
+    faSignOutAlt,
+    faArrowLeft,
+    faFileInvoice,
+    faHandHoldingHeart,
+    faEgg
 );

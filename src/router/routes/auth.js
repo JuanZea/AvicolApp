@@ -6,6 +6,7 @@ import CreateLots from "../../views/auth/lots/CreateLots.vue";
 import IndexLots from "../../views/auth/lots/IndexLots.vue";
 import MyAccount from "../../views/auth/MyAccount.vue";
 import settlements from "./settlements";
+import {init, isAuth} from "../middlewares";
 
 const children = [
     {
@@ -47,13 +48,12 @@ const children = [
     }
 ];
 
-const routes = [
+export default [
     {
         path: '/',
         component: Layout,
         redirect: { name: 'home' },
+        beforeEnter: [init, isAuth],
         children: children
-    },
+    }
 ];
-
-export default routes;

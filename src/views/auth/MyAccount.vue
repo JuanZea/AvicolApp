@@ -49,23 +49,24 @@
 
 <script>
 import {ref} from "vue";
-import firebase from "firebase/app";
 import Avatar from "../../components/dummies/Avatar.vue";
 import AvInput from "../../components/forms/AvInput.vue";
 import AvSelect from "../../components/forms/AvSelect.vue";
 import Modal from "../../components/forms/SettlementModal.vue";
 import useSettlements from "../../use/useSettlements";
 import {settlementsService} from "../../services";
+import {useStore} from "vuex";
 
 export default {
   components: {Modal, AvSelect, AvInput, Avatar},
   setup() {
-    const user = firebase.auth().currentUser
+    const store = useStore();
+    const user = store.state.user;
     const name = ref(user.displayName);
     const newName = ref(user.displayName);
     const email = ref(user.email);
     const editMode = ref(false);
-    const settlements = ref([]);
+    const settlements = ref();
     settlementsService.all().then(response => {
       settlements.value = response.data.data;
     }).catch(console.log)

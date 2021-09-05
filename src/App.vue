@@ -1,6 +1,6 @@
 <template>
   <curtain v-if="loading"/>
-  <router-view v-if="ready"/>
+  <router-view/>
 </template>
 
 <script>
@@ -14,11 +14,6 @@ export default {
     const store = useStore();
     const ready = ref(false);
     const loading = computed(() => store.state.loading);
-    store.dispatch('initialize').then(() => {
-      store.dispatch('loading', false);
-      ready.value = true;
-    });
-
     return {ready, loading}
   }
 }

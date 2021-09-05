@@ -1,5 +1,6 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+import store from "./src/store";
+import {initializeApp} from "firebase/app"
+import {getAuth, onAuthStateChanged} from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA5hWBLcaa_KGoO9kZ3KsijDzjTpK-WsZg",
@@ -11,22 +12,15 @@ const firebaseConfig = {
   measurementId: "G-2S0HVX4MND"
 };
 
-firebase.initializeApp(firebaseConfig);
-
-firebase.getCurrentUser = () => {
+const firebase = initializeApp(firebaseConfig);
+const auth = getAuth(firebase);
+const getCurrentUser = () => {
     return new Promise((resolve, reject) => {
-        firebase.auth().onAuthStateChanged(user => {
-            init(user).then(() => {
-                resolve(user);
-            });
+        onAuthStateChanged(auth, user => {
+            store.commit('set', {key: 'user', value: user});
+            resolve(firebase);
         }, reject);
     })
 }
 
-const init = async (user) => {
-    if (user) {
-        // Initialize
-    } else {
-        // Unsubscribe
-    }
-}
+store.commit('set', {key: 'firebase', value: getCurrentUser()});
