@@ -31,9 +31,7 @@
       <div class="relative flex items-center gap-4 mt-4">
         <span class="font-lato text-gray-500">Finca:</span>
         <av-select v-model="settlement">
-          <option value="1" selected>La Trinidad</option>
-          <option value="3" selected>La Perla</option>
-          <option value="3" selected>La Perlalalalalalalalalalalalalalalalalala</option>
+          <option v-for="settlement in settlements" value="1" selected>{{settlement.name}}</option>
         </av-select>
         <button
             type="button"
@@ -57,6 +55,7 @@ import AvInput from "../../components/forms/AvInput.vue";
 import AvSelect from "../../components/forms/AvSelect.vue";
 import Modal from "../../components/forms/SettlementModal.vue";
 import useSettlements from "../../use/useSettlements";
+import {settlementsService} from "../../services";
 
 export default {
   components: {Modal, AvSelect, AvInput, Avatar},
@@ -66,8 +65,12 @@ export default {
     const newName = ref(user.displayName);
     const email = ref(user.email);
     const editMode = ref(false);
-    const settlement = ref('1')
-    const {open} = useSettlements()
+    const settlements = ref([]);
+    settlementsService.all().then(response => {
+      settlements.value = response.data.data;
+    }).catch(console.log)
+    const settlement = ref('1');
+    const {open} = useSettlements();
 
     const updateUser = () => {
       name.value = newName.value;
@@ -77,7 +80,7 @@ export default {
       editMode.value = false;
     }
 
-    return {name, newName, email, editMode, updateUser, settlement, open}
+    return {name, newName, email, editMode, updateUser, settlements, settlement, open}
   }
 }
 </script>
