@@ -1,7 +1,7 @@
 <template>
-  <TransitionRoot :show="isOpenForm" as="template">
+  <TransitionRoot appear :show="isOpenForm" as="template">
     <Dialog as="div" @close="close">
-      <div class="fixed inset-0 z-20 overflow-y-auto">
+      <div class="fixed inset-0 z-10 overflow-y-auto">
         <div class="h-full px-4 text-center">
           <TransitionChild
               as="template"
@@ -14,7 +14,7 @@
           >
             <DialogOverlay class="fixed inset-0"/>
           </TransitionChild>
-          <span class="inline-block h-full align-middle" aria-hidden="true">&#8203;</span>
+          <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
           <TransitionChild
               as="template"
               enter="duration-300 ease-out"
@@ -29,6 +29,11 @@
             >
               <h1 class="font-bold font-lato text-3xl"> Crear una nueva finca </h1>
               <create-settlements/>
+              <div class="content-end self-end">
+                <div class="flex content-end justify-end h-full max-h-48">
+                  <img class="object-contain" src="/src/assets/illustrations/form-settlement.svg">
+                </div>
+              </div>
             </div>
           </TransitionChild>
         </div>

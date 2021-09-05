@@ -1,6 +1,6 @@
 <template>
   <div class="w-full form-input text-left"
-       :class="{ 'has-error': !!errorMessage }">
+       :class="{ 'has-error': (!!errorMessage || error) }">
     <label :for="id" class="self-start text-sm font-medium text-gray-700">{{ label }}</label>
     <div class="mt-1">
       <input v-model="inputValue" :type="type" :name="name || id" :id="id"
@@ -9,7 +9,7 @@
              @blur="handleBlur"
              :placeholder="placeholder"/>
       <span class="help-message">
-        {{ errorMessage }}
+        {{ (errorMessage || error) ? 'El valor ingresado es invalido' : ''}}
       </span>
     </div>
   </div>
@@ -27,6 +27,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    error: {
+      type: String,
+      default: null
     },
     name: String,
     placeholder: String,

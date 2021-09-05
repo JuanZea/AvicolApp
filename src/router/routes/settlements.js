@@ -1,5 +1,6 @@
 import CreateSettlements from "../../views/auth/settlements/CreateSettlements.vue";
 import IndexSettlements from "../../views/auth/settlements/IndexSettlements.vue";
+import MyFirstSettlement from "../../views/auth/settlements/MyFirstSettlement.vue";
 
 export default [
     {
@@ -11,7 +12,7 @@ export default [
     {
         name: 'createSettlements',
         path: '/create-settlements',
-        meta: { title: 'CREAR FINCAS' },
-        component: CreateSettlements,
+        meta: { title: 'MI PRIMERA FINCA' },
+        component: MyFirstSettlement,
     },
 ];

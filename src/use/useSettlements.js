@@ -3,18 +3,20 @@ import firebase from "firebase/app";
 import router from "../router";
 import { ref } from "vue";
 
-let errors = ref([]);
-let isOpenForm = ref(false);
+const storeErrors = ref({});
+const isOpenForm = ref(false);
 
 const store = (attributes) => {
     attributes.user_id = firebase.auth().currentUser.uid
     settlementsService.create(attributes).then((response) => {
-        errors = [];
+        storeErrors.value = [];
         router.push({
             name: 'showSettlements', params: {id: response.data.id}
         });
     }).catch(error => {
-        errors.value = error.response.data.errors.errors;
+        error.response.data.errors.errors.forEach(data => {
+            storeErrors.value[data.param] = 'El valor ingresado es invalido';
+        });
     })
 }
 
@@ -29,7 +31,7 @@ const open = () => {
 export default function useSettlements() {
     return {
         store,
-        errors,
+        storeErrors,
         open,
         isOpenForm,
         close

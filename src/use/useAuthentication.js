@@ -1,6 +1,8 @@
 import "../../firebase.config"
 import firebase from "firebase/app";
 import router from "../router";
+import {settlementsService} from "../services";
+import {ref} from "vue";
 
 const register = (name, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -16,7 +18,15 @@ const register = (name, email, password) => {
 const login = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            router.push({name: 'home'});
+            const settlements = ref([]);
+            settlementsService.all().then(response => {
+                settlements.value = response.data.data;
+            }).catch(console.log)
+            if(settlements.value.length) {
+                router.push({name: 'home'});
+            } else {
+                router.push({name: 'createSettlements'});
+            }
         }).catch(console.log);
 }
 
