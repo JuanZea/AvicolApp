@@ -1,11 +1,12 @@
 import store from "../store";
 import router from "../router";
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut} from "firebase/auth";
 
 const register = (name, email, password) => {
-    createUserWithEmailAndPassword(getAuth(), email, password)
-        .then(userCredentials => {
-            userCredentials.user.updateProfile({
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            updateProfile(auth.currentUser, {
               displayName: name
             }).then(() => {
                 router.push({name: 'home'});
