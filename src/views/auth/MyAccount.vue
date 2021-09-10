@@ -36,9 +36,16 @@
         <button
             type="button"
             @click="open"
-            class="btn btn-red text-white"
+            class="btn btn-green text-white"
         >
           Crear finca
+        </button>
+        <button
+            type="button"
+            @click="open"
+            class="btn btn-red text-white"
+        >
+          Eliminar finca
         </button>
       </div>
       <h1 class="text-3xl font-lato mt-4">Configuraciones generales</h1>
