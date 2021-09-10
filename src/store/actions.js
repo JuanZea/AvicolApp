@@ -6,7 +6,10 @@ export default {
         state.user = user;
         if (user) {
             _updateAuth(user.uid);
-            await dispatch('initSettlement');
+            const {activeSettlement, settlement} = useSettlements();
+            await activeSettlement();
+            console.log(settlement.value)
+            // await dispatch('initSettlement');
         }
     },
 
@@ -14,9 +17,9 @@ export default {
         commit('set', {key: 'loading', value: bool});
     },
 
-    async initSettlement ({state}) {
-        const {activeSettlement} = useSettlements();
-        state.settlement = await activeSettlement();
-        console.log('initSettlmenets', state);
-    }
+    // async initSettlement ({state}) {
+    //     const {activeSettlement} = useSettlements();
+    //     state.settlement = await activeSettlement();
+    //     console.log('initSettlmenets', state);
+    // }
 }

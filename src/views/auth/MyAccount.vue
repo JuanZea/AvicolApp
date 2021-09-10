@@ -1,5 +1,5 @@
 <template>
-  <modal/>
+  <delete-settlement-modal :open="openDeleteSettlementModal" :settlements="settlements || []" @close="openDeleteSettlementModal = false" @deleted="refreshSettlements"/>
 
   <div class="h-full flex flex-col lg:flex-row">
     <div class="flex p-4 items-center lg:flex-col lg:gap-4">
@@ -40,16 +40,13 @@
         >
           Crear finca
         </button>
-        <button
-            type="button"
-            @click="open"
-            class="btn btn-red text-white"
-        >
+        <button type="button" @click="openDeleteSettlementModal = true" class="btn btn-red text-white">
           Eliminar finca
         </button>
       </div>
       <h1 class="text-3xl font-lato mt-4">Configuraciones generales</h1>
       <p>Proximamente...</p>
+      <pre>{{settlements}}</pre>
     </div>
   </div>
 </template>
@@ -59,14 +56,14 @@ import {ref} from "vue";
 import Avatar from "../../components/dummies/Avatar.vue";
 import AvInput from "../../components/forms/AvInput.vue";
 import AvSelect from "../../components/forms/AvSelect.vue";
-import Modal from "../../components/forms/SettlementModal.vue";
+import DeleteSettlementModal from "../../components/modals/DeleteSettlementModal.vue";
 import useSettlements from "../../use/useSettlements";
 import {settlementsService} from "../../services";
 import {useStore} from "vuex";
 import {updateProfile} from "firebase/auth"
 
 export default {
-  components: {Modal, AvSelect, AvInput, Avatar},
+  components: {DeleteSettlementModal, AvSelect, AvInput, Avatar},
   setup() {
     const store = useStore();
     const user = store.state.user;
@@ -75,9 +72,12 @@ export default {
     const email = ref(user.email);
     const editMode = ref(false);
     const settlements = ref();
-    settlementsService.all().then(response => {
-      settlements.value = response;
-    }).catch(console.log)
+    const openDeleteSettlementModal = ref(false);
+    const refreshSettlements = async () => {
+      settlements.value = await settlementsService.all();
+      console.log('Borrado exitoso')
+    }
+    refreshSettlements();
     const settlement = ref('1');
     const {open} = useSettlements();
 
@@ -90,7 +90,7 @@ export default {
       editMode.value = false;
     }
 
-    return {name, newName, email, editMode, updateUser, settlements, settlement, open}
+    return {name, newName, email, editMode, updateUser, settlements, settlement, open, openDeleteSettlementModal, refreshSettlements}
   }
 }
 </script>

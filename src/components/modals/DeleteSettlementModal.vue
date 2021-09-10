@@ -1,0 +1,49 @@
+<template>
+  <transition name="degraded">
+    <div v-if="open" class="flex justify-center items-center fixed inset-0 z-50">
+      <div @click="close" class="absolute bg-black bg-opacity-70 h-full w-full"/>
+      <div class="absolute bg-white p-4 rounded-lg">
+        <div class="bg-white p-6 border-dashed border-4 border-av-50 border-opacity-50">
+          <h2 class="font-medium mb-4">Elige la finca a eliminar</h2>
+          <form id="form" @submit.prevent="submit">
+            <div v-for="settlement in settlements" class="flex items-center gap-2">
+              <input :name="settlement.name" :value="settlement.id" class="rounded text-av-50 border-av-50 focus:ring-av-100" :id="settlement.id" type="checkbox">
+              <label :for="settlement.id" class="">{{ settlement.name }}</label>
+            </div>
+            <div class="flex justify-center mt-4">
+              <button type="submit" class="btn btn-red text-white gap-2">
+                <fai icon="trash-alt"/>
+                <span>Eliminar </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script>
+
+import {settlementsService} from "../../services";
+
+export default {
+  props: {open: {required: true, type: Boolean}, settlements: {required: true, type: Array}},
+  setup(props, context) {
+    const submit = () => {
+      if (!confirm('¿Estas seguro?')) return;
+      const formData = new FormData(document.getElementById('form'));
+      for (let id of formData.values()) {
+        settlementsService.delete(id);
+      }
+      context.emit('deleted');
+      close();
+    }
+
+    const close = () => {
+      context.emit('close');
+    }
+    return {submit, close}
+  }
+}
+</script>

@@ -1,3 +1,4 @@
 import useAuthentication from "./useAuthentication";
+import useSettlements from "./useSettlements";
 
-export {useAuthentication}
+export {useAuthentication, useSettlements}

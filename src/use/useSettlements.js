@@ -3,10 +3,12 @@ import vuexStore from "../store";
 import {settlementsService} from "../services";
 import router from "../router";
 
+const settlement = ref();
+
 const activeSettlement = async () => {
     const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${vuexStore.state.user.uid}`);
-    if (ACTIVE_SETTLEMENT_ID) return settlementsService.one(ACTIVE_SETTLEMENT_ID);
-    return settlementsService.first();
+    if (ACTIVE_SETTLEMENT_ID) settlementsService.one(ACTIVE_SETTLEMENT_ID).then(response => {settlement.value = response});
+    settlementsService.first().then(response => {settlement.value = response});
 }
 
 const storeErrors = ref({});
@@ -36,6 +38,7 @@ const open = () => {
 
 export default function useSettlements() {
     return {
+        settlement,
         activeSettlement,
         store,
         storeErrors,
