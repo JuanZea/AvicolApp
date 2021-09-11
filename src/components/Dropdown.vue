@@ -15,12 +15,22 @@
         leave-from-class="transform scale-100 opacity-100"
         leave-to-class="transform scale-95 opacity-0"
       >
-        <MenuItems class="absolute w-40 right-0 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems class="absolute w-40 right-0 mt-2 font-glory font-medium origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div class="p-1">
+            <MenuItem v-slot="{ active }">
+              <router-link :to="{name: 'home'}" :class="[
+                  active ? 'bg-av-50 font-bold' : 'text-gray-900',
+                  'group flex rounded-md items-center w-full px-2 py-2',
+                ]">
+                <fai :class="{'text-av-50': !active}" class="mr-2" icon="home"/>
+                Inicio
+              </router-link>
+            </MenuItem>
+
             <MenuItem v-slot="{ active }">
               <router-link :to="{name: 'myAccount'}" :class="[
                   active ? 'bg-av-50 font-bold' : 'text-gray-900',
-                  'group flex rounded-md items-center w-full px-2 py-2 text-sm',
+                  'group flex rounded-md items-center w-full px-2 py-2',
                 ]">
                 <fai :class="{'text-av-50': !active}" class="mr-2" icon="user-alt"/>
                 Mi Perfil
@@ -31,7 +41,7 @@
             <MenuItem v-slot="{ active }">
               <button @click="logout" :class="[
                   active ? 'bg-av-50 font-bold' : 'text-gray-900',
-                  'group flex rounded-md items-center w-full px-2 py-2 text-sm',
+                  'group flex rounded-md items-center w-full px-2 py-2',
                 ]">
                 <fai :class="{'text-av-50': !active}" class="mr-2" icon="sign-out-alt"/>
                 Cerrar Sesión
