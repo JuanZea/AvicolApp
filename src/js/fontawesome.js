@@ -11,7 +11,8 @@ import {
     faFileInvoice,
     faHandHoldingHeart,
     faEgg,
-    faTrashAlt
+    faTrashAlt,
+    faChevronDown
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -33,5 +34,6 @@ library.add(
     faFileInvoice,
     faHandHoldingHeart,
     faEgg,
-    faTrashAlt
+    faTrashAlt,
+    faChevronDown
 );

@@ -1,20 +1,19 @@
 <template>
-  <curtain v-if="loading"/>
+  <curtain v-if="state.loading"/>
   <router-view/>
 </template>
 
 <script>
-import {useStore} from "vuex";
-import {computed, ref} from "vue";
+import {ref} from "vue";
 import Curtain from "./components/Curtain.vue";
+import {useStore} from "./use";
 
 export default {
   components: {Curtain},
   setup() {
-    const store = useStore();
     const ready = ref(false);
-    const loading = computed(() => store.state.loading);
-    return {ready, loading}
+    const {state} = useStore();
+    return {ready, state}
   }
 }
 </script>

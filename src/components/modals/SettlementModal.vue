@@ -28,8 +28,7 @@
                 class="inline-block w-full max-w-md p-6 my-8 overflow-auto text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl"
             >
               <h1 class="font-bold font-lato text-3xl"> Crear una nueva finca </h1>
-<!--              <create-settlements/>-->
-              GOLA
+              <create-settlements/>
               <div class="content-end self-end">
                 <div class="flex content-end justify-end h-full max-h-48">
                   <img class="object-contain" src="/src/assets/illustrations/form-settlement.svg">

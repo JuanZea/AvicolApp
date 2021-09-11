@@ -6,14 +6,13 @@
 </template>
 
 <script>
+import {useStore} from "../use";
 import LoadingSpinner from "./LoadingSpinner.vue";
-import {useStore} from "vuex";
-import {computed} from "vue";
 export default {
   components: {LoadingSpinner},
   setup() {
-    const store = useStore();
-    const loading = computed(() => store.state.loading);
+    const {state} = useStore();
+    const {loading} = state;
     return {loading}
   }
 }

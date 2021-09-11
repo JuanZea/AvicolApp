@@ -33,11 +33,21 @@ export default {
     const submit = () => {
       if (!confirm('¿Estas seguro?')) return;
       const formData = new FormData(document.getElementById('form'));
+      let charge = 0;
+      let goal = 0;
+      const deleted = [];
       for (let id of formData.values()) {
-        settlementsService.delete(id);
+        deleted.push(id);
+        goal++;
+        settlementsService.delete(id)
+          .then(() => {
+            charge++;
+            if (charge === goal) {
+              context.emit('deleted', deleted);
+              close();
+            }
+          });
       }
-      context.emit('deleted');
-      close();
     }
 
     const close = () => {

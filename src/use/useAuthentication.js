@@ -1,6 +1,8 @@
-import store from "../store";
+import {useStore} from "../use";
 import router from "../router";
 import {getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut} from "firebase/auth";
+
+const { state } = useStore();
 
 const register = (name, email, password) => {
     const auth = getAuth();
@@ -15,11 +17,11 @@ const register = (name, email, password) => {
 }
 
 const login = (email, password) => {
-    store.dispatch('loading', 'Iniciando Sesión');
+    state.loading = 'Iniciando Sesión';
     signInWithEmailAndPassword(getAuth(), email, password)
         .then(() => {
             router.push({name: 'home'});
-            store.dispatch('loading', false);
+            state.loading = false;
         }).catch(console.log);
 }
 

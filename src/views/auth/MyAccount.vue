@@ -1,7 +1,9 @@
 <template>
   <div class="h-full flex flex-col lg:flex-row">
     <profile-banner/>
-    <manage-settlements/>
+    <div class="sm:p-6">
+      <manage-settlements/>
+    </div>
   </div>
 </template>
 

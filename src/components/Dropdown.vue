@@ -3,7 +3,7 @@
     <Menu as="div" class="relative inline-block text-left">
       <div class="flex items-center">
         <MenuButton>
-          <avatar class="h-9" :name="name" background="ffba08" rounded="true" bold="true"/>
+          <avatar class="h-9" background="ffba08" rounded="true" bold="true"/>
         </MenuButton>
       </div>
 
@@ -55,11 +55,9 @@
 </template>
 
 <script>
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue';
 import Avatar from "./dummies/Avatar.vue";
 import {useAuthentication} from "../use";
-import {useStore} from "vuex";
-import {computed} from "vue";
 
 export default {
   components: {
@@ -71,9 +69,7 @@ export default {
   },
   setup() {
     const {logout} = useAuthentication();
-    const store = useStore();
-    const name = computed(() => store.state.user ? store.state.user.displayName : 'NA');
-    return {name, logout}
+    return {logout}
   }
 }
 </script>

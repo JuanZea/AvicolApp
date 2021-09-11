@@ -1,14 +1,47 @@
 import { ref } from "vue";
-import vuexStore from "../store";
+import useStore from "./store/useStore";
 import {settlementsService} from "../services";
 import router from "../router";
 
-const settlement = ref();
+const {state} = useStore();
+let hasActiveSettlementResolve;
+const hasActiveSettlement = new Promise(resolve => {hasActiveSettlementResolve = resolve});
+const activeSettlement = ref();
+const settlements = ref();
 
-const activeSettlement = async () => {
-    const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${vuexStore.state.user.uid}`);
-    if (ACTIVE_SETTLEMENT_ID) settlementsService.one(ACTIVE_SETTLEMENT_ID).then(response => {settlement.value = response});
-    settlementsService.first().then(response => {settlement.value = response});
+const refreshActiveSettlement = async () => {
+    const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${state.user.uid}`);
+    if (ACTIVE_SETTLEMENT_ID)
+        settlementsService.one(ACTIVE_SETTLEMENT_ID)
+            .then(response => {
+                activeSettlement.value = response;
+                hasActiveSettlementResolve();
+            })
+            .catch(() => {
+                localStorage.removeItem(`activeSettlement-${state.user.uid}`);
+                refreshActiveSettlement();
+            });
+    else
+        settlementsService.first()
+            .then(response => {
+                activeSettlement.value = response;
+                hasActiveSettlementResolve();
+                saveActiveSettlement(activeSettlement.value.id);
+            })
+            .catch(() => {
+                activeSettlement.value = null;
+                hasActiveSettlementResolve();
+                router.push({name: 'createSettlements'});
+            });
+}
+
+const saveActiveSettlement = (id) => localStorage.setItem(`activeSettlement-${state.user.uid}`, id);
+
+const refreshSettlements = () => {
+    settlementsService.all()
+        .then(response => {
+            settlements.value = response;
+        });
 }
 
 const storeErrors = ref({});
@@ -38,12 +71,16 @@ const open = () => {
 
 export default function useSettlements() {
     return {
-        settlement,
-        activeSettlement,
-        store,
-        storeErrors,
         open,
+        close,
+        store,
         isOpenForm,
-        close
+        settlements,
+        storeErrors,
+        activeSettlement,
+        refreshSettlements,
+        hasActiveSettlement,
+        saveActiveSettlement,
+        refreshActiveSettlement
     }
 }

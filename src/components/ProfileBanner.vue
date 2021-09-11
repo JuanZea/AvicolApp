@@ -30,7 +30,7 @@
 
 <script>
 import {ref} from "vue";
-import {useStore} from "vuex";
+import {useStore} from "../use";
 import Avatar from "./dummies/Avatar.vue";
 import AvInput from "./forms/AvInput.vue";
 import {updateProfile} from "firebase/auth";
@@ -38,17 +38,16 @@ import {updateProfile} from "firebase/auth";
 export default {
   components: {AvInput, Avatar},
   setup() {
-    const store = useStore();
-    const user = store.state.user;
-    const name = ref(user.displayName);
-    const newName = ref(user.displayName);
-    const email = ref(user.email);
+    const { state } = useStore();
+    const name = ref(state.user.displayName);
+    const newName = ref(state.user.displayName);
+    const email = ref(state.user.email);
     const editMode = ref(false);
 
     const updateUser = () => {
 
       name.value = newName.value;
-      updateProfile(user, {
+      updateProfile(state.user, {
         displayName: name.value,
       });
       editMode.value = false;

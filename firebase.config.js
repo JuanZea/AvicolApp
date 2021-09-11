@@ -1,4 +1,4 @@
-import store from "./src/store";
+import {useStore} from "./src/use"
 import {initializeApp} from "firebase/app"
 import {getAuth, onAuthStateChanged} from "firebase/auth"
 
@@ -12,16 +12,17 @@ const firebaseConfig = {
   measurementId: "G-2S0HVX4MND"
 };
 
+const {state, initialize} = useStore();
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 
 const getCurrentUser = () => {
     return new Promise((resolve, reject) => {
         onAuthStateChanged(auth, async user => {
-            await store.dispatch('init', user);
+            await initialize(user);
             resolve(firebase);
         }, reject);
     })
 }
 
-store.commit('set', {key: 'firebase', value: getCurrentUser()});
+state.firebase = getCurrentUser();
