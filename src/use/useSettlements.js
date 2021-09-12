@@ -2,6 +2,7 @@ import { ref } from "vue";
 import useStore from "./store/useStore";
 import {settlementsService} from "../services";
 import router from "../router";
+import {_updateSettlement} from "../services/avicolappAssembler";
 
 const {state} = useStore();
 let hasActiveSettlementResolve;
@@ -16,6 +17,7 @@ const refreshActiveSettlement = async () => {
             .then(response => {
                 activeSettlement.value = response;
                 hasActiveSettlementResolve();
+                _updateSettlement(activeSettlement.value.id);
             })
             .catch(() => {
                 localStorage.removeItem(`activeSettlement-${state.user.uid}`);
@@ -26,6 +28,7 @@ const refreshActiveSettlement = async () => {
             .then(response => {
                 activeSettlement.value = response;
                 hasActiveSettlementResolve();
+                _updateSettlement(activeSettlement.value.id);
                 saveActiveSettlement(activeSettlement.value.id);
             })
             .catch(() => {
@@ -48,7 +51,7 @@ const storeErrors = ref({});
 const isOpenForm = ref(false);
 
 const store = (attributes) => {
-    attributes.user_id = vuexStore.state.user.uid;
+    attributes.user_id = state.user.uid;
     settlementsService.create(attributes).then((response) => {
         storeErrors.value = [];
         router.push({

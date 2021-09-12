@@ -3,6 +3,7 @@ import axios from "axios";
 const service = axios.create({baseURL: `${import.meta.env.VITE_APP_URL_AV_API}/api`});
 
 export const _updateAuth = (id) => service.defaults.headers.user_id = id;
+export const _updateSettlement = (id) => service.defaults.headers.settlement_id = id;
 
 const handleResponse = (response, scope) => {
     switch (scope) {

@@ -1,12 +1,12 @@
 import Layout from "../../views/auth/Layout.vue";
 import Home from "../../views/auth/Home.vue";
-import CreateBarns from "../../views/auth/barns/CreateBarns.vue";
-import IndexBarns from "../../views/auth/barns/IndexBarns.vue";
 import CreateLots from "../../views/auth/lots/CreateLots.vue";
 import IndexLots from "../../views/auth/lots/IndexLots.vue";
 import MyAccount from "../../views/auth/MyAccount.vue";
 import settlements from "./settlements";
 import {init, isAuth, needSettlement} from "../middlewares";
+import CreateBarns from "../../views/auth/barns/CreateBarns.vue";
+import IndexBarns from "../../views/auth/barns/IndexBarns.vue";
 
 const children =  [
     {

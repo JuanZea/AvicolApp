@@ -32,10 +32,12 @@ import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
 import Modal from "./modals/SettlementModal.vue";
 import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
+import {useStore} from "../use";
 export default {
   components: {AvSelect, Modal, DeleteSettlementModal},
   setup() {
     const openDeleteSettlementModal = ref(false);
+    const store = useStore();
     const {hasActiveSettlement, activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement} = useSettlements();
     refreshSettlements();
     const settlement = ref();
@@ -52,6 +54,7 @@ export default {
     hasActiveSettlement
       .then(() => {
         settlement.value = activeSettlement.value.id.toString();
+        store.settlemet = activeSettlement.value
       });
     watch(settlement, current => {
       if (current !== activeSettlement.value.id.toString())

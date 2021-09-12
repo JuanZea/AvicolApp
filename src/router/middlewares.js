@@ -25,7 +25,6 @@ export const isAuth = (to, from, next) => {
 export const needSettlement = async (to, from, next) => {
     const {hasActiveSettlement, activeSettlement} = useSettlements();
     await hasActiveSettlement;
-    console.log('MOID')
     if (activeSettlement.value) {
         if (to.meta.noSettlement) next({name: 'home'});
         else next();
