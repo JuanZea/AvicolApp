@@ -1,5 +1,5 @@
 <template>
-  <modal/>
+  <create-settlement-modal :open="openCreateSettlementModal" @close="openCreateSettlementModal = false"/>
   <delete-settlement-modal :open="openDeleteSettlementModal" :settlements="settlements || []" @close="openDeleteSettlementModal = false" @deleted="refresh"/>
 
   <div class="p-4">
@@ -14,7 +14,7 @@
           <span v-else class="font-glory bg-av-50 px-2 py-1 rounded">Cargando fincas...</span>
         </div>
         <div class="flex gap-4 whitespace-nowrap">
-          <button type="button" @click="open" class="btn btn-persimmon text-white font-glory">
+          <button type="button" @click="openCreateSettlementModal = true" class="btn btn-persimmon text-white font-glory">
             Crear finca
           </button>
           <button type="button" @click="openDeleteSettlementModal = true" class="btn btn-dark text-white font-glory">
@@ -30,13 +30,14 @@
 import {ref, watch} from "vue";
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
-import Modal from "./modals/SettlementModal.vue";
+import CreateSettlementModal from "./modals/SettlementModal.vue";
 import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
 import {useStore} from "../use";
 export default {
-  components: {AvSelect, Modal, DeleteSettlementModal},
+  components: {AvSelect, CreateSettlementModal, DeleteSettlementModal},
   setup() {
     const openDeleteSettlementModal = ref(false);
+    const openCreateSettlementModal = ref(false);
     const store = useStore();
     const {hasActiveSettlement, activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement} = useSettlements();
     refreshSettlements();
@@ -60,7 +61,7 @@ export default {
       if (current !== activeSettlement.value.id.toString())
         saveActiveSettlement(current);
     });
-    return {settlement, settlements, refresh, openDeleteSettlementModal}
+    return {settlement, settlements, refresh, openDeleteSettlementModal, openCreateSettlementModal}
   }
 }
 </script>

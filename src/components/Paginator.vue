@@ -33,6 +33,7 @@
 
 <script>
 import paginate from 'jw-paginate';
+import {ref, watch} from "vue";
 
 export default {
   name: 'Paginator',
@@ -58,33 +59,23 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      pager: {},
-      ulStyles: {},
-      liStyles: {},
-      aStyles: {}
+  setup(props, context) {
+    let pager = ref({});
+
+    const setPage = (page) => {
+      const newPager = paginate(props.items.length, page, props.pageSize, props.maxPages);
+      const pageOfItems = props.items.slice(newPager.startIndex, newPager.endIndex + 1);
+      pager = newPager;
+      context.emit('change-page', pageOfItems);
     }
+
+    setPage(props.initialPage);
+
+    watch(props.items, () => {
+      setPage(props.initialPage)
+    });
+
+    return {setPage, pager};
   },
-  emits: [
-    'change-page'
-  ],
-  created() {
-    this.setPage(this.initialPage);
-  },
-  methods: {
-    setPage(page) {
-      const {items, pageSize, maxPages} = this;
-      const pager = paginate(this.items.length, page, pageSize, maxPages);
-      const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
-      this.pager = pager;
-      this.$emit('change-page', pageOfItems);
-    }
-  },
-  watch: {
-    items() {
-      this.setPage(this.initialPage);
-    }
-  }
 }
 </script>

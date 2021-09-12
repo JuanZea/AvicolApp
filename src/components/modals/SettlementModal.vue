@@ -1,6 +1,6 @@
 <template>
-  <TransitionRoot appear :show="isOpenForm" as="template">
-    <Dialog as="div" @close="close">
+  <TransitionRoot appear :show="open" as="template">
+    <Dialog as="div" @close="close()">
       <div class="fixed inset-0 z-10 overflow-y-auto">
         <div class="h-full px-4 text-center">
           <TransitionChild
@@ -55,7 +55,8 @@ import useSettlements from "../../use/useSettlements";
 import CreateSettlements from "../../views/auth/settlements/CreateSettlements.vue";
 
 export default {
-  name: 'Modal',
+  name: 'CreateSettlementModal',
+  props: {open: {required: true, type: Boolean}},
   components: {
     CreateSettlements,
     TransitionRoot,
@@ -65,11 +66,12 @@ export default {
     DialogTitle,
   },
 
-  setup() {
-    const {isOpenForm, close} = useSettlements()
+  setup(props, context) {
+    const close = () => {
+      context.emit('close');
+    }
 
     return {
-      isOpenForm,
       close
     }
   }
