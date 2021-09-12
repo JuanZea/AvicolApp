@@ -65,7 +65,8 @@ export default {
     const setPage = (page) => {
       const newPager = paginate(props.items.length, page, props.pageSize, props.maxPages);
       const pageOfItems = props.items.slice(newPager.startIndex, newPager.endIndex + 1);
-      pager = newPager;
+      newPager.currentPage = page
+      pager.value = newPager;
       context.emit('change-page', pageOfItems);
     }
 
