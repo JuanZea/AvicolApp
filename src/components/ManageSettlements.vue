@@ -9,7 +9,7 @@
       <div class="relative flex justify-between items-center gap-4">
         <div>
           <av-select v-if="settlement" v-model="settlement">
-            <option class="bg-av-50 bg-opacity-10" v-for="settlement in settlements" :value="settlement.id.toString()" selected>{{ settlement.name }}</option>
+            <option class="bg-av-50 bg-opacity-10" v-for="settlement in settlements" :value="settlement.id.toString()">{{ settlement.name }}</option>
           </av-select>
           <span v-else class="font-glory bg-av-50 px-2 py-1 rounded">Cargando fincas...</span>
         </div>
@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import { ref } from "vue";
+import { useStore } from "../use";
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
 import CreateSettlementModal from "./modals/CreateSettlementModal.vue";
 import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
-import {useStore} from "../use";
 
 export default {
 
@@ -43,33 +43,38 @@ export default {
     const openDeleteSettlementModal = ref(false);
     const openCreateSettlementModal = ref(false);
 
-    const store = useStore();
-    const { activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement } = useSettlements();
-    refreshSettlements();
     const settlement = ref();
+    const { activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement } = useSettlements();
 
-    const refresh = (deleted) => {
-      if (deleted.includes(settlement.value)) {
-        const diff = settlements.value.filter(item => !deleted.includes(item.id.toString()));
-        if (!diff[0]) refreshActiveSettlement();
-        else {
-          settlement.value = diff[0].id.toString();
-          refreshSettlements();
-        }
-      }
+    refreshSettlements();
+
+    const refresh = () => {
+      refreshSettlements(true);
     }
+    console.log(settlements)
+
+    // const refresh = (deleted) => {
+    //   if (deleted.includes(settlement.value)) {
+    //     const diff = settlements.value.filter(item => !deleted.includes(item.id.toString()));
+    //     if (!diff[0]) refreshActiveSettlement();
+    //     else {
+    //       settlement.value = diff[0].id.toString();
+    //       refreshSettlements();
+    //     }
+    //   }
+    // }
 
     settlement.value = activeSettlement.value.id.toString();
-    store.settlemet = activeSettlement.value;
 
-    watch(settlement, current => {
-      if (current !== activeSettlement.value.id.toString())
-        saveActiveSettlement(current);
-        refreshActiveSettlement();
-    });
+    // watch(settlement, current => {
+    //   if (current !== activeSettlement.value.id.toString())
+    //     saveActiveSettlement(current);
+    //     refreshActiveSettlement();
+    // });
 
-    return { settlement, settlements, refresh, openDeleteSettlementModal, openCreateSettlementModal }
+    return { settlement, settlements, openDeleteSettlementModal, openCreateSettlementModal, refresh }
 
   }
+
 }
 </script>

@@ -21,13 +21,14 @@
 
 <script>
 
-import {settlementsService} from "../../services";
+import { settlementsService } from "../../services";
 import ModalLayout from "./ModalLayout.vue";
 
 export default {
   props: { settlements: {required: true, type: Array}, open: {required: true}},
   components: { ModalLayout },
   setup(props, context) {
+
     const submit = () => {
       if (!confirm('¿Estas seguro?')) return;
       const formData = new FormData(document.getElementById('form'));
@@ -42,13 +43,13 @@ export default {
               charge++;
               if (charge === goal) {
                 context.emit('deleted', deleted);
-                close();
+                 context.emit('close');
               }
             });
       }
     }
 
-    return {submit}
+    return { submit }
   }
 }
 </script>

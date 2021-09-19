@@ -32,11 +32,13 @@ const refreshActiveSettlement = async () => {
 
 const saveActiveSettlement = (id) => localStorage.setItem(`activeSettlement-${state.user.uid}`, id);
 
-const refreshSettlements = () => {
-    settlementsService.all()
-        .then(response => {
-            settlements.value = response;
-        });
+const refreshSettlements = (force) => {
+    if (!settlements.value || force) {
+        settlementsService.all()
+            .then(response => {
+                settlements.value = response;
+            });
+    }
 }
 
 const storeErrors = ref([]);

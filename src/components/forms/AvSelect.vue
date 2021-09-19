@@ -8,16 +8,22 @@
 </template>
 
 <script>
-import {computed, ref, watch} from "vue";
+import { computed, ref, watch } from "vue";
 
 export default {
+
   emits: ['update:modelValue'],
-  props: {id: String, label: String, name: String, modelValue: String},
+
+  props: { id: String, label: String, name: String, modelValue: String },
+
   setup(props, context) {
+
     const selectValue = ref(props.modelValue);
     watch(computed(() => props.modelValue), value => selectValue.value = value);
     watch(selectValue, value => {context.emit('update:modelValue', value)});
-    return {selectValue}
+    return { selectValue }
+
   }
+
 }
 </script>
