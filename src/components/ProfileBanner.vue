@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-4 items-center lg:flex-col lg:gap-4 h-full">
+  <div class="flex p-4 items-center lg:flex-col lg:gap-4">
     <div class="mr-4 lg:mr-0">
       <avatar class="h-32" :name="editMode ? newName : name" background="ffba08" rounded="true"/>
     </div>
