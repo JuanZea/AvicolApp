@@ -31,7 +31,7 @@
                   active ? 'bg-av-50 font-bold' : 'text-gray-900',
                   'group flex rounded-md items-center w-full px-2 py-2',
                 ]">
-                <fai :class="{'text-av-50': !active}" class="mr-2" icon="tractor"/>
+                <fai :class="{'text-av-50': !active}" size="sm" class="mr-2" icon="tractor"/>
                 Mis Galpones
               </router-link>
             </MenuItem>
