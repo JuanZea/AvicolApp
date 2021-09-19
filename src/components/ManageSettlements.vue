@@ -28,7 +28,6 @@
 
 <script>
 import { ref } from "vue";
-import { useStore } from "../use";
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
 import CreateSettlementModal from "./modals/CreateSettlementModal.vue";
@@ -51,26 +50,8 @@ export default {
     const refresh = () => {
       refreshSettlements(true);
     }
-    console.log(settlements)
-
-    // const refresh = (deleted) => {
-    //   if (deleted.includes(settlement.value)) {
-    //     const diff = settlements.value.filter(item => !deleted.includes(item.id.toString()));
-    //     if (!diff[0]) refreshActiveSettlement();
-    //     else {
-    //       settlement.value = diff[0].id.toString();
-    //       refreshSettlements();
-    //     }
-    //   }
-    // }
 
     settlement.value = activeSettlement.value.id.toString();
-
-    // watch(settlement, current => {
-    //   if (current !== activeSettlement.value.id.toString())
-    //     saveActiveSettlement(current);
-    //     refreshActiveSettlement();
-    // });
 
     return { settlement, settlements, openDeleteSettlementModal, openCreateSettlementModal, refresh }
 
