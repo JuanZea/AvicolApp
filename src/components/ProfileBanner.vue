@@ -25,7 +25,7 @@
         <fai class="text-av-100" :icon="['far', 'times-circle']" size="lg"/>
       </button>
     </div>
-    <div class="flex-grow flex-col h-full justify-end hidden md:flex">
+    <div class="flex-grow flex-col h-full justify-end hidden lg:flex">
       <img class="object-contain max-h-48 w-full" src="/src/assets/illustrations/my-account.svg">
     </div>
   </div>
