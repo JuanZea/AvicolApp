@@ -1,5 +1,5 @@
 <template>
-  <create-settlement-modal :open="openCreateSettlementModal" @close="openCreateSettlementModal = false"/>
+  <create-settlement-modal :open="openCreateSettlementModal" @close="openCreateSettlementModal = false" @created="refresh" />
   <delete-settlement-modal :open="openDeleteSettlementModal" :settlements="settlements || []" @close="openDeleteSettlementModal = false" @deleted="refresh"/>
 
   <div class="p-4">
@@ -30,7 +30,7 @@
 import {ref, watch} from "vue";
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
-import CreateSettlementModal from "./modals/SettlementModal.vue";
+import CreateSettlementModal from "./modals/CreateSettlementModal.vue";
 import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
 import {useStore} from "../use";
 

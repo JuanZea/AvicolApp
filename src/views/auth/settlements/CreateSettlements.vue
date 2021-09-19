@@ -33,7 +33,7 @@ export default {
 
   components: { AvInput },
 
-  setup() {
+  setup(props, computed) {
 
     const router = useRouter();
     const { storeSettlements } = useSettlements();
@@ -49,7 +49,11 @@ export default {
 
       storeSettlements(attributes)
         .then(() => {
-          if (router.currentRoute.value.name === 'createSettlements') router.push({name: 'home'});
+          if (router.currentRoute.value.name === 'createSettlements') {
+            router.push({name: 'home'});
+          } else {
+            computed.emit('created')
+          }
         })
     }
 
