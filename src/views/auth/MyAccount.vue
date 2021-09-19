@@ -12,6 +12,6 @@ import ProfileBanner from "../../components/ProfileBanner.vue";
 import ManageSettlements from "../../components/ManageSettlements.vue";
 
 export default {
-  components: {ManageSettlements, ProfileBanner}
+  components: { ManageSettlements, ProfileBanner }
 }
 </script>

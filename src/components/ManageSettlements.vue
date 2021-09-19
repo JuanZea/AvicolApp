@@ -33,15 +33,21 @@ import useSettlements from "../use/useSettlements";
 import CreateSettlementModal from "./modals/SettlementModal.vue";
 import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
 import {useStore} from "../use";
+
 export default {
-  components: {AvSelect, CreateSettlementModal, DeleteSettlementModal},
+
+  components: { AvSelect, CreateSettlementModal, DeleteSettlementModal },
+
   setup() {
+
     const openDeleteSettlementModal = ref(false);
     const openCreateSettlementModal = ref(false);
+
     const store = useStore();
-    const {hasActiveSettlement, activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement} = useSettlements();
+    const { activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement } = useSettlements();
     refreshSettlements();
     const settlement = ref();
+
     const refresh = (deleted) => {
       if (deleted.includes(settlement.value)) {
         const diff = settlements.value.filter(item => !deleted.includes(item.id.toString()));
@@ -52,16 +58,18 @@ export default {
         }
       }
     }
-    hasActiveSettlement
-      .then(() => {
-        settlement.value = activeSettlement.value.id.toString();
-        store.settlemet = activeSettlement.value
-      });
+
+    settlement.value = activeSettlement.value.id.toString();
+    store.settlemet = activeSettlement.value;
+
     watch(settlement, current => {
       if (current !== activeSettlement.value.id.toString())
         saveActiveSettlement(current);
+        refreshActiveSettlement();
     });
-    return {settlement, settlements, refresh, openDeleteSettlementModal, openCreateSettlementModal}
+
+    return { settlement, settlements, refresh, openDeleteSettlementModal, openCreateSettlementModal }
+
   }
 }
 </script>

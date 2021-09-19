@@ -2,23 +2,23 @@
   <div>
     <div class="flex-grow">
       <div class="p-4">
-        <Form class="flex flex-col md:px-5" @submit="store" :validation-schema="schema">
+        <form id="form" @submit="store" class="flex flex-col md:px-5">
           <div class="mt-3">
-            <av-input name="name" :error="storeErrors.name" id="name" label="Nombre:"/>
+            <av-input id="name" label="Nombre:"/>
           </div>
           <div class="mt-3">
-            <av-input name="location" :error="storeErrors.location" id="location" label="Localidad:"/>
+            <av-input id="location" label="Localidad:"/>
           </div>
           <div class="mt-3">
-            <av-input name="address" :error="storeErrors.address" id="address" label="Dirección:"/>
+            <av-input id="address" label="Dirección:"/>
           </div>
           <div class="mt-3">
-            <av-input name="sea_level" :error="storeErrors.sea_level" id="sea_level" label="Altura sobre el nivel del mar:"/>
+            <av-input id="sea_level" label="Altura sobre el nivel del mar:"/>
           </div>
           <div class="my-5">
             <button type="submit" class="btn btn-persimmon text-white">Crear finca</button>
           </div>
-        </Form>
+        </form>
       </div>
     </div>
   </div>
@@ -26,27 +26,35 @@
 
 <script>
 import AvInput from "../../../components/Forms/AvInput.vue";
-import {Form} from "vee-validate";
-import * as Yup from "yup";
 import useSettlements from "../../../use/useSettlements";
+import { useRouter } from "vue-router";
 
 export default {
-  name: "CreateSettlements",
-  components: {AvInput, Form},
-  setup() {
-    const {store, storeErrors} = useSettlements();
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      location: Yup.string().required(),
-      address: Yup.string().required(),
-      sea_level: Yup.string().required(),
-    });
 
-    return {
-      schema,
-      store,
-      storeErrors
-    };
+  components: { AvInput },
+
+  setup() {
+
+    const router = useRouter();
+    const { storeSettlements } = useSettlements();
+
+    const store = (event) => {
+      event.preventDefault();
+      const formData = new FormData(document.getElementById('form'));
+      const attributes = {};
+
+      for (let pair of formData.entries()) {
+        attributes[pair[0]] = pair[1].trim() === '' ? null : pair[1].trim();
+      }
+
+      storeSettlements(attributes)
+        .then(() => {
+          if (router.currentRoute.value.name === 'createSettlements') router.push({name: 'home'});
+        })
+    }
+
+    return { store };
+
   },
 }
 </script>

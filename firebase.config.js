@@ -1,6 +1,6 @@
-import {useStore} from "./src/use"
-import {initializeApp} from "firebase/app"
-import {getAuth, onAuthStateChanged} from "firebase/auth"
+import { useStore } from "./src/use"
+import { initializeApp } from "firebase/app"
+import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyA5hWBLcaa_KGoO9kZ3KsijDzjTpK-WsZg",
@@ -12,7 +12,7 @@ const firebaseConfig = {
   measurementId: "G-2S0HVX4MND"
 };
 
-const {state, initialize} = useStore();
+const { state, initialize } = useStore();
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 

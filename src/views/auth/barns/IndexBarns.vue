@@ -1,6 +1,6 @@
 <template>
   <div class="relative border-dashed border-gray-300 border-4 p-4 w-full m-6" >
-    <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">{{activeSettlement.name }}</h1>
+    <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">{{ activeSettlement.name }}</h1>
     <div v-if="barns && barns.length">
       <div class="overflow-auto bg-white shadow-md rounded m-6">
         <table class="min-w-max w-full table-auto">

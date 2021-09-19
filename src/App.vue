@@ -4,16 +4,18 @@
 </template>
 
 <script>
-import {ref} from "vue";
 import Curtain from "./components/Curtain.vue";
-import {useStore} from "./use";
+import { useStore } from "./use";
 
 export default {
-  components: {Curtain},
+
+  components: { Curtain },
+
   setup() {
-    const ready = ref(false);
-    const {state} = useStore();
-    return {ready, state}
+
+    const { state } = useStore();
+    return { state }
+
   }
 }
 </script>

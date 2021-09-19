@@ -1,41 +1,33 @@
 import { ref } from "vue";
-import useStore from "./store/useStore";
-import {settlementsService} from "../services";
+import { settlementsService } from "../services";
+import { _updateSettlement } from "../services/avicolappAssembler";
 import router from "../router";
-import {_updateSettlement} from "../services/avicolappAssembler";
+import useStore from "./store/useStore";
 
-const {state} = useStore();
-let hasActiveSettlementResolve;
-const hasActiveSettlement = new Promise(resolve => {hasActiveSettlementResolve = resolve});
+const { state } = useStore();
 const activeSettlement = ref();
 const settlements = ref();
 
 const refreshActiveSettlement = async () => {
     const ACTIVE_SETTLEMENT_ID = localStorage.getItem(`activeSettlement-${state.user.uid}`);
-    if (ACTIVE_SETTLEMENT_ID)
-        settlementsService.one(ACTIVE_SETTLEMENT_ID)
-            .then(response => {
-                activeSettlement.value = response;
-                hasActiveSettlementResolve();
-                _updateSettlement(activeSettlement.value.id);
-            })
-            .catch(() => {
-                localStorage.removeItem(`activeSettlement-${state.user.uid}`);
-                refreshActiveSettlement();
-            });
-    else
-        settlementsService.first()
-            .then(response => {
-                activeSettlement.value = response;
-                hasActiveSettlementResolve();
-                _updateSettlement(activeSettlement.value.id);
-                saveActiveSettlement(activeSettlement.value.id);
-            })
-            .catch(() => {
-                activeSettlement.value = null;
-                hasActiveSettlementResolve();
-                router.push({name: 'createSettlements'});
-            });
+    if (ACTIVE_SETTLEMENT_ID) {
+        try {
+            activeSettlement.value = await settlementsService.one(ACTIVE_SETTLEMENT_ID);
+            _updateSettlement(activeSettlement.value.id);
+        } catch (error) {
+            localStorage.removeItem(`activeSettlement-${state.user.uid}`);
+            await refreshActiveSettlement();
+        }
+    } else {
+        try {
+            activeSettlement.value = await settlementsService.first();
+            _updateSettlement(activeSettlement.value.id);
+            saveActiveSettlement(activeSettlement.value.id);
+        } catch (error) {
+            activeSettlement.value = null;
+            router.push({name: 'createSettlements'});
+        }
+    }
 }
 
 const saveActiveSettlement = (id) => localStorage.setItem(`activeSettlement-${state.user.uid}`, id);
@@ -47,42 +39,29 @@ const refreshSettlements = () => {
         });
 }
 
-const storeErrors = ref({});
-const isOpenForm = ref(false);
+const storeErrors = ref([]);
 
-const store = (attributes) => {
+const storeSettlements = async (attributes) => {
     attributes.user_id = state.user.uid;
-    settlementsService.create(attributes).then((response) => {
+    try {
+        await settlementsService.create(attributes);
         storeErrors.value = [];
-        router.push({
-            name: 'showSettlements', params: {id: response.data.id}
-        });
-    }).catch(error => {
+        await refreshActiveSettlement();
+    } catch (error) {
         error.response.data.errors.errors.forEach(data => {
             storeErrors.value[data.param] = 'El valor ingresado es invalido';
         });
-    })
+    }
 }
 
-const close = () => {
-    isOpenForm.value = false
-}
-
-const open = () => {
-    isOpenForm.value = true
-}
 
 export default function useSettlements() {
     return {
-        open,
-        close,
-        store,
-        isOpenForm,
         settlements,
         storeErrors,
+        storeSettlements,
         activeSettlement,
         refreshSettlements,
-        hasActiveSettlement,
         saveActiveSettlement,
         refreshActiveSettlement
     }
