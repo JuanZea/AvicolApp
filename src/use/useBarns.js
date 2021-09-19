@@ -1,9 +1,9 @@
-import {ref} from "vue";
-import {barnsService} from "../services";
+import { ref } from "vue";
+import { barnsService } from "../services";
 
 const barns = ref();
 
-const indexBarns = () => {
+const refreshBarns = () => {
     barnsService.all()
         .then(response => {
             barns.value = response;
@@ -12,7 +12,7 @@ const indexBarns = () => {
 
 export default function useBarns() {
     return {
-        indexBarns,
-        barns
+        barns,
+        refreshBarns
     }
 }

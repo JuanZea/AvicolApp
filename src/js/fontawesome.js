@@ -14,7 +14,9 @@ import {
     faTrashAlt,
     faChevronDown,
     faTractor,
-    faEye
+    faEye,
+    faChevronLeft,
+    faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -39,5 +41,7 @@ library.add(
     faTrashAlt,
     faChevronDown,
     faTractor,
-    faEye
+    faEye,
+    faChevronLeft,
+    faChevronRight
 );

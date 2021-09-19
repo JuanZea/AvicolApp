@@ -64,11 +64,12 @@
 </template>
 
 <script>
-import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue';
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import Avatar from "./dummies/Avatar.vue";
-import {useAuthentication} from "../use";
+import { useAuthentication } from "../use";
 
 export default {
+
   components: {
     Avatar,
     Menu,
@@ -76,9 +77,10 @@ export default {
     MenuItems,
     MenuItem
   },
+
   setup() {
-    const {logout} = useAuthentication();
-    return {logout}
+    const { logout } = useAuthentication();
+    return { logout }
   }
 }
 </script>

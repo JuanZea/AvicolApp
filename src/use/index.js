@@ -1,5 +1,6 @@
+import useBarns from "./useBarns";
 import useStore from "./store/useStore";
-import useAuthentication from "./useAuthentication";
 import useSettlements from "./useSettlements";
+import useAuthentication from "./useAuthentication";
 
-export {useStore, useAuthentication, useSettlements}
+export { useStore, useAuthentication, useSettlements, useBarns }

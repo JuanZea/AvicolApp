@@ -1,45 +1,8 @@
 <template>
   <div class="relative border-dashed border-gray-300 border-4 p-4 w-full m-6">
     <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">{{ activeSettlement.name }}</h1>
-    <div v-if="barns && barns.length">
-      <av-table :headers="['Nombre', 'Tipo', 'Cantidad de lotes', 'Creado en', '']">
-        <tr v-for="(barn, key) in bansByPage" :key="key" class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="py-3 px-6 text-left whitespace-nowrap">
-            <div class="flex items-center">
-              <span class="font-medium">{{ barn.name }}</span>
-            </div>
-          </td>
-          <td class="py-3 px-6 text-left">
-            <div class="flex items-center">
-              <span class="inline-block rounded-full text-gray-600 bg-av-100 px-2 py-1 text-xs font-bold mr-3"
-                    v-if="barn.type === '1'">Galpón</span>
-              <span class="inline-block rounded-full text-gray-600 bg-av-50 px-2 py-1 text-xs font-bold mr-3" v-else>Cautividad</span>
-            </div>
-          </td>
-          <td class="py-3 px-6 text-left">
-              <span class="inline-block rounded-full text-gray-600 bg-gray-300 px-2 py-1 text-xs font-bold mr-3">
-                {{ barn.lots_number }}
-              </span>
-          </td>
-          <td class="py-3 px-6 text-left">
-            {{ convertDate(barn.created_at) }}
-          </td>
-          <td class="py-3 px-6 text-right">
-            <div class="flex item-center justify-center">
-              <div class="w-4 mr-2 transform hover:scale-110">
-                <fai class="text-av-100 hover:text-av-300 " icon="eye"/>
-              </div>
-              <div class="w-4 mr-2 transform hover:scale-110">
-                <fai class="text-av-100 hover:text-av-300 " icon="pencil-alt"/>
-              </div>
-              <div class="w-4 mr-2 transform hover:scale-110">
-                <fai class="text-av-100 hover:text-av-300 " icon="trash-alt"/>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </av-table>
-      <paginator v-if="barns" :items="barns" :page-size="10" @changePage="onChangePage"></paginator>
+    <div v-if="barns && barns.length" class="h-full">
+      <barns-table :barns="barns"/>
     </div>
     <div class="w-full h-full m-2 md:m-6 flex flex-col md:flex-row justify-center items-center gap-6" v-else>
       <img class="object-contain max-h-96" src="/src/assets/illustrations/not_found.svg">
@@ -57,38 +20,20 @@
 </template>
 
 <script>
-import useSettlements from "../../../use/useSettlements";
-import useBarns from "../../../use/useBarns";
-import dayjs from "dayjs";
 import Paginator from "../../../components/Paginator.vue";
-import {ref} from "vue";
-import AvTable from "../../../components/AvTable.vue";
+import BarnsTable from "../../../components/tables/BarnsTable.vue";
+import { useSettlements, useBarns } from "../../../use";
 
 export default {
-  name: "IndexBarns",
-  components: {AvTable, Paginator},
+
+  components: { BarnsTable, Paginator },
+
   setup() {
-    let bansByPage = ref([]);
-    const {activeSettlement} = useSettlements();
-    const {barns, indexBarns} = useBarns();
-
-    indexBarns();
-
-    const convertDate = (date) => {
-      return dayjs(date).format('YYYY-MM-DD HH:mm:ss')
-    }
-
-    const onChangePage = (pageOfItems) => {
-      bansByPage.value = pageOfItems;
-    }
-
-    return {
-      activeSettlement,
-      convertDate,
-      onChangePage,
-      bansByPage,
-      barns
-    }
+    const { activeSettlement } = useSettlements();
+    const { barns, refreshBarns } = useBarns();
+    refreshBarns();
+    return { barns, activeSettlement }
   }
+
 }
 </script>

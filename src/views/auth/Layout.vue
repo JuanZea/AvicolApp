@@ -3,7 +3,7 @@
     <div class="flex flex-col w-full">
       <div class="flex bg-gray-100 justify-between pr-4 py-2 items-center">
         <logo-sticker lateral @click="router.push({name: 'home'})"/>
-        <div class="text-2xl font-glory font-extrabold">{{title}}</div>
+        <div class="text-2xl font-extrabold">{{title}}</div>
         <dropdown/>
       </div>
       <div class="flex-grow container flex justify-center mx-auto relative">

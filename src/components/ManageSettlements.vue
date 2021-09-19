@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
 import CreateSettlementModal from "./modals/CreateSettlementModal.vue";
@@ -42,16 +42,22 @@ export default {
     const openDeleteSettlementModal = ref(false);
     const openCreateSettlementModal = ref(false);
 
-    const settlement = ref();
     const { activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement } = useSettlements();
+    const settlement = ref(activeSettlement.value.id.toString());
 
     refreshSettlements();
 
-    const refresh = () => {
-      refreshSettlements(true);
+    const refresh = async () => {
+      await refreshSettlements(true);
+      await refreshActiveSettlement();
+      settlement.value = activeSettlement.value.id.toString();
     }
 
-    settlement.value = activeSettlement.value.id.toString();
+    watch(settlement, current => {
+      if (current !== activeSettlement.value.id.toString())
+        saveActiveSettlement(current);
+        refreshActiveSettlement();
+    });
 
     return { settlement, settlements, openDeleteSettlementModal, openCreateSettlementModal, refresh }
 

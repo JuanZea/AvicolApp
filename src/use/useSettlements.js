@@ -1,6 +1,6 @@
-import { ref } from "vue";
-import { settlementsService } from "../services";
-import { _updateSettlement } from "../services/avicolappAssembler";
+import {ref} from "vue";
+import {settlementsService} from "../services";
+import {_updateSettlement} from "../services/avicolappAssembler";
 import router from "../router";
 import useStore from "./store/useStore";
 
@@ -32,13 +32,8 @@ const refreshActiveSettlement = async () => {
 
 const saveActiveSettlement = (id) => localStorage.setItem(`activeSettlement-${state.user.uid}`, id);
 
-const refreshSettlements = (force) => {
-    if (!settlements.value || force) {
-        settlementsService.all()
-            .then(response => {
-                settlements.value = response;
-            });
-    }
+const refreshSettlements = async (force) => {
+    if (!settlements.value || force) settlements.value = await settlementsService.all();
 }
 
 const storeErrors = ref([]);
