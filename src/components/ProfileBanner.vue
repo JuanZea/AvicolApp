@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-4 items-center lg:flex-col lg:gap-4">
+  <div class="flex p-4 items-center lg:flex-col lg:gap-4 h-full">
     <div class="mr-4 lg:mr-0">
       <avatar class="h-32" :name="editMode ? newName : name" background="ffba08" rounded="true"/>
     </div>
@@ -25,6 +25,9 @@
         <fai class="text-av-100" :icon="['far', 'times-circle']" size="lg"/>
       </button>
     </div>
+    <div class="flex-grow flex-col h-full justify-end hidden md:flex">
+      <img class="object-contain max-h-48 w-full" src="/src/assets/illustrations/my-account.svg">
+    </div>
   </div>
 </template>
 
@@ -38,7 +41,7 @@ import {updateProfile} from "firebase/auth";
 export default {
   components: {AvInput, Avatar},
   setup() {
-    const { state } = useStore();
+    const {state} = useStore();
     const name = ref(state.user.displayName);
     const newName = ref(state.user.displayName);
     const email = ref(state.user.email);
