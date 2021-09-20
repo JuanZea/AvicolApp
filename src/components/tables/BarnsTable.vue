@@ -28,9 +28,6 @@
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="eye"/>
               </button>
               <button class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
-                <fai class="text-av-100 hover:text-av-300" size="lg" icon="pencil-alt"/>
-              </button>
-              <button class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="trash-alt"/>
               </button>
             </div>
