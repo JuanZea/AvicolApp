@@ -1,3 +1,4 @@
-import {barnsService, lotsService} from "./modelServiceAssembler";
 import settlementsService from "./settlementsService";
-export {settlementsService, barnsService, lotsService}
+import { barnsService, lotsService } from "./modelServiceAssembler";
+
+export { settlementsService, barnsService, lotsService }

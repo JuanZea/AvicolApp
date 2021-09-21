@@ -10,8 +10,7 @@
           </td>
           <td class="py-3 px-6 text-center">
             <div class="flex items-center justify-center">
-              <span class="rounded-lg text-md text-gray-300 bg-av-900 px-2 py-1 font-bold w-20 text-center" v-if="barn.type === '1'">Galpón</span>
-              <span class="rounded-lg text-md text-av-900 bg-av-50 px-2 py-1 font-bold w-20 text-center" v-else>Cautividad</span>
+              <span class="rounded-lg text-md px-2 py-1 font-bold w-28 text-center whitespace-nowrap" :class="{'bg-av-900 text-gray-300': barn.type === 'gallinasFelices', 'bg-av-100 text-av-900': barn.type === 'cautividad'}">{{ capitalize(lowerCase(barn.type)) }}</span>
             </div>
           </td>
           <td class="py-3 px-6 text-center">
@@ -24,7 +23,7 @@
           </td>
           <td class="py-3 px-6 text-center">
             <div class="flex item-center justify-center gap-2">
-              <button class="w-4 mr-2 transform hover:scale-125 cursor-pointer">
+              <button @click="router.push({name: 'showBarns', params: {id: barn.id}})" class="w-4 mr-2 transform hover:scale-125 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="eye"/>
               </button>
               <button class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
@@ -43,6 +42,8 @@
 import { ref } from "vue";
 import { useSettlements } from "../../use";
 import dayjs from "dayjs";
+import { useRouter } from "vue-router";
+import lowerCase from "lodash/lowerCase";
 import capitalize from "lodash/capitalize";
 import "dayjs/locale/es"
 import AvTable from "./AvTable.vue";
@@ -56,6 +57,7 @@ export default {
 
   setup() {
 
+    const router = useRouter();
     let bansByPage = ref([]);
     const { activeSettlement } = useSettlements();
 
@@ -66,7 +68,9 @@ export default {
     }
 
     return {
+      router,
       capitalize,
+      lowerCase,
       bansByPage,
       convertDate,
       onChangePage,

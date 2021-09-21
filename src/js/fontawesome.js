@@ -16,12 +16,13 @@ import {
     faTractor,
     faEye,
     faChevronLeft,
-    faChevronRight
+    faChevronRight,
+    faHandPointLeft
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
     faCheckCircle,
-    faTimesCircle
+    faTimesCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
@@ -43,5 +44,6 @@ library.add(
     faTractor,
     faEye,
     faChevronLeft,
-    faChevronRight
+    faChevronRight,
+    faHandPointLeft
 );
