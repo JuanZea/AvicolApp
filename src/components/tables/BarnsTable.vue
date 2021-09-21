@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col justify-between h-full">
     <div>
+      <delete-barn-modal v-if="barnActive" :open="openDeleteBarnModal" :barn="barnActive" @close="openDeleteBarnModal = false" @delete="refresh" />
       <av-table :headers="['Nombre', 'Tipo', 'Lotes', 'Fecha de creación', '']">
         <tr v-for="(barn, key) in bansByPage" :key="key" class="border-b border-gray-200 hover:bg-gray-100">
           <td class="py-3 px-6 text-center whitespace-nowrap">
@@ -26,7 +27,7 @@
               <button @click="router.push({name: 'showBarns', params: {id: barn.id}})" class="w-4 mr-2 transform hover:scale-125 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="eye"/>
               </button>
-              <button class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
+              <button type="button" @click="openDeleteModal(barn)"  class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="trash-alt"/>
               </button>
             </div>
@@ -48,15 +49,18 @@ import capitalize from "lodash/capitalize";
 import "dayjs/locale/es"
 import AvTable from "./AvTable.vue";
 import Paginator from "../Paginator.vue";
+import DeleteBarnModal from "../modals/DeleteBarnModal.vue";
 
 export default {
 
-  components: { Paginator, AvTable },
+  components: { DeleteBarnModal, Paginator, AvTable },
 
   props: { barns: {required: true, type: Array} },
 
-  setup() {
+  setup(props, computed) {
 
+    let openDeleteBarnModal = ref(false);
+    let barnActive = ref();
     const router = useRouter();
     let bansByPage = ref([]);
     const { activeSettlement } = useSettlements();
@@ -67,6 +71,15 @@ export default {
       bansByPage.value = pageOfItems;
     }
 
+    const openDeleteModal = (barn) => {
+      barnActive.value = barn;
+      openDeleteBarnModal.value = true;
+    }
+
+    const refresh = async () => {
+      computed.emit('deleteAny')
+    }
+
     return {
       router,
       capitalize,
@@ -74,7 +87,11 @@ export default {
       bansByPage,
       convertDate,
       onChangePage,
-      activeSettlement
+      activeSettlement,
+      openDeleteModal,
+      barnActive,
+      openDeleteBarnModal,
+      refresh
     }
 
   }
