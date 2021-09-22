@@ -27,6 +27,6 @@ export const needSettlement = async (to, from, next) => {
         else next();
     } else {
         if (to.meta.noSettlement) next();
-        else next({name: 'createSettlements'});
+        else next({name: 'myFirstSettlement'});
     }
 }

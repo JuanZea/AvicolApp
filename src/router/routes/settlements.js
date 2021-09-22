@@ -2,8 +2,8 @@ import MyFirstSettlement from "../../views/auth/settlements/MyFirstSettlement.vu
 
 export default [
     {
-        name: 'createSettlements',
-        path: '/create-settlements',
+        name: 'myFirstSettlement',
+        path: '/my-first-settlement',
         meta: { title: 'MI PRIMERA FINCA', noSettlement: true },
         component: MyFirstSettlement,
     },

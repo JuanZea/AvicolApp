@@ -26,11 +26,13 @@
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 import paginate from 'jw-paginate';
 
 export default {
+
   name: 'Paginator',
+
   props: {
     items: {
       type: Array,
@@ -53,6 +55,7 @@ export default {
       default: false
     }
   },
+
   setup(props, context) {
     let pager = ref({});
 
@@ -66,11 +69,11 @@ export default {
 
     setPage(props.initialPage);
 
-    watch(props.items, () => {
+    watch(computed(() => props.items), () => {
       setPage(props.initialPage)
     });
 
-    return {setPage, pager};
+    return { setPage, pager };
   },
 }
 </script>

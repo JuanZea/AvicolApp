@@ -13,7 +13,6 @@ const refreshBarns = () => {
 const storeErrors = ref([]);
 
 const storeBarns = async (attributes) => {
-    attributes.user_id = state.user.uid;
     try {
         await barnsService.create(attributes);
         storeErrors.value = [];

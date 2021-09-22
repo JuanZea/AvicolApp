@@ -2,15 +2,14 @@
   <div>
     <div class="flex-grow">
       <div class="p-4">
-        <form id="form" @submit="store" class="flex flex-col md:px-5">
+        <form id="form" @submit.prevent="store" class="flex flex-col md:px-5">
           <div class="mt-3">
             <av-input id="name" label="Nombre:"/>
           </div>
           <div class="mt-3">
-            <av-select id="type" label="Tipo:">
-              <option class="bg-av-50 bg-opacity-10" value="0">Galpón</option>
-              <option class="bg-av-50 bg-opacity-10" value="1">Cautividad</option>
-              <option class="bg-av-50 bg-opacity-10" value="2">Gallinas Felices</option>
+            <av-select v-model="type" id="type" label="Tipo:">
+              <option class="bg-av-50 bg-opacity-10" value="cautividad">Cautividad</option>
+              <option class="bg-av-50 bg-opacity-10" value="gallinasFelices">Gallinas Felices</option>
             </av-select>
           </div>
           <div class="my-5">
@@ -23,18 +22,21 @@
 </template>
 
 <script>
-import AvInput from "../../../components/forms/AvInput.vue";
-import AvSelect from "../../../components/forms/AvSelect.vue";
-import {useBarns} from "../../../use";
+import { ref } from "vue";
+import { useBarns } from "../../use";
+import AvInput from "./AvInput.vue";
+import AvSelect from "./AvSelect.vue";
 
 export default {
-  components: {AvSelect, AvInput },
+
+  components: { AvSelect, AvInput },
+
   setup(props, computed) {
 
+    const type = ref('cautividad');
     const { storeBarns } = useBarns();
 
-    const store = (event) => {
-      event.preventDefault();
+    const store = () => {
       const formData = new FormData(document.getElementById('form'));
       const attributes = {};
 
@@ -45,7 +47,7 @@ export default {
       storeBarns(attributes).then(() => computed.emit('created'))
     }
 
-    return { store };
+    return { store, type };
 
   },
 }

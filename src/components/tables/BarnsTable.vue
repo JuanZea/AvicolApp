@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col justify-between h-full">
     <div>
-      <delete-barn-modal v-if="barnActive" :open="openDeleteBarnModal" :barn="barnActive" @close="openDeleteBarnModal = false" @delete="refresh" />
+      <delete-barn-modal v-if="barnActive" :open="openDeleteBarnModal" :barn="barnActive" @close="openDeleteBarnModal = false" @deleted="refresh" />
       <av-table :headers="['Nombre', 'Tipo', 'Lotes', 'Fecha de creación', '']">
-        <tr v-for="(barn, key) in bansByPage" :key="key" class="border-b border-gray-200 hover:bg-gray-100">
+        <tr v-for="(barn, key) in barnsByPage" :key="key" class="border-b border-gray-200 hover:bg-gray-100">
           <td class="py-3 px-6 text-center whitespace-nowrap">
             <div class="flex items-center">
               <span class="font-medium text-2xl">{{ barn.name }}</span>
@@ -62,13 +62,13 @@ export default {
     let openDeleteBarnModal = ref(false);
     let barnActive = ref();
     const router = useRouter();
-    let bansByPage = ref([]);
+    let barnsByPage = ref([]);
     const { activeSettlement } = useSettlements();
 
     const convertDate = (date) => dayjs(date).locale('es').format('MMMM D, h:mm a');
 
     const onChangePage = (pageOfItems) => {
-      bansByPage.value = pageOfItems;
+      barnsByPage.value = pageOfItems;
     }
 
     const openDeleteModal = (barn) => {
@@ -84,7 +84,7 @@ export default {
       router,
       capitalize,
       lowerCase,
-      bansByPage,
+      barnsByPage: barnsByPage,
       convertDate,
       onChangePage,
       activeSettlement,

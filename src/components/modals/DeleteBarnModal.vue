@@ -9,9 +9,6 @@
       </h1>
 
       <div class="flex justify-center mt-4 gap-5">
-        <button type="button" class="btn hover:bg-gray-400 focus:bg-gray-400 bg-gray-200 gap-2" @click="$emit('close')">
-          <span class="font-glory">Cancelar</span>
-        </button>
         <button type="button" class="btn btn-red text-white gap-2" @click="deleteBarn">
           <fai icon="trash-alt"/>
           <span class="font-glory">Eliminar</span>

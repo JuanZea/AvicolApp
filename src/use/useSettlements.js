@@ -39,7 +39,6 @@ const refreshSettlements = async (force) => {
 const storeErrors = ref([]);
 
 const storeSettlements = async (attributes) => {
-    attributes.user_id = state.user.uid;
     try {
         await settlementsService.create(attributes);
         storeErrors.value = [];
