@@ -3,11 +3,12 @@
     <table class="min-w-max w-full table-auto">
       <thead>
       <tr class="bg-gray-200 text-gray-600 uppercase leading-normal">
-        <th class="py-3 px-6 text-center" v-for="header in headers">{{ header }}</th>
+        <th v-if="headers" class="py-3 px-6 text-center" v-for="header in headers">{{ header }}</th>
+        <slot name="headers" v-else/>
       </tr>
       </thead>
       <tbody class="text-gray-600 text-sm font-light">
-      <slot></slot>
+      <slot/>
       </tbody>
     </table>
   </div>
@@ -15,6 +16,6 @@
 
 <script>
 export default {
-  props: { headers: { default: []} }
+  props: { headers: { type: Array } }
 }
 </script>

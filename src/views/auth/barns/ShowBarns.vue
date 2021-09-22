@@ -1,8 +1,7 @@
 <template>
   <div v-if="!barn">CARGANDO</div>
   <div v-else class="relative border-dashed border-gray-300 border-4 p-4 w-full m-6">
-    <button @click="router.push({name: 'indexBarns'})"
-            class="absolute -top-5 right-0 bg-white px-2 text-3xl text-av-100">
+    <button @click="router.push({name: 'indexBarns'})" class="absolute -top-5 right-0 bg-white px-2 text-3xl text-av-100">
       <fai icon="hand-point-left"/>
     </button>
     <div class="w-full border-b-2 pb-4">
@@ -39,7 +38,7 @@
         </div>
       </div>
     </div>
-    <lots-table v-if="lots && lots.length" :lots="lots"></lots-table>
+    <lots-table v-if="lots && lots.length" :lots="lots"/>
     <div class="w-full m-2 md:m-6 flex flex-grow flex-col md:flex-row justify-center items-center gap-6" v-else>
       <img class="object-contain max-h-96" src="/src/assets/illustrations/not_found.svg">
       <div class="flex flex-col">
