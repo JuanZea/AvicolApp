@@ -32,6 +32,7 @@
         </div>
       </div>
     </div>
+    <lots-table :lots="lots"></lots-table>
   </div>
 </template>
 
@@ -40,10 +41,12 @@ import {ref, computed} from "vue";
 import capitalize from "lodash/capitalize";
 import lowerCase from "lodash/lowerCase";
 import {useRouter} from "vue-router";
-import {barnsService} from "../../../services";
+import {barnsService, lotsService} from "../../../services";
+import LotsTable from "../../../components/tables/LotsTable.vue";
+import {_updateBarn} from "../../../services/avicolappAssembler";
 
 export default {
-
+  components: {LotsTable},
   setup() {
     const editMode = ref(false);
 
@@ -51,14 +54,20 @@ export default {
     const barn = ref();
     const id = computed(() => router.currentRoute.value.params.id);
     const newName = ref();
+    const lots = ref({});
+    _updateBarn(id.value);
 
+    lotsService.all()
+        .then(response => {
+          lots.value = response;
+        })
     barnsService.one(id.value)
         .then(response => {
           barn.value = response;
           newName.name = barn.value.name;
         })
 
-    return {barn, router, capitalize, lowerCase, editMode, newName}
+    return {barn, router, capitalize, lowerCase, editMode, newName, lots}
 
   }
 
