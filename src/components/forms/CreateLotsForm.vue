@@ -11,6 +11,7 @@
             <label for="viruela" class="flex items-center gap-2">
               <input id="viruela" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
               Viruela
+              <input type="date">
             </label>
           </div>
           <div class="my-5">
