@@ -1,6 +1,6 @@
 <template>
   <modal-layout :open="open" @close="$emit('close')">
-    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50">
+    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50 lg:w-96">
       <h2 class="font-glory text-xl mb-4 text-center">
         Estás apunto de eliminar el galpón:
       </h2>

@@ -1,6 +1,6 @@
 <template>
   <modal-layout :open="open" @close="$emit('close')">
-    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50">
+    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50 lg:w-96">
       <h2 class="font-glory font-bold text-2xl mb-4 text-center">Elige la finca a eliminar</h2>
       <form id="form" @submit.prevent="submit">
         <div v-for="settlement in settlements" class="flex items-center gap-2">

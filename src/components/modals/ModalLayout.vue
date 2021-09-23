@@ -14,7 +14,6 @@
           >
             <DialogOverlay class="fixed inset-0"/>
           </TransitionChild>
-          <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
           <TransitionChild
               as="template"
               enter="duration-300 ease-out"
@@ -24,8 +23,10 @@
               leave-from="opacity-100 scale-100"
               leave-to="opacity-0 scale-95"
           >
-            <div class="inline-block p-6 my-8 overflow-auto text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-             <slot/>
+            <div class="inline-block h-screen align-middle flex justify-center items-center">
+              <div class="inline-block p-6 my-8 overflow-auto text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <slot/>
+              </div>
             </div>
           </TransitionChild>
         </div>

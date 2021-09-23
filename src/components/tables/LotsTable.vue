@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col justify-between h-full">
-    <delete-lot-modal v-if="lotActive" :open="openDeleteLotModal" :lot="lotActive" @close="openDeleteLotModal = false" @deleted="refresh"/>
     <av-table>
       <template #headers>
         <th class="py-3 px-6 text-center" v-for="header in ['Numero de lote', 'Edad (Semanas)', 'Numero de Gallinas', 'Fecha de creación']">{{ header }}</th>
@@ -33,7 +32,7 @@
                       class="w-4 mr-2 transform hover:scale-125 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="eye"/>
               </button>
-              <button type="button" @click="openDeleteModal(lot)"
+              <button type="button" @click="openModal('deleteLot', {lot: lot})"
                       class="w-4 mr-2 transform hover:scale-110 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="trash-alt"/>
               </button>
@@ -48,7 +47,7 @@
 
 <script>
 import {ref} from "vue";
-import {useSettlements} from "../../use";
+import {useModals, useSettlements} from "../../use";
 import dayjs from "dayjs";
 import {useRouter} from "vue-router";
 import lowerCase from "lodash/lowerCase";
@@ -64,27 +63,17 @@ export default {
 
   props: {lots: {required: true, type: Array}},
 
-  setup(props, computed) {
+  setup() {
 
-    let openDeleteLotModal = ref(false);
+    const { openModal } = useModals();
     let lotActive = ref();
     const router = useRouter();
     let lotsByPage = ref([]);
-    const {activeSettlement} = useSettlements();
 
     const convertDate = (date) => dayjs(date).locale('es').format('MMMM D, h:mm a');
 
     const onChangePage = (pageOfItems) => {
       lotsByPage.value = pageOfItems;
-    }
-
-    const openDeleteModal = (lot) => {
-      lotActive.value = lot;
-      openDeleteLotModal.value = true;
-    }
-
-    const refresh = async () => {
-      computed.emit('deleteAny')
     }
 
     return {
@@ -94,11 +83,8 @@ export default {
       lotsByPage: lotsByPage,
       convertDate,
       onChangePage,
-      activeSettlement,
-      openDeleteModal,
       lotActive,
-      openDeleteLotModal,
-      refresh
+      openModal
     }
 
   }

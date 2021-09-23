@@ -6,6 +6,7 @@
   <delete-barns-modal :open="open.deleteBarnsModal" @close="open.deleteBarnsModal = false" :barn="payload.barn"/>
 
   <create-lots-modal :open="open.createLotsModal" @close="open.createLotsModal = false"/>
+  <delete-lots-modal :open="open.deleteLotsModal" @close="open.deleteLotsModal = false" :lot="payload.lot"/>
 </template>
 
 <script>
@@ -15,11 +16,19 @@ import DeleteSettlementsModal from "./DeleteSettlementsModal.vue";
 import CreateBarnsModal from "./CreateBarnsModal.vue";
 import DeleteBarnsModal from "./DeleteBarnsModal.vue";
 import CreateLotsModal from "./CreateLotsModal.vue";
+import DeleteLotsModal from "./DeleteLotsModal.vue";
 
 
 export default {
 
-  components: { CreateLotsModal, DeleteBarnsModal, CreateBarnsModal, CreateSettlementsModal, DeleteSettlementsModal },
+  components: {
+    CreateLotsModal,
+    DeleteBarnsModal,
+    CreateBarnsModal,
+    CreateSettlementsModal,
+    DeleteSettlementsModal,
+    DeleteLotsModal
+  },
 
   setup() {
 

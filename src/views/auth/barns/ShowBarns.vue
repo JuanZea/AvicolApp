@@ -64,7 +64,7 @@ import LotsTable from "../../../components/tables/LotsTable.vue";
 import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
 import AvSelect from "../../../components/forms/AvSelect.vue";
-import {useModals} from "../../../use";
+import {useLots, useModals} from "../../../use";
 
 export default {
 
@@ -72,33 +72,28 @@ export default {
   setup() {
 
     const { openModal } = useModals();
+    const { refreshLots, lots } = useLots();
     const editMode = ref(false);
     const router = useRouter();
     const barn = ref();
     const id = computed(() => router.currentRoute.value.params.id);
     const newName = ref();
     const newType = ref();
-    const lots = ref({});
     _updateBarn(id.value);
+    refreshLots();
 
-    lotsService.all()
-        .then(response => {
-          lots.value = response;
-        })
-
-    barnsService.one(id.value)
-        .then(response => {
-          barn.value = response;
-          newName.name = barn.value.name;
-          newType.value = barn.value.type;
-        })
+    barnsService.one(id.value).then(response => {
+        barn.value = response;
+        newName.value = barn.value.name;
+        newType.value = barn.value.type;
+    })
 
     const updateBarn = () => {
       barnsService.update(id.value, {
         'name': newName.value,
         'type': newType.value,
       }).then(response => {
-        editMode.value = false
+        editMode.value = false;
         barn.value = response;
       })
     }

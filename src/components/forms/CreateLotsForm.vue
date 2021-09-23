@@ -5,7 +5,7 @@
         <form id="form" @submit.prevent="store" class="flex flex-col md:px-5">
           <div class="flex gap-2 my-3">
             <av-input id="age" type="number" label="Edad (Semanas):"/>
-            <av-input id="age" type="number" label="Cantidad de gallinas:"/>
+            <av-input id="hens_number" type="number" label="Cantidad de gallinas:"/>
           </div>
           <div>
             <label for="viruela" class="flex items-center gap-2">
@@ -24,7 +24,7 @@
 
 <script>
 import { ref } from "vue";
-import { useBarns } from "../../use";
+import { useLots } from "../../use";
 import AvInput from "./AvInput.vue";
 import AvSelect from "./AvSelect.vue";
 
@@ -35,7 +35,7 @@ export default {
   setup(props, computed) {
 
     const type = ref('cautividad');
-    const { storeBarns } = useBarns();
+    const { storeLots } = useLots();
 
     const store = () => {
       const formData = new FormData(document.getElementById('form'));
@@ -45,7 +45,7 @@ export default {
         attributes[pair[0]] = pair[1].trim() === '' ? null : pair[1].trim();
       }
 
-      storeBarns(attributes).then(() => computed.emit('created'))
+      storeLots(attributes).then(() => computed.emit('created'))
     }
 
     return { store, type };

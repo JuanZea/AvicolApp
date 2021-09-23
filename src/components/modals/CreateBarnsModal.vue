@@ -1,6 +1,6 @@
 <template>
   <modal-layout :open="open" @close="$emit('close')">
-    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50 w-96">
+    <div class="p-6 border-dashed border-4 border-gray-300 border-opacity-50 lg:w-96">
       <h1 class="font-glory font-bold font-lato text-3xl"> Crear un nuevo galpón </h1>
       <create-barns-form @created="$emit('close')"/>
       <div class="content-end self-end">

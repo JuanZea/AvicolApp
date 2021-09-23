@@ -4,7 +4,7 @@
     <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">{{ activeSettlement.name }}</h1>
 
     <div v-if="barns && barns.length" class="h-full">
-      <barns-table :barns="barns" @updated="refresh"/>
+      <barns-table :barns="barns"/>
     </div>
 
     <div class="w-full h-full m-2 md:m-6 flex flex-col md:flex-row justify-center items-center gap-6" v-else>
@@ -41,9 +41,7 @@ export default {
     const { barns, refreshBarns } = useBarns();
     refreshBarns();
 
-    const refresh = async () => refreshBarns(true);
-
-    return { barns, activeSettlement, openCreateBarnModal, refresh, openModal }
+    return { barns, activeSettlement, openCreateBarnModal, openModal }
 
   }
 
