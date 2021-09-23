@@ -1,6 +1,6 @@
 <template>
-  <create-settlement-modal :open="openCreateSettlementModal" @close="openCreateSettlementModal = false" @created="refresh" />
-  <delete-settlement-modal :open="openDeleteSettlementModal" :settlements="settlements || []" @close="openDeleteSettlementModal = false" @deleted="refresh"/>
+<!--  <create-settlement-modal :open="openCreateSettlementModal" @close="openCreateSettlementModal = false" @created="refresh" />-->
+<!--  <delete-settlement-modal :open="openDeleteSettlementModal" :settlements="settlements || []" @close="openDeleteSettlementModal = false" @deleted="refresh"/>-->
 
   <div class="p-4">
     <div class="relative border-dashed border-gray-300 border-4 p-4">
@@ -14,10 +14,10 @@
           <span v-else class="font-glory bg-av-50 px-2 py-1 rounded">Cargando fincas...</span>
         </div>
         <div class="flex gap-4 whitespace-nowrap">
-          <button type="button" @click="openCreateSettlementModal = true" class="btn btn-persimmon text-white font-glory">
+          <button type="button" @click="openModal('createSettlement')" class="btn btn-persimmon text-white font-glory">
             Crear finca
           </button>
-          <button type="button" @click="openDeleteSettlementModal = true" class="btn btn-dark text-white font-glory">
+          <button type="button" @click="openModal('deleteSettlement')" class="btn btn-dark text-white font-glory">
             Eliminar finca
           </button>
         </div>
@@ -28,19 +28,19 @@
 
 <script>
 import { ref, watch } from "vue";
+import { useModals } from "../use"
 import AvSelect from "./forms/AvSelect.vue";
 import useSettlements from "../use/useSettlements";
-import CreateSettlementModal from "./modals/CreateSettlementModal.vue";
-import DeleteSettlementModal from "./modals/DeleteSettlementModal.vue";
+import CreateSettlementModal from "./modals/CreateSettlementsModal.vue";
 
 export default {
 
-  components: { AvSelect, CreateSettlementModal, DeleteSettlementModal },
+  components: { AvSelect, CreateSettlementModal },
 
   setup() {
 
-    const openDeleteSettlementModal = ref(false);
-    const openCreateSettlementModal = ref(false);
+
+    const { openModal } = useModals();
 
     const { activeSettlement, settlements, refreshSettlements, refreshActiveSettlement, saveActiveSettlement } = useSettlements();
     const settlement = ref(activeSettlement.value.id.toString());
@@ -53,13 +53,21 @@ export default {
       settlement.value = activeSettlement.value.id.toString();
     }
 
+    watch(settlements, (current, old) => {
+      if (old) {
+        if (old.length > current.length && current.length) {
+          settlement.value = current[0].id.toString();
+        }
+      }
+    });
+
     watch(settlement, current => {
       if (current !== activeSettlement.value.id.toString())
         saveActiveSettlement(current);
         refreshActiveSettlement();
     });
 
-    return { settlement, settlements, openDeleteSettlementModal, openCreateSettlementModal, refresh }
+    return { settlement, settlements, openModal, refresh }
 
   }
 

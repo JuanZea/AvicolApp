@@ -5,7 +5,7 @@
       <template #headers>
         <th class="py-3 px-6 text-center" v-for="header in ['Numero de lote', 'Edad (Semanas)', 'Numero de Gallinas', 'Fecha de creación']">{{ header }}</th>
         <th class="py-2 px-6">
-        <button @click="openCreateBarnModal = true" class="btn h-8 btn-persimmon text-white">
+        <button @click="openModal('createLot')" class="btn h-8 btn-persimmon text-white">
           <fai class="mr-2" size="sm" icon="plus"/>
             Crear lote
           </button>
@@ -56,7 +56,7 @@ import capitalize from "lodash/capitalize";
 import "dayjs/locale/es"
 import AvTable from "./AvTable.vue";
 import Paginator from "../Paginator.vue";
-import DeleteLotModal from "../modals/DeleteLotModal.vue";
+import DeleteLotModal from "../modals/DeleteLotsModal.vue";
 
 export default {
 

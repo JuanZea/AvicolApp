@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import AvInput from "../../../components/Forms/AvInput.vue";
-import useSettlements from "../../../use/useSettlements";
+import AvInput from "./AvInput.vue";
+import useSettlements from "../../use/useSettlements";
 import { useRouter } from "vue-router";
 
 export default {
@@ -49,10 +49,10 @@ export default {
 
       storeSettlements(attributes)
         .then(() => {
-          if (router.currentRoute.value.name === 'createSettlements') {
+          if (router.currentRoute.value.name === 'myFirstSettlement') {
             router.push({name: 'home'});
           } else {
-            computed.emit('created')
+            computed.emit('created');
           }
         })
     }

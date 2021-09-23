@@ -1,9 +1,10 @@
 import Layout from "../../views/auth/Layout.vue";
 import Home from "../../views/auth/Home.vue";
 import MyAccount from "../../views/auth/MyAccount.vue";
+import { init, isAuth, needSettlement } from "../middlewares";
 import settlements from "./settlements";
-import {init, isAuth, needSettlement} from "../middlewares";
 import barns from "./barns";
+import lots from "./lots";
 
 const children =  [
     {
@@ -14,6 +15,7 @@ const children =  [
     },
     ...settlements,
     ...barns,
+    ...lots,
     {
         name: 'myAccount',
         path: '/my-account',

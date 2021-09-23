@@ -23,11 +23,14 @@
 
 import { settlementsService } from "../../services";
 import ModalLayout from "./ModalLayout.vue";
+import {useSettlements} from "../../use";
 
 export default {
-  props: { settlements: {required: true, type: Array}, open: {required: true}},
+  props: { open: {required: true} },
   components: { ModalLayout },
   setup(props, context) {
+
+    const { settlements, refreshSettlements, refreshActiveSettlement } = useSettlements();
 
     const submit = () => {
       if (!confirm('¿Estas seguro?')) return;
@@ -39,17 +42,18 @@ export default {
         deleted.push(id);
         goal++;
         settlementsService.delete(id)
-            .then(() => {
+            .then(async () => {
               charge++;
               if (charge === goal) {
-                context.emit('deleted', deleted);
-                 context.emit('close');
+                await refreshSettlements(true);
+                await refreshActiveSettlement();
+                context.emit('close');
               }
             });
       }
     }
 
-    return { submit }
+    return { submit, settlements }
   }
 }
 </script>

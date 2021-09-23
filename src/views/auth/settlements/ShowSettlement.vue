@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 mt-4">
+  <div v-if="activeSettlement" class="p-4 mt-4">
     <div class="relative border-dashed border-gray-300 border-4 p-4">
       <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">Detalles de la finca</h1>
      <div class="flex justify-between gap-2">
@@ -30,8 +30,8 @@ import useSettlements from "../../../use/useSettlements";
 
 export default {
   setup() {
-    const {activeSettlement} = useSettlements();
-    return {activeSettlement};
+    const { activeSettlement } = useSettlements();
+    return { activeSettlement };
   },
 }
 </script>

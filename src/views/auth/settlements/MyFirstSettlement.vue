@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import CreateSettlements from "./CreateSettlements.vue";
+import CreateSettlements from "../../../components/forms/CreateSettlements.vue";
 
 export default {
   components: { CreateSettlements }

@@ -13,7 +13,7 @@
         <h1 class="text-3xl">No se han encontrado galpones para esta finca.</h1>
         <div class="my-3">
           <h2>Puedes crear uno aquí...</h2>
-          <button type="button" @click="openCreateBarnModal = true" class="btn btn-persimmon text-white font-glory my-3">
+          <button type="button" @click="openModal('createBarn')" class="btn btn-persimmon text-white font-glory my-3">
             Crear galpón
           </button>
         </div>
@@ -25,7 +25,7 @@
 
 <script>
 import { ref } from "vue";
-import { useSettlements, useBarns } from "../../../use";
+import {useSettlements, useBarns, useModals} from "../../../use";
 import Paginator from "../../../components/Paginator.vue";
 import BarnsTable from "../../../components/tables/BarnsTable.vue";
 
@@ -35,6 +35,7 @@ export default {
 
   setup() {
 
+    const { openModal } = useModals();
     const openCreateBarnModal = ref(false);
     const { activeSettlement } = useSettlements();
     const { barns, refreshBarns } = useBarns();
@@ -42,7 +43,7 @@ export default {
 
     const refresh = async () => refreshBarns(true);
 
-    return { barns, activeSettlement, openCreateBarnModal, refresh }
+    return { barns, activeSettlement, openCreateBarnModal, refresh, openModal }
 
   }
 

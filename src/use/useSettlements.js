@@ -25,7 +25,7 @@ const refreshActiveSettlement = async () => {
             saveActiveSettlement(activeSettlement.value.id);
         } catch (error) {
             activeSettlement.value = null;
-            router.push({name: 'createSettlements'});
+            router.push({name: 'myFirstSettlement'});
         }
     }
 }
@@ -43,6 +43,7 @@ const storeSettlements = async (attributes) => {
         await settlementsService.create(attributes);
         storeErrors.value = [];
         await refreshActiveSettlement();
+        await refreshSettlements(true);
     } catch (error) {
         error.response.data.errors.errors.forEach(data => {
             storeErrors.value[data.param] = 'El valor ingresado es invalido';

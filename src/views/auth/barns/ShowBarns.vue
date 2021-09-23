@@ -45,7 +45,7 @@
         <h1 class="text-3xl">No se han encontrado lotes para este galpón.</h1>
         <div class="my-3">
           <h2>Puedes crear uno aquí...</h2>
-          <button type="button" class="btn btn-persimmon text-white font-glory my-3">
+          <button @click="openModal('createLot')" class="btn btn-persimmon text-white font-glory my-3">
             Crear lote
           </button>
         </div>
@@ -64,12 +64,14 @@ import LotsTable from "../../../components/tables/LotsTable.vue";
 import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
 import AvSelect from "../../../components/forms/AvSelect.vue";
+import {useModals} from "../../../use";
 
 export default {
 
-  components: {AvInput, AvSelect, LotsTable},
+  components: { AvInput, AvSelect, LotsTable },
   setup() {
 
+    const { openModal } = useModals();
     const editMode = ref(false);
     const router = useRouter();
     const barn = ref();
@@ -101,7 +103,7 @@ export default {
       })
     }
 
-    return {barn, router, capitalize, lowerCase, editMode, newName, newType, updateBarn, lots}
+    return { barn, router, capitalize, lowerCase, editMode, newName, newType, updateBarn, lots, openModal }
 
   }
 

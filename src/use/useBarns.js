@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import {barnsService, settlementsService} from "../services";
+import { barnsService } from "../services";
 
 const barns = ref();
 
@@ -16,6 +16,7 @@ const storeBarns = async (attributes) => {
     try {
         await barnsService.create(attributes);
         storeErrors.value = [];
+        await refreshBarns(true);
     } catch (error) {
         error.response.data.errors.errors.forEach(data => {
             storeErrors.value[data.param] = 'El valor ingresado es invalido';

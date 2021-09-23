@@ -1,7 +1,7 @@
 <template>
   <TransitionRoot appear :show="open" as="template">
     <Dialog as="div" @close="close()">
-      <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="fixed inset-0 z-50 overflow-y-auto">
         <div class="h-full px-4 text-center">
           <TransitionChild
               as="template"
@@ -25,19 +25,19 @@
               leave-to="opacity-0 scale-95"
           >
             <div class="inline-block p-6 my-8 overflow-auto text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-             <slot></slot>
+             <slot/>
             </div>
           </TransitionChild>
         </div>
       </div>
-      <DialogOverlay class="fixed inset-0 bg-black opacity-30"/>
+      <DialogOverlay class="fixed inset-0 bg-black opacity-30 z-40"/>
     </Dialog>
   </TransitionRoot>
 </template>
 
 <script>
 
-import {Dialog, DialogOverlay, TransitionChild, TransitionRoot} from "@headlessui/vue";
+import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from "@headlessui/vue";
 
 export default {
   props: {open: {required: true, type: Boolean}},
