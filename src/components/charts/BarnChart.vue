@@ -1,20 +1,21 @@
 <template>
-  <div class="w-full" style="z-index: 1" :id="chartName"></div>
+  <div class="w-full" :id="chartName"></div>
 </template>
 <script>
 import _ from "lodash";
-import {ref} from "vue";
 import BarChart from "./types/BarChart.vue";
 import hensImage from "../../assets/img/hens.jpg";
 
 export default {
-  props: { items: { type: Array, default: [] } },
+  props: {items: {type: Array, default: []}},
   mixins: [BarChart],
   setup(props) {
-    let chartName = ref('lots_number_by_barn');
-    let chart = ref([]);
-    let labelX = ref('Galpones');
-    let labelY = ref('Cantidad de lotes');
+    let chartName = 'lots_number_by_barn';
+    let chart = [];
+    let labelX = 'Galpones';
+    let labelY = 'Cantidad de lotes';
+    let minColor = '#FFBA08';
+    let maxColor = '#E85D04';
 
     let items = _.map(props.items, (barn) => {
       return {
@@ -24,10 +25,10 @@ export default {
       };
     });
 
-    return {chartName, items, chart, labelX, labelY};
+    return {chartName, items, chart, labelX, labelY, minColor, maxColor};
   },
   mounted() {
-    this.buildChart()
+    if (this.items.length) this.buildChart()
   },
 }
 </script>
