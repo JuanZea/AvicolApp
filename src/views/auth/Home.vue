@@ -18,11 +18,12 @@
 
 <script>
 import BarnChart from "../../components/charts/BarnChart.vue";
+import BarnsLotsAndHensChart from "../../components/charts/BarnsLotsAndHensChart.vue";
 import {ref} from 'vue'
 import {useBarns} from "../../use";
 
 export default {
-  components: {BarnChart},
+  components: {BarnChart, BarnsLotsAndHensChart},
   setup() {
     const {barns, refreshBarns} = useBarns();
     refreshBarns();
@@ -33,7 +34,14 @@ export default {
       attributes: {
         items: barns
       }
-    }]);
+    },
+      {
+        component: 'BarnsLotsAndHensChart',
+        name: 'Mi Estado',
+        attributes: {
+          items: barns
+        }
+      }]);
 
     return {metrics};
   },

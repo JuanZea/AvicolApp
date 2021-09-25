@@ -2,12 +2,14 @@
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import Chart from "./Chart.vue";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 export default {
   extends: Chart,
   methods: {
     buildChart() {
       am4core.ready(() => {
+        am4core.useTheme(am4themes_animated);
         this.getChart();
         this.getCategoryX();
         this.getCategoryY();
