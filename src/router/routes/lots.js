@@ -1,10 +1,10 @@
-import IndexBarns from "../../views/auth/barns/IndexBarns.vue";
+import ShowLots from "../../views/auth/lots/ShowLots.vue";
 
 export default [
     {
         name: 'showLots',
-        path: '/my-barn/:id',
-        meta: { title: 'MIS GALPONES' },
-        component: IndexBarns
+        path: '/lot/:id',
+        meta: { title: 'MI LOTE' },
+        component: ShowLots
     },
 ];
