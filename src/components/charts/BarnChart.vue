@@ -7,9 +7,9 @@ import BarChart from "./types/BarChart.vue";
 import hensImage from "../../assets/img/hens.jpg";
 
 export default {
-  props: {items: {type: Array, default: []}},
+  props: {data: {type: Array, default: []}},
   mixins: [BarChart],
-  setup(props) {
+  setup() {
     let chartName = 'lots_number_by_barn';
     let chart = [];
     let labelX = 'Galpones';
@@ -17,18 +17,20 @@ export default {
     let minColor = '#FFBA08';
     let maxColor = '#E85D04';
 
-    let items = _.map(props.items, (barn) => {
-      return {
-        name: barn.name,
-        count: barn.lots_number,
-        image: hensImage
-      };
-    });
-
-    return {chartName, items, chart, labelX, labelY, minColor, maxColor};
+    return {chartName, chart, labelX, labelY, minColor, maxColor};
   },
-  mounted() {
-    if (this.items.length) this.buildChart()
+  watch: {
+    data() {
+      let items = _.map(this.data, (barn) => {
+        return {
+          name: barn.name,
+          count: barn.lots_number,
+          image: hensImage
+        };
+      });
+
+      this.buildChart(items)
+    }
   },
 }
 </script>

@@ -11,57 +11,72 @@ export default {
       am4core.ready(() => {
         am4core.useTheme(am4themes_animated);
         let data = [{
-          "category": "Critical",
-          "value": 89,
+          "name": "Galpon1",
+          "count": 4,
           "color": am4core.color("#dc4534"),
           "breakdown": [{
-            "category": "Sales inquiries",
-            "value": 29
+            "name": "Lote 1",
+            "count": 29
           }, {
-            "category": "Support requests",
-            "value": 40
+            "name": "Lote 2",
+            "count": 40
           }, {
-            "category": "Bug reports",
-            "value": 11
+            "name": "Lote 3",
+            "count": 11
           }, {
-            "category": "Other",
-            "value": 9
+            "name": "Lote 4",
+            "count": 9
           }]
         }, {
-          "category": "Acceptable",
-          "value": 71,
+          "name": "Galpon2",
+          "count": 5,
           "color": am4core.color("#d7a700"),
           "breakdown": [{
-            "category": "Sales inquiries",
-            "value": 22
+            "name": "Lote 1",
+            "count": 22
           }, {
-            "category": "Support requests",
+            "name": "Lote 2",
             "value": 30
           }, {
-            "category": "Bug reports",
-            "value": 11
+            "name": "Lote 3",
+            "count": 11
           }, {
-            "category": "Other",
-            "value": 10
-          }]
+            "name": "Lote 4",
+            "count": 10
+          },
+            {
+              "name": "Lote 5",
+              "count": 2
+            }]
         }, {
-          "category": "Good",
-          "value": 120,
+          "name": "Galpon3",
+          "count": 7,
           "color": am4core.color("#68ad5c"),
           "breakdown": [{
-            "category": "Sales inquiries",
-            "value": 60
+            "name": "Lote 1",
+            "count": 22
           }, {
-            "category": "Support requests",
-            "value": 35
+            "name": "Lote 2",
+            "value": 30
           }, {
-            "category": "Bug reports",
-            "value": 15
+            "name": "Lote 3",
+            "count": 11
           }, {
-            "category": "Other",
-            "value": 10
-          }]
-        }]
+            "name": "Lote 4",
+            "count": 10
+          },
+            {
+              "name": "Lote 5",
+              "count": 2
+            }, {
+              "name": "Lote 4",
+              "count": 10
+            },
+            {
+              "name": "Lote 7",
+              "count": 2
+            }]
+        }];
 
         /**
          * Chart container
@@ -80,6 +95,14 @@ export default {
         categoryAxis.renderer.inversed = true;
 
         let valueAxis = columnChart.xAxes.push(new am4charts.ValueAxis());
+        valueAxis.min = 0;
+        valueAxis.renderer.grid.template.opacity = 0;
+        valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
+        valueAxis.renderer.ticks.template.stroke = am4core.color("#495C43");
+        valueAxis.renderer.ticks.template.length = 10;
+        valueAxis.renderer.line.strokeOpacity = 0.5;
+        valueAxis.renderer.baseGrid.disabled = true;
+        valueAxis.renderer.minGridDistance = 40;
 
 // Create series
         let columnSeries = columnChart.series.push(new am4charts.ColumnSeries());

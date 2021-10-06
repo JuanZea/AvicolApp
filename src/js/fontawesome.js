@@ -18,7 +18,9 @@ import {
     faEye,
     faChevronLeft,
     faChevronRight,
-    faHandPointLeft
+    faHandPointLeft,
+    faKiwiBird,
+    faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -47,5 +49,7 @@ library.add(
     faEye,
     faChevronLeft,
     faChevronRight,
-    faHandPointLeft
+    faHandPointLeft,
+    faKiwiBird,
+    faExclamationTriangle
 );

@@ -7,10 +7,10 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 export default {
   extends: Chart,
   methods: {
-    buildChart() {
+    buildChart(items) {
       am4core.ready(() => {
         am4core.useTheme(am4themes_animated);
-        this.getChart();
+        this.getChart(items);
         this.getCategoryX();
         this.getCategoryY();
         let series = this.getSeries();
@@ -53,12 +53,12 @@ export default {
       valueAxis.renderer.baseGrid.strokeOpacity = 0;
       return valueAxis;
     },
-    getChart() {
+    getChart(items) {
       this.chart = am4core.create(this.chartName, am4charts.XYChart);
       this.chart.hiddenState.properties.opacity = 0;
       this.chart.responsive.enabled = true;
       this.chart.padding(30, 30, 30, 30);
-      this.chart.data = this.items;
+      this.chart.data = items;
       this.chart.scrollbarX = new am4core.Scrollbar();
     },
     buildEventsAndStates(series) {

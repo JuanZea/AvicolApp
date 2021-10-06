@@ -6,7 +6,7 @@
         <div class="text-2xl font-extrabold">{{title}}</div>
         <dropdown/>
       </div>
-      <div class="flex-grow container flex justify-center mx-auto relative">
+      <div id="layout" class="flex-grow container flex justify-center mx-auto relative">
         <router-view/>
       </div>
     </div>
