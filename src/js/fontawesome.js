@@ -20,7 +20,8 @@ import {
     faChevronRight,
     faHandPointLeft,
     faKiwiBird,
-    faExclamationTriangle
+    faExclamationTriangle,
+    faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -51,5 +52,6 @@ library.add(
     faChevronRight,
     faHandPointLeft,
     faKiwiBird,
-    faExclamationTriangle
+    faExclamationTriangle,
+    faQuestionCircle
 );
