@@ -59,7 +59,7 @@ import {ref, computed} from "vue";
 import capitalize from "lodash/capitalize";
 import lowerCase from "lodash/lowerCase";
 import {useRouter} from "vue-router";
-import {barnsService, lotsService} from "../../../services";
+import {barnsService} from "../../../services";
 import LotsTable from "../../../components/tables/LotsTable.vue";
 import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
@@ -80,7 +80,7 @@ export default {
     const newName = ref();
     const newType = ref();
     _updateBarn(id.value);
-    refreshLots();
+    refreshLots(true);
 
     barnsService.one(id.value).then(response => {
         barn.value = response;
