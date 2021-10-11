@@ -31,7 +31,9 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const title = computed(() => route.meta.title);
-    const { vaccinesProximate } = useMetrics();
+    const { vaccinesProximate, refreshMetrics } = useMetrics();
+
+    refreshMetrics();
 
     const {logout} = useAuthentication();
 

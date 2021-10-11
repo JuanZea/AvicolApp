@@ -4,8 +4,8 @@
       <div class="flex items-center">
         <MenuButton title="Alertas">
             <div>
-              <span class="absolute top-0 left-3 inline-flex rounded-full h-3 w-3 bg-av-500"/>
-              <span class="animate-ping absolute top-0 left-3 inline-flex rounded-full h-3 w-3 bg-av-500"/>
+              <span v-if="alerts.length" class="absolute top-0 left-3 inline-flex rounded-full h-3 w-3 bg-av-500"/>
+              <span class="animate-ping absolute top-0 left-3 inline-flex rounded-full h-3 w-3 bg-av-500" v-if="alerts.length"/>
               <fai style="stroke: rgb(208, 0, 0); stroke-width: 50px" class="text-av-200" icon="bell" size="lg"/>
             </div>
         </MenuButton>
