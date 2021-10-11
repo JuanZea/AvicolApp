@@ -28,7 +28,7 @@
           </td>
           <td class="py-3 px-6 text-center">
             <div class="flex item-center justify-center gap-2">
-              <button @click="router.push({name: 'showLots', params: {id: lot.id}})"
+              <button @click="router.push({name: 'showLots', params: {id: lot.id, barn: lot.barn_id}})"
                       class="w-4 mr-2 transform hover:scale-125 cursor-pointer">
                 <fai class="text-av-100 hover:text-av-300" size="lg" icon="eye"/>
               </button>
