@@ -43,10 +43,17 @@
           </div>
         </div>
       </div>
-      <gauge-chart class="max-w-2xl"/>
+      <gauge-chart v-if="vaccines && vaccines.length" :score="proxime" class="max-w-2xl"/>
     </div>
     <div class="relative mt-6 flex-grow flex border-dashed border-gray-300 border-4 p-4">
       <h1 class="absolute -top-5 bg-white px-2 text-3xl font-glory font-bold text-gray-500">Vacunas</h1>
+      <vaccines-table v-if="vaccines && vaccines.length" :vaccines="vaccines"/>
+      <div class="w-full m-2 md:m-6 flex flex-grow flex-col md:flex-row justify-center items-center gap-6" v-else>
+        <img class="object-contain max-h-96" src="/src/assets/illustrations/not_found.svg">
+        <div class="flex flex-col">
+          <h1 class="text-3xl">No se han encontrado vacunas para este lote.</h1>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -56,25 +63,28 @@ import {ref, computed} from "vue";
 import capitalize from "lodash/capitalize";
 import lowerCase from "lodash/lowerCase";
 import {useRouter} from "vue-router";
-import {barnsService, lotsService} from "../../../services";
+import {lotsService} from "../../../services";
 import LotsTable from "../../../components/tables/LotsTable.vue";
 import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
 import AvSelect from "../../../components/forms/AvSelect.vue";
 import {useModals} from "../../../use";
 import GaugeChart from "../../../components/charts/GaugeChart.vue";
+import VaccinesTable from "../../../components/tables/VaccinesTable.vue";
+import {compareDate, convertDate} from "../../../helpers";
 
 export default {
 
-  components: {GaugeChart, AvInput, AvSelect, LotsTable},
+  components: {VaccinesTable, GaugeChart, AvInput, AvSelect, LotsTable},
   setup() {
-    const {openModal} = useModals();
     const editMode = ref(false);
     const router = useRouter();
     const lot = ref();
     const id = computed(() => router.currentRoute.value.params.id);
     const barn = computed(() => router.currentRoute.value.params.barn);
     const newHens = ref();
+    const vaccines = ref();
+    const proxime = ref(100);
     _updateBarn(barn.value);
 
     function updateLot() {
@@ -89,9 +99,21 @@ export default {
     lotsService.one(id.value).then(response => {
       lot.value = response;
       newHens.value = lot.value.hens_number;
+      vaccines.value =  lot.value.vaccines && lot.value.vaccines.length ? lot.value.vaccines.map((vaccine) => {
+        if (vaccine.check) {
+          vaccine.first = convertDate(vaccine.date, 'first');
+          vaccine.last = convertDate(vaccine.date, 'last');
+          vaccine.approxime = compareDate(vaccine.date);
+          proxime.value = vaccine.approxime < proxime.value ? vaccine.approxime : proxime.value;
+
+          return vaccine;
+        }
+
+        return null;
+      }).filter(x => x !== null) : [];
     })
 
-    return {lot, router, capitalize, lowerCase, editMode, newHens, openModal, updateLot}
+    return {lot, router, capitalize, lowerCase, editMode, newHens, updateLot, proxime, vaccines}
 
   }
 

@@ -5,7 +5,7 @@
         <logo-sticker lateral @click="router.push({name: 'home'})"/>
         <div class="text-2xl font-extrabold">{{title}}</div>
         <div class="flex gap-4">
-          <alert-dropdown/>
+          <alert-dropdown :alerts="vaccinesProximate"/>
           <dropdown/>
         </div>
       </div>
@@ -19,7 +19,7 @@
 <script>
 import {computed} from "vue";
 import {useRouter, useRoute} from "vue-router";
-import {useAuthentication} from "../../use";
+import {useAuthentication, useMetrics} from "../../use";
 import Dropdown from "../../components/Dropdown.vue";
 import Avatar from "../../components/dummies/Avatar.vue";
 import LogoSticker from "../../components/dummies/LogoSticker.vue";
@@ -31,10 +31,11 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const title = computed(() => route.meta.title);
+    const { vaccinesProximate } = useMetrics();
 
     const {logout} = useAuthentication();
 
-    return {router, title, logout};
+    return {router, title, logout, vaccinesProximate};
   },
 };
 </script>

@@ -4,6 +4,9 @@ import ViruelaBehavior from "./vaccines/ViruelaBehavior";
 import MarekBehavior from "./vaccines/MarekBehavior";
 import GumboroBehavior from "./vaccines/GumboroBehavior";
 import NewCastleBehavior from "./vaccines/NewCastleBehavior";
+import _ from "lodash";
+import dayjs from "dayjs";
+import {compareDate, compareDateGetDate, convertDate} from "../helpers";
 
 const lots = ref();
 

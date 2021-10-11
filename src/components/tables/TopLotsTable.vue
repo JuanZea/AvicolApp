@@ -22,11 +22,11 @@
           </td>
           <td class="py-3 px-6 text-center">
             <div class="flex items-center">
-              <span class="mr-2">60%</span>
+              <span class="mr-2">{{ lot.vaccinesPorcentage ?? 0 }}%</span>
               <div class="relative w-full">
-                <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                  <div style="width:60%;"
-                       class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-av-300"></div>
+                <div :class="'overflow-hidden h-2 text-xs flex rounded ' + (lot.vaccinesPorcentage < 50 ? 'bg-red-200' : ( lot.vaccinesPorcentage < 100 ? 'bg-av-10' : 'bg-green-50'))">
+                  <div :style="'width:'+ lot.vaccinesPorcentage ?? 0 +'%;'"
+                       :class="'shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ' + (lot.vaccinesPorcentage < 50 ? 'bg-red-300' : ( lot.vaccinesPorcentage < 100 ? 'bg-av-200' : 'bg-green-400'))"></div>
                 </div>
               </div>
             </div>

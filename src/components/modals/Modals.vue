@@ -7,6 +7,7 @@
 
   <create-lots-modal :open="open.createLotsModal" @close="open.createLotsModal = false"/>
   <delete-lots-modal :open="open.deleteLotsModal" @close="open.deleteLotsModal = false" :lot="payload.lot"/>
+  <alert-info-modal :open="open.alertInfosModal" @close="open.alertInfosModal = false" :info="payload.info"/>
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import CreateBarnsModal from "./CreateBarnsModal.vue";
 import DeleteBarnsModal from "./DeleteBarnsModal.vue";
 import CreateLotsModal from "./CreateLotsModal.vue";
 import DeleteLotsModal from "./DeleteLotsModal.vue";
+import AlertInfoModal from "./AlertInfoModal.vue";
 
 
 export default {
@@ -27,7 +29,8 @@ export default {
     CreateBarnsModal,
     CreateSettlementsModal,
     DeleteSettlementsModal,
-    DeleteLotsModal
+    DeleteLotsModal,
+    AlertInfoModal
   },
 
   setup() {

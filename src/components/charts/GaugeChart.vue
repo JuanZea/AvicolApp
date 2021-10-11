@@ -8,7 +8,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dataviz from "@amcharts/amcharts4/themes/dataviz";
 
 export default {
-  props: {data: {type: Array, default: []}},
+  props: {score: {type: Number, default: 0}},
   setup() {
     let chartName = 'gauge';
     let chart = [];
@@ -20,8 +20,7 @@ export default {
     return {chartName, chart, labelX, labelY, minColor, maxColor};
   },
   mounted() {
-
-    am4core.ready(function() {
+    am4core.ready(() => {
 
       am4core.useTheme(am4themes_dataviz);
       am4core.useTheme(am4themes_animated);
@@ -30,7 +29,7 @@ export default {
       let chartMax = 60;
 
       let data = {
-        score: 2,
+        score: this.score,
         gradingData: [
           {
             title: "Se aproxima vacunación",

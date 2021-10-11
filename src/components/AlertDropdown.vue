@@ -21,15 +21,14 @@
       >
         <MenuItems class="absolute w-96 right-0 mt-2 font-glory font-medium origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div class="p-1">
-            <MenuItem v-slot="{ active }">
-              <div :class="[
+            <MenuItem @click="openModal('alertInfo', {info: getInfo(alert) })" v-slot="{ active }" v-for="(alert, key) in alerts" :key="key">
+                <span :class="[
                   active ? 'bg-av-50' : 'text-gray-900',
                   'cursor-pointer group flex rounded-md items-center w-full px-2 py-2 bg-opacity-10',
                 ]">
-              <div class="h-5 w-2 rounded-lg bg-av-50 mr-2"/>
-                <span class="font-bold mr-2 whitespace-nowrap">Ejemplo de alerta</span>
-                <span class="whitespace-nowrap truncate">Ejemplo de resto de alerta</span>
-              </div>
+                  <span class="h-5 w-2 rounded-lg bg-av-50 mr-2"/>
+                  <span class="font-bold mr-2 whitespace-nowrap">Próxima vacuna <strong>{{ alert.name }}</strong> en {{ alert.approxime }} dias</span>
+                </span>
             </MenuItem>
           </div>
         </MenuItems>
@@ -41,7 +40,7 @@
 <script>
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 import Avatar from "./dummies/Avatar.vue";
-import { useAuthentication } from "../use";
+import {useAuthentication, useModals} from "../use";
 
 export default {
 
@@ -53,9 +52,12 @@ export default {
     MenuItem
   },
 
+  props: {alerts: {type: Array, default: []}},
   setup() {
+    const { openModal } = useModals();
     const { logout } = useAuthentication();
-    return { logout }
+    const getInfo = (alert) => '<span class="text-center break-words"> En el lote #' + alert.lot +' del galpon #' + alert.barn + ' se aproxima el dia de aplicacion de <strong>' + alert.name + '</strong>. <span class="capitalize">' + alert.approximeDate +'</span></span>';
+    return { logout, openModal, getInfo }
   }
 }
 </script>

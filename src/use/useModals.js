@@ -7,6 +7,7 @@ const open = reactive({
     deleteBarnsModal: false,
     createLotsModal: false,
     deleteLotsModal: false,
+    alertInfosModal: false,
 });
 
 const payload = ref({});

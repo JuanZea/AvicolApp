@@ -42,7 +42,7 @@
           <mini-card>
             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
               <h5 class="text-gray-400 uppercase font-bold text-xs">Proxímas vacunas</h5>
-              <span class="font-semibold text-xl text-gray-600">5</span>
+              <span class="font-semibold text-xl text-gray-600">{{ vaccinesProximate.length ?? 0 }}</span>
             </div>
             <div
                 class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-av-50">
@@ -116,11 +116,14 @@
 import BarnChart from "../../components/charts/BarnChart.vue";
 import HensByBarn from "../../components/charts/HensByBarn.vue";
 import BarnsLotsAndHensChart from "../../components/charts/BarnsLotsAndHensChart.vue";
-import {useMetrics} from "../../use";
+import {useMetrics, useModals, useSettlements} from "../../use";
 import MiniCard from "../../components/MiniCard.vue";
 import TopLotsTable from "../../components/tables/TopLotsTable.vue";
 import _ from "lodash";
 import {computed, ref, watch} from "vue";
+import {compareDate, compareDateGetDate, convertDate} from "../../helpers";
+import dayjs from "dayjs";
+import {useRouter} from "vue-router";
 
 export default {
   components: {TopLotsTable, MiniCard, BarnChart, BarnsLotsAndHensChart, HensByBarn},
@@ -131,7 +134,11 @@ export default {
     let settlements = ref([]);
     let lotsTop10 = ref([]);
     let hens = ref(0);
+    let vaccinesProximate = ref([]);
     refreshMetrics()
+
+    const { openModal } = useModals();
+    const openAlertInfoModal = ref(false);
 
     watch(computed(() => metrics.value), () => {
       if (metrics.value) {
@@ -142,14 +149,32 @@ export default {
 
         _.forEach(lots.value, (lot) => {
           hens.value += lot.hens_number
+          lot.vaccinesPorcentage = 0;
+          if (lot.vaccines && lot.vaccines.length) {
+            let proxime = ref(100);
+            _.forEach(lot.vaccines, (vaccine) => {
+              if(vaccine.check) {
+                let diffFirst = dayjs(vaccine.date.first).diff(dayjs(), 'day')
+                let diffLast = dayjs(vaccine.date.last).diff(dayjs(), 'day')
+                vaccine.approxime = compareDate(vaccine.date);
+                vaccine.approximeDate = convertDate(compareDateGetDate(vaccine.date));
+                lot.vaccinesPorcentage += (diffFirst + diffLast) === 0 ? 100 : diffFirst === 0 ? 50 : 0;
+                proxime.value = vaccine.approxime < proxime.value ? vaccine.approxime : proxime.value;
+                if (proxime.value > 0 && proxime.value <= 6) {
+                  vaccinesProximate.value.push(vaccine);
+                }
+              }
+            });
+            lot.vaccinesPorcentage = (lot.vaccinesPorcentage/lot.vaccines.length) ?? 0;
+          }
         });
 
-        lotsTop10.value = _.take(lots.value, 10)
+        lotsTop10.value = _.take(_.sortBy(lots.value, (lot) => lot.vaccinesPorcentage), 10)
       }
     });
 
 
-    return {barns, lots, hens, lotsTop10};
+    return { barns, lots, hens, lotsTop10, vaccinesProximate, openModal, openAlertInfoModal };
   },
 }
 </script>
