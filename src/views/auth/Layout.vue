@@ -4,7 +4,10 @@
       <div class="flex bg-gray-100 justify-between pr-4 py-2 items-center">
         <logo-sticker lateral @click="router.push({name: 'home'})"/>
         <div class="text-2xl font-extrabold">{{title}}</div>
-        <dropdown/>
+        <div class="flex gap-4">
+          <alert-dropdown/>
+          <dropdown/>
+        </div>
       </div>
       <div id="layout" class="flex-grow container flex justify-center mx-auto relative">
         <router-view/>
@@ -20,9 +23,10 @@ import {useAuthentication} from "../../use";
 import Dropdown from "../../components/Dropdown.vue";
 import Avatar from "../../components/dummies/Avatar.vue";
 import LogoSticker from "../../components/dummies/LogoSticker.vue";
+import AlertDropdown from "../../components/AlertDropdown.vue";
 
 export default {
-  components: {LogoSticker, Avatar, Dropdown},
+  components: { AlertDropdown, LogoSticker, Avatar, Dropdown},
   setup() {
     const router = useRouter();
     const route = useRoute();

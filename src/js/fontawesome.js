@@ -21,12 +21,13 @@ import {
     faHandPointLeft,
     faKiwiBird,
     faExclamationTriangle,
-    faQuestionCircle
+    faQuestionCircle,
+    faBell
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
     faCheckCircle,
-    faTimesCircle,
+    faTimesCircle
 } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
@@ -53,5 +54,6 @@ library.add(
     faHandPointLeft,
     faKiwiBird,
     faExclamationTriangle,
-    faQuestionCircle
+    faQuestionCircle,
+    faBell
 );
