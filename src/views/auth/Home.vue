@@ -71,8 +71,16 @@
           </div>
           <div class="w-full flex-grow xl:w-4/12 px-4 mb-6">
             <div class="relative p-2 bg-white w-full mb-6 shadow-lg rounded">
+              <div>
+                <a href="https://lohmann-breeders.com/media/2021/06/LB_MG_LB-Classic_ESP.pdf" target="_blank">
+                  <button class="flex items-center ml-auto" title="Más información">
+                    <span>Más información</span>
+                    <fai class="text-av-100 mx-2" icon="question-circle" size="lg"/>
+                  </button>
+                </a>
+              </div>
               <img class="object-fill h-full w-full h-96"
-                   src="https://images.pexels.com/photos/4911780/pexels-photo-4911780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
+                   src="/src/assets/img/InfoTable.jpeg"/>
             </div>
           </div>
         </div>

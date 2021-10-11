@@ -11,7 +11,18 @@
             <label for="viruela" class="flex items-center gap-2">
               <input id="viruela" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
               Viruela
-              <input type="date">
+            </label>
+            <label for="Bronquitis Aviar" class="flex items-center gap-2">
+              <input id="Bronquitis Aviar" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
+              Bronquitis Aviar
+            </label>
+            <label for="Gumboro" class="flex items-center gap-2">
+              <input id="Gumboro" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
+              Gumboro
+            </label>
+            <label for="New Castle" class="flex items-center gap-2">
+              <input id="New Castle" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
+              New Castle
             </label>
           </div>
           <div class="my-5">
