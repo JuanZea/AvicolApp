@@ -16,7 +16,7 @@
                 <h2 class="font-glory text-gray-600 font-bold text-xl">Número de gallinas</h2>
                 <h3 class="font-glory text-gray-500 text-md mb-2">{{ lot.hens_number }}</h3>
               </div>
-              <div v-else class="flex flex-col lg:flex-row gap-3 w-96 lg:w-full">
+              <div v-else class="flex flex-col lg:flex-row gap-3 lg:w-full">
                 <av-input v-model="newHens" id="name" type="text" label="Número de gallinas:"/>
               </div>
 
@@ -28,6 +28,7 @@
               </div>
               <div class="flex flex-col self-start gap-2 ml-4" v-else>
                 <button
+                    @click="updateLot"
                     class="bg-opacity-10 self-start flex bg-black p-1 bg-opacity-5 rounded-full">
                   <fai class="text-av-100" :icon="['far', 'check-circle']" size="lg"/>
                 </button>
@@ -55,7 +56,7 @@ import {ref, computed} from "vue";
 import capitalize from "lodash/capitalize";
 import lowerCase from "lodash/lowerCase";
 import {useRouter} from "vue-router";
-import {lotsService} from "../../../services";
+import {barnsService, lotsService} from "../../../services";
 import LotsTable from "../../../components/tables/LotsTable.vue";
 import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
@@ -76,12 +77,21 @@ export default {
     const newHens = ref();
     _updateBarn(barn.value);
 
+    function updateLot() {
+      lotsService.update(id.value, {
+        'hens_number': newHens.value,
+      }).then(response => {
+        editMode.value = false;
+        lot.value = response;
+      })
+    }
+
     lotsService.one(id.value).then(response => {
       lot.value = response;
       newHens.value = lot.value.hens_number;
     })
 
-    return {lot, router, capitalize, lowerCase, editMode, newHens, openModal}
+    return {lot, router, capitalize, lowerCase, editMode, newHens, openModal, updateLot}
 
   }
 
