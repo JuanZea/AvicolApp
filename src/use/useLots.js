@@ -1,5 +1,9 @@
 import { ref } from "vue";
 import {lotsService} from "../services";
+import ViruelaBehavior from "./vaccines/ViruelaBehavior";
+import MarekBehavior from "./vaccines/MarekBehavior";
+import GumboroBehavior from "./vaccines/GumboroBehavior";
+import NewCastleBehavior from "./vaccines/NewCastleBehavior";
 
 const lots = ref();
 
@@ -21,11 +25,26 @@ const storeLots = async (attributes) => {
     }
 }
 
+const calculeDate = name => {
+    let behavior = new vaccines[name];
+    return {
+        first: behavior.first(),
+        last: behavior.last()
+    }
+}
+
+const vaccines = {
+    'viruela': ViruelaBehavior,
+    'newCastle': NewCastleBehavior,
+    'gumboro': GumboroBehavior,
+    'marek': MarekBehavior,
+}
 
 export default function useLots() {
     return {
         lots,
         refreshLots,
-        storeLots
+        storeLots,
+        calculeDate
     }
 }

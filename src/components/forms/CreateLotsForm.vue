@@ -8,22 +8,10 @@
             <av-input id="hens_number" type="number" label="Cantidad de gallinas:"/>
           </div>
           <div>
-            <label for="viruela" class="flex items-center gap-2">
-              <input id="viruela" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
-              Viruela
-            </label>
-            <label for="Bronquitis Aviar" class="flex items-center gap-2">
-              <input id="Bronquitis Aviar" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
-              Bronquitis Aviar
-            </label>
-            <label for="Gumboro" class="flex items-center gap-2">
-              <input id="Gumboro" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
-              Gumboro
-            </label>
-            <label for="New Castle" class="flex items-center gap-2">
-              <input id="New Castle" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
-              New Castle
-            </label>
+            <div :for="vaccine.name" v-for="vaccine in vaccines" class="flex items-center gap-3 capitalize">
+              <input v-model="vaccine.check" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
+              {{vaccine.name}}
+            </div>
           </div>
           <div class="my-5">
             <button type="submit" class="btn btn-persimmon text-white">Crear lote</button>
@@ -46,8 +34,15 @@ export default {
 
   setup(props, computed) {
 
+    const vaccines = ref( [
+      { name: 'viruela', check: false },
+      { name: 'gumboro', check: false },
+      { name: 'newCastle', check: false },
+      { name: 'marek', check: false }
+    ]);
+
     const type = ref('cautividad');
-    const { storeLots } = useLots();
+    const { storeLots, calculeDate } = useLots();
 
     const store = () => {
       const formData = new FormData(document.getElementById('form'));
@@ -56,12 +51,15 @@ export default {
       for (let pair of formData.entries()) {
         attributes[pair[0]] = pair[1].trim() === '' ? null : pair[1].trim();
       }
+      attributes.vaccines = vaccines.value.map(vaccine => {
+        vaccine.check ? (vaccine.date = calculeDate(vaccine.name)) : {};
+        return vaccine;
+      });
 
       storeLots(attributes).then(() => computed.emit('created'))
     }
 
-    return { store, type };
-
-  },
+    return { store, type, vaccines };
+  }
 }
 </script>
