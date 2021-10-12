@@ -4,7 +4,7 @@ import {_updateSettlement} from "../services/avicolappAssembler";
 import router from "../router";
 import useStore from "./store/useStore";
 
-const { state } = useStore();
+const {state} = useStore();
 const activeSettlement = ref();
 const settlements = ref();
 
@@ -36,26 +36,18 @@ const refreshSettlements = async (force) => {
     if (!settlements.value || force) settlements.value = await settlementsService.all();
 }
 
-const storeErrors = ref([]);
 
 const storeSettlements = async (attributes) => {
-    try {
-        await settlementsService.create(attributes);
-        storeErrors.value = [];
-        await refreshActiveSettlement();
-        await refreshSettlements(true);
-    } catch (error) {
-        error.response.data.errors.errors.forEach(data => {
-            storeErrors.value[data.param] = 'El valor ingresado es invalido';
-        });
-    }
+    await settlementsService.create(attributes);
+    await refreshActiveSettlement();
+    await refreshSettlements(true);
+
 }
 
 
 export default function useSettlements() {
     return {
         settlements,
-        storeErrors,
         storeSettlements,
         activeSettlement,
         refreshSettlements,

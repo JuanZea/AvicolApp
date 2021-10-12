@@ -1,9 +1,9 @@
-import { ref } from "vue";
-import { barnsService } from "../services";
+import {ref} from "vue";
+import {barnsService} from "../services";
 import useMetrics from "./useMetrics";
 
 const barns = ref();
-const { refreshMetrics } = useMetrics();
+const {refreshMetrics} = useMetrics();
 
 const refreshBarns = () => {
     barnsService.all()
@@ -13,18 +13,9 @@ const refreshBarns = () => {
         }).catch(console.log);
 }
 
-const storeErrors = ref([]);
-
 const storeBarns = async (attributes) => {
-    try {
-        await barnsService.create(attributes);
-        storeErrors.value = [];
-        await refreshBarns(true);
-    } catch (error) {
-        error.response.data.errors.errors.forEach(data => {
-            storeErrors.value[data.param] = 'El valor ingresado es invalido';
-        });
-    }
+    await barnsService.create(attributes);
+    await refreshBarns(true);
 }
 
 

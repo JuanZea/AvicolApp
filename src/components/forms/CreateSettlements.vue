@@ -28,6 +28,7 @@
 import AvInput from "./AvInput.vue";
 import useSettlements from "../../use/useSettlements";
 import { useRouter } from "vue-router";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -37,6 +38,7 @@ export default {
 
     const router = useRouter();
     const { storeSettlements } = useSettlements();
+    const toast = useToast()
 
     const store = (event) => {
       event.preventDefault();
@@ -53,8 +55,11 @@ export default {
             router.push({name: 'home'});
           } else {
             computed.emit('created');
+            toast.success('Finca creada con éxito')
           }
-        })
+        }).catch(() => {
+        toast.error('Ha ocurrido un error al crear la finca')
+      })
     }
 
     return { store };

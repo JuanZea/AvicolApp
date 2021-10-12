@@ -23,6 +23,7 @@
 import { lotsService } from "../../services";
 import ModalLayout from "./ModalLayout.vue";
 import {useLots} from "../../use";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -32,13 +33,18 @@ export default {
 
   setup(props, context) {
     const { refreshLots } = useLots();
+    const toast = useToast()
 
     const deleteLot = async () => {
       lotsService.delete(props.lot.id)
           .then(async () => {
             refreshLots(true);
+            toast.success('Lote eliminado con éxito')
             context.emit('close');
-          });
+          }).catch(() => {
+
+        toast.error('El lote no pudo ser eliminado')
+      });
     }
 
     return {deleteLot}

@@ -3,6 +3,7 @@
     <label :for="id" class="block text-sm font-medium text-gray-700">{{ label }}</label>
     <div class="mt-1">
       <input v-model="inputValue" :type="type" :name="name || id" :id="id"
+             :required="$attrs.required"
              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 rounded-md"
              :placeholder="placeholder">
     </div>

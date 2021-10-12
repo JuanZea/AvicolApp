@@ -65,6 +65,7 @@ import {_updateBarn} from "../../../services/avicolappAssembler";
 import AvInput from "../../../components/forms/AvInput.vue";
 import AvSelect from "../../../components/forms/AvSelect.vue";
 import {useLots, useModals} from "../../../use";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -79,6 +80,7 @@ export default {
     const id = computed(() => router.currentRoute.value.params.id);
     const newName = ref();
     const newType = ref();
+    const toast = useToast()
     _updateBarn(id.value);
     refreshLots(true);
 
@@ -95,6 +97,9 @@ export default {
       }).then(response => {
         editMode.value = false;
         barn.value = response;
+        toast.success('Galpón actualizado con éxito')
+      }).catch(() => {
+        toast.error('El Galpón no pudo ser actualizado')
       })
     }
 

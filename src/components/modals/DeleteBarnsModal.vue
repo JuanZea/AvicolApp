@@ -23,22 +23,27 @@
 import {barnsService} from "../../services";
 import ModalLayout from "./ModalLayout.vue";
 import {useBarns} from "../../use";
+import {useToast} from "vue-toastification";
 
 export default {
 
-  props: { barn: {required: false, type: Object}, open: {required: true} },
+  props: {barn: {required: false, type: Object}, open: {required: true}},
 
-  components: { ModalLayout },
+  components: {ModalLayout},
 
   setup(props, context) {
 
-    const { refreshBarns } = useBarns();
+    const {refreshBarns} = useBarns();
+    const toast = useToast()
     const deleteBarn = () => {
       barnsService.delete(props.barn.id)
           .then(() => {
             refreshBarns();
+            toast.success('Galpón eliminado con éxito')
             context.emit('close');
-          });
+          }).catch(() => {
+        toast.error('No fue posible eliminar el galpón')
+      });
     }
 
     return {deleteBarn}

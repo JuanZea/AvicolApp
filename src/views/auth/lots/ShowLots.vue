@@ -72,6 +72,7 @@ import {useModals} from "../../../use";
 import GaugeChart from "../../../components/charts/GaugeChart.vue";
 import VaccinesTable from "../../../components/tables/VaccinesTable.vue";
 import {compareDate, convertDate} from "../../../helpers";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -86,6 +87,7 @@ export default {
     const vaccines = ref();
     const proxime = ref(100);
     _updateBarn(barn.value);
+    const toast = useToast()
 
     function updateLot() {
       lotsService.update(id.value, {
@@ -93,6 +95,9 @@ export default {
       }).then(response => {
         editMode.value = false;
         lot.value = response;
+        toast.success('Lote actualizado con éxito')
+      }).catch(() => {
+        toast.error('El Lote no pudo ser actualizado')
       })
     }
 

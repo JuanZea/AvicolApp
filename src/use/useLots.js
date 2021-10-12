@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import {ref} from "vue";
 import {lotsService} from "../services";
 import ViruelaBehavior from "./vaccines/ViruelaBehavior";
 import MarekBehavior from "./vaccines/MarekBehavior";
@@ -7,7 +7,7 @@ import NewCastleBehavior from "./vaccines/NewCastleBehavior";
 import useMetrics from "./useMetrics";
 
 const lots = ref();
-const { refreshMetrics } = useMetrics();
+const {refreshMetrics} = useMetrics();
 
 const refreshLots = async (force) => {
     if (!lots.value || force) {
@@ -16,18 +16,9 @@ const refreshLots = async (force) => {
     }
 }
 
-const storeErrors = ref([]);
-
 const storeLots = async (attributes) => {
-    try {
-        await lotsService.create(attributes);
-        storeErrors.value = [];
-        await refreshLots(true);
-    } catch (error) {
-        error.response.data.errors.errors.forEach(data => {
-            storeErrors.value[data.param] = 'El valor ingresado es invalido';
-        });
-    }
+    await lotsService.create(attributes);
+    await refreshLots(true);
 }
 
 const calculeDate = name => {

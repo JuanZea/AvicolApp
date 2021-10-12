@@ -26,6 +26,7 @@ import { ref } from "vue";
 import { useBarns } from "../../use";
 import AvInput from "./AvInput.vue";
 import AvSelect from "./AvSelect.vue";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -36,6 +37,8 @@ export default {
     const type = ref('cautividad');
     const { storeBarns } = useBarns();
 
+    const toast = useToast()
+
     const store = () => {
       const formData = new FormData(document.getElementById('form'));
       const attributes = {};
@@ -44,7 +47,12 @@ export default {
         attributes[pair[0]] = pair[1].trim() === '' ? null : pair[1].trim();
       }
 
-      storeBarns(attributes).then(() => computed.emit('created'))
+      storeBarns(attributes).then(() => {
+        computed.emit('created')
+        toast.success('Galpón creado con éxito')
+      }).catch(() => {
+        toast.error('Ha ocurrido un error al crear el galpón, verifica tus datos')
+      })
     }
 
     return { store, type };

@@ -8,10 +8,10 @@
             <av-input id="hens_number" type="number" label="Cantidad de gallinas:"/>
           </div>
           <div>
-            <div :for="vaccine.name" v-for="vaccine in vaccines" class="flex items-center gap-3 capitalize">
+            <label :for="vaccine.name" v-for="vaccine in vaccines" class="flex items-center gap-3 capitalize">
               <input v-model="vaccine.check" type="checkbox" class="rounded text-av-50 border-av-50 focus:ring-av-100"/>
               {{vaccine.name}}
-            </div>
+            </label>
           </div>
           <div class="my-5">
             <button type="submit" class="btn btn-persimmon text-white">Crear lote</button>
@@ -27,6 +27,7 @@ import { ref } from "vue";
 import { useLots } from "../../use";
 import AvInput from "./AvInput.vue";
 import AvSelect from "./AvSelect.vue";
+import {useToast} from "vue-toastification";
 
 export default {
 
@@ -43,6 +44,7 @@ export default {
 
     const type = ref('cautividad');
     const { storeLots, calculeDate } = useLots();
+    const toast = useToast()
 
     const store = () => {
       const formData = new FormData(document.getElementById('form'));
@@ -56,7 +58,12 @@ export default {
         return vaccine;
       });
 
-      storeLots(attributes).then(() => computed.emit('created'))
+      if(attributes.age && attributes.hens_number) {
+        storeLots(attributes).then(() => computed.emit('created'))
+        toast.success('Lote creado con éxito')
+      } else {
+        toast.error('Todos los datos deben ser ingresados')
+      }
     }
 
     return { store, type, vaccines };
