@@ -14,8 +14,11 @@ export default {
 
     return {chartName, chart};
   },
-  watch: {
-    data() {
+  mounted() {
+    this.refresh();
+  },
+  methods: {
+    refresh() {
       let items = _.map(this.data, (barn) => {
         if(barn.hens_number) {
           return {
@@ -25,6 +28,11 @@ export default {
         }
       });
       this.buildChart(items)
+    }
+  },
+  watch: {
+    data() {
+     this.refresh()
     }
   },
 }

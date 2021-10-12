@@ -116,65 +116,47 @@
 import BarnChart from "../../components/charts/BarnChart.vue";
 import HensByBarn from "../../components/charts/HensByBarn.vue";
 import BarnsLotsAndHensChart from "../../components/charts/BarnsLotsAndHensChart.vue";
-import {useMetrics, useModals, useSettlements} from "../../use";
+import {useMetrics, useModals} from "../../use";
 import MiniCard from "../../components/MiniCard.vue";
 import TopLotsTable from "../../components/tables/TopLotsTable.vue";
 import _ from "lodash";
 import {computed, ref, watch} from "vue";
-import {compareDate, compareDateGetDate, convertDate} from "../../helpers";
-import dayjs from "dayjs";
-import {useRouter} from "vue-router";
 
 export default {
   components: {TopLotsTable, MiniCard, BarnChart, BarnsLotsAndHensChart, HensByBarn},
   setup() {
-    const {metrics, refreshMetrics} = useMetrics();
+    const {metrics, refreshMetrics, vaccinesProximate} = useMetrics();
     let barns = ref([]);
     let lots = ref([]);
     let settlements = ref([]);
     let lotsTop10 = ref([]);
     let hens = ref(0);
-    let vaccinesProximate = ref([]);
-    refreshMetrics()
 
-    const { openModal } = useModals();
-    const openAlertInfoModal = ref(false);
-
-    watch(computed(() => metrics.value), () => {
+    const refreshMetricsData = () => {
       if (metrics.value) {
         settlements.value = metrics.value.settlements
         barns.value = metrics.value.barns
         lots.value = metrics.value.lots
-
-
-        _.forEach(lots.value, (lot) => {
-          hens.value += lot.hens_number
-          lot.vaccinesPorcentage = 0;
-          if (lot.vaccines && lot.vaccines.length) {
-            let proxime = ref(100);
-            _.forEach(lot.vaccines, (vaccine) => {
-              if(vaccine.check) {
-                let diffFirst = dayjs(vaccine.date.first).diff(dayjs(), 'day')
-                let diffLast = dayjs(vaccine.date.last).diff(dayjs(), 'day')
-                vaccine.approxime = compareDate(vaccine.date);
-                vaccine.approximeDate = convertDate(compareDateGetDate(vaccine.date));
-                lot.vaccinesPorcentage += (diffFirst + diffLast) === 0 ? 100 : diffFirst === 0 ? 50 : 0;
-                proxime.value = vaccine.approxime < proxime.value ? vaccine.approxime : proxime.value;
-                if (proxime.value > 0 && proxime.value <= 6) {
-                  vaccinesProximate.value.push(vaccine);
-                }
-              }
-            });
-            lot.vaccinesPorcentage = (lot.vaccinesPorcentage/lot.vaccines.length) ?? 0;
-          }
-        });
-
+        hens.value = 0;
+        _.forEach(lots.value, (lot) => hens.value += lot.hens_number);
         lotsTop10.value = _.take(_.sortBy(lots.value, (lot) => lot.vaccinesPorcentage), 10)
       }
-    });
+    };
 
+    if (!metrics.value) {
+      refreshMetrics(true).then(() => {
+        refreshMetricsData();
+      });
+    } else {
+      refreshMetricsData();
+    }
 
-    return { barns, lots, hens, lotsTop10, vaccinesProximate, openModal, openAlertInfoModal };
+    const {openModal} = useModals();
+    const openAlertInfoModal = ref(false);
+
+    watch(computed(() => metrics.value), () => refreshMetricsData());
+
+    return {barns, lots, hens, lotsTop10, vaccinesProximate, openModal, openAlertInfoModal};
   },
 }
 </script>

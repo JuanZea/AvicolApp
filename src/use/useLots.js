@@ -4,14 +4,16 @@ import ViruelaBehavior from "./vaccines/ViruelaBehavior";
 import MarekBehavior from "./vaccines/MarekBehavior";
 import GumboroBehavior from "./vaccines/GumboroBehavior";
 import NewCastleBehavior from "./vaccines/NewCastleBehavior";
-import _ from "lodash";
-import dayjs from "dayjs";
-import {compareDate, compareDateGetDate, convertDate} from "../helpers";
+import useMetrics from "./useMetrics";
 
 const lots = ref();
+const { refreshMetrics } = useMetrics();
 
 const refreshLots = async (force) => {
-    if (!lots.value || force) lots.value = await lotsService.all();
+    if (!lots.value || force) {
+        lots.value = await lotsService.all();
+        await refreshMetrics(true);
+    }
 }
 
 const storeErrors = ref([]);

@@ -19,6 +19,22 @@ export default {
 
     return {chartName, chart, labelX, labelY, minColor, maxColor};
   },
+  mounted() {
+    this.refresh()
+  },
+  methods: {
+    refresh() {
+      let items = _.map(this.data, (barn) => {
+        return {
+          name: barn.name,
+          count: barn.lots_number,
+          image: hensImage
+        };
+      });
+
+      this.buildChart(items)
+    }
+  },
   watch: {
     data() {
       let items = _.map(this.data, (barn) => {

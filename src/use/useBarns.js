@@ -1,12 +1,15 @@
 import { ref } from "vue";
 import { barnsService } from "../services";
+import useMetrics from "./useMetrics";
 
 const barns = ref();
+const { refreshMetrics } = useMetrics();
 
 const refreshBarns = () => {
     barnsService.all()
-        .then(response => {
+        .then(async response => {
             barns.value = response;
+            await refreshMetrics(true);
         }).catch(console.log);
 }
 

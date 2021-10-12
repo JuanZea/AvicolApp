@@ -56,7 +56,7 @@ export default {
   setup() {
     const { openModal } = useModals();
     const { logout } = useAuthentication();
-    const getInfo = (alert) => '<span class="text-center break-words"> En el lote #' + alert.lot +' del galpon #' + alert.barn + ' se aproxima el dia de aplicacion de <strong>' + alert.name + '</strong>. <span class="capitalize">' + alert.approximeDate +'</span></span>';
+    const getInfo = (alert) => '<span class="text-center break-words"> En el lote #' + alert.lot +' del galpon <strong>' + alert.barn + '</strong> se aproxima el dia de aplicacion de <strong>' + alert.name + '</strong>. <span class="capitalize">' + alert.approximeDate +'</span></span>';
     return { logout, openModal, getInfo }
   }
 }
