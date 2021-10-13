@@ -1,5 +1,5 @@
 {
   "projects": {
-    "default": "avicol-app"
+    "default": "avicol-app-api"
   }
 }
